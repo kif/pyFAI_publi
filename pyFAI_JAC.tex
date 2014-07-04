@@ -35,7 +35,7 @@
 \subsection{Experiment description}
 In pyFAI, a basic experiment is defined by an area-detector which position in
 space is defined versus the intersection of the incoming pencil beam and the
-sample plan. 
+sample plan.
 
 \subsection{Detector}
 Like most other image processing packages, pyFAI allows the definition of 2D
@@ -48,18 +48,18 @@ modules. Often such detector exhibit gaps beteween modules and pixels of various
 sizes within a module, hench requires a specific mask.
 To take the specificites of each detector into account, pyFAI contains about
 40 detectors class definition which contains the mask (invalid pixels, gaps,
-\ldots) and a method to calculate the pixel positon in cartesian coordinates. 
+\ldots) and a method to calculate the pixel positon in cartesian coordinates.
 
 \subsubsection{Nexus Detectors}
 Optically coupled CCD detector and Pilatus detectors should also be corrected
-for small spacial displacement of the pixel, often called geometric distortion. 
+for small spacial displacement of the pixel, often called geometric distortion.
 Any detector object in PyFAI, can be saved to a HDF5 file
 following the NeXus conversion (slightly modified).
 Detector objects can then be restored from the disk, making detector definition
 less error-prone.
 Pixels of a 2D detector are saved as a 4D HDF5-dataset: 2D array of vertices
 pointing to every corner of each pixel, which makes an array of shape: (ny, nx, 4, 3)
-This can define detectors no longer planar, like tiled detectors from 
+This can define detectors no longer planar, like tiled detectors from
 ImXpad or the Pilatus12M from Dectris, even accounting for the normal of each
 pixel.
 
@@ -71,10 +71,17 @@ detector without having to re-calibrate or re-calculate the position in space.
 All pyFAI detector classes have a binning option which will increase the pixel
 size accordingly and divide setector shape accordingly.
 \section{Calibration}
-\subsection{calibrant}
+Calibration of the position of the detector is performed using Debye-Scherrer
+rings of a reference powder called ``calibrant''.
+Rings are extracted and control points are located as maxima of those rings.
+The geomtry of the experiment is obtained from a least-squares refinement
+
+
+\subsection{Calibrant}
 \subsection{Peak-picking}
 \subsubsection{Massif}
 \subsubsection{blob detection}
+
 \section{Integration}
 \subsection{Pixel splitting schemes}
 \subsubsection{No splitting}
@@ -96,16 +103,16 @@ size accordingly and divide setector shape accordingly.
 \bibliography{biblio}
 \appendix
 \section{Project structure}
-PyFAI is an open source project licensed under the GPL mainly written in Python (v2.6 or 2.7) 
-and heavily relying on the python scientific ecosystem: NumPy, SciPy and Matplotlib. 
+PyFAI is an open source project licensed under the GPL mainly written in Python (v2.6 or 2.7)
+and heavily relying on the python scientific ecosystem: NumPy, SciPy and Matplotlib.
 It provides high performances image treatment thanks to Cython and PyOpenCL.
 
 The project is hosted on GitHub (https://github.com/kif/pyFAI) which provides
-the issue tracker in addition to code hosting. 
+the issue tracker in addition to code hosting.
 To ease the distribution, the
 software is available as official Debian package and included in some of the
-most famous linux distribution like Ubuntu and Debian. 
-The program runs also on other operating systems like Windows and MacOSX. 
+most famous linux distribution like Ubuntu and Debian.
+The program runs also on other operating systems like Windows and MacOSX.
 
 Anybody can fork the project and adapt it to his own needs: CEA-saclay,
 Synchrotrons Soleil and APS did it. If developments are useful to be shared,
@@ -118,8 +125,8 @@ shared execution model effective both on processors (CPU), graphics cars (GPU)
 and accelerators like FPGA.
 
 \subsection{Azimuthal Integration}
-The direct azimuthal integration is basically a scatter operation which 
-requires large locked section. 
+The direct azimuthal integration is basically a scatter operation which
+requires large locked section.
 To overcome this limitation, pixels have been
 associated to the output bin of the histogram and stored in a look-up
 table (LUT), making the integration look like a simple (if large and sparse)
@@ -129,7 +136,7 @@ saving about half of the space of the LUT previously used.
 Secondly, all threads within a workgroup are collaborating to calculate the
 matrix-vector product via a so-called ``parallel reduction'', offering
 additional speed-up (especially on GPUs).
-The compensated algebra (Kahan summation) is kept to maintain the precision 
+The compensated algebra (Kahan summation) is kept to maintain the precision
 of the calculation while using single precision (32 bits) floating points
 arithmetics.
 
@@ -138,7 +145,7 @@ arithmetics.
 
 \ack{Acknowledgements}
 
-The author would like to thank all ESRF beamline teams for \ldots 
+The author would like to thank all ESRF beamline teams for \ldots
 
 In the instrumentation division (ISDD) we would like to thank Claudio Ferrero,
 head of data analysis unit, and Andy G\"otz, head of software group, for
