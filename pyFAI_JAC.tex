@@ -9,13 +9,13 @@
 
 \begin{document}
 
-\title{Recent evolution in the Fase Azimuthal Integration python library}
+\title{The Fast Azimuthal Integration Python library}
 \shorttitle{PyFAI}
 
     \author[a]{Aurore}{Deschildre}
     \author[a]{Giannis}{Ashiotis}
     \author[b]{Zubair}{Nawaz}
-    \author[a]{Jonnathan P.}{Wright}
+    \author[a]{Jonathan P.}{Wright}
     \author[c]{Fr\'ed\'eric-Emmanuel}{Picca}
     \cauthor[a]{J\'er\^ome}{Kieffer}{jerome.kieffer@esrf,fr}{}
     \aff[a]{European Synchrotron Radiation Facility, \city{Grenoble}, \country{France}}
@@ -39,7 +39,7 @@ sample plan.
 
 \subsection{Detector}
 Like most other image processing packages, pyFAI allows the definition of 2D
-detectors by the pixel size (in meter) but shows its limits whith modern pixel
+detectors by the pixel size (in meter) but shows its limits with modern pixel
 detectors.
 
 \subsubsection{Detectors classes}
@@ -69,19 +69,20 @@ pixel.
 One of the strength of this geometry is capability to perform binning of the
 detector without having to re-calibrate or re-calculate the position in space.
 All pyFAI detector classes have a binning option which will increase the pixel
-size accordingly and divide setector shape accordingly.
+size accordingly and divide detector shape accordingly.
 \section{Calibration}
-\subsection{calibrant}
+\subsection{Calibrant}
 \subsection{Peak-picking}
 \subsubsection{Massif}
 \subsubsection{blob detection}
+\subsection{User interface}
 \section{Integration}
 \subsection{Pixel splitting schemes}
 \subsubsection{No splitting}
 \subsubsection{Bounding box splitting}
 \subsubsection{Tight pixel splitting}
 \subsubsection{Pixel correlation}
-
+\subsection{User interface}
 \section{Other features}
 \subsection{Forward projection}
 \subsection{Image offset}
@@ -111,7 +112,7 @@ Anybody can fork the project and adapt it to his own needs: CEA-saclay,
 Synchrotrons Soleil and APS did it. If developments are useful to be shared,
 they can be merged into the main branch via pull-requests.
 
-\Section{Parallel implementations using OpenCL}
+\section{Parallel implementations using OpenCL}
 Azimuthal integration and many other computing parts in pyFAI were written in
 OpenCL kernels and interfaced using PyOpenCL \cite{pyopencl}. PyOpenCL offers a
 shared execution model effective both on processors (CPU), graphics cars (GPU)
