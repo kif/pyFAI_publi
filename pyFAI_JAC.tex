@@ -1,0 +1,152 @@
+\documentclass[preprint]{iucr}
+ \journalcode{J}
+ \papertype{CP}
+
+\usepackage{graphicx}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\title{Recent evolution in the Fase Azimuthal Integration python library}
+\shorttitle{PyFAI}
+
+    \author[a]{Aurore}{Deschildre}
+    \author[a]{Giannis}{Ashiotis}
+    \author[b]{Zubair}{Nawaz}
+    \author[a]{Jonnathan P.}{Wright}
+    \author[c]{Fr\'ed\'eric-Emmanuel}{Picca}
+    \cauthor[a]{J\'er\^ome}{Kieffer}{jerome.kieffer@esrf,fr}{}
+    \aff[a]{European Synchrotron Radiation Facility, \city{Grenoble}, \country{France}}
+    \shortauthor{Kieffer et al.}
+
+\maketitle
+
+\begin{synopsis}
+
+\end{synopsis}
+
+\begin{abstract}
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Experiment description}
+In pyFAI, a basic experiment is defined by an area-detector which position in
+space is defined versus the intersection of the incoming pencil beam and the
+sample plan. 
+
+\subsection{Detector}
+Like most other image processing packages, pyFAI allows the definition of 2D
+detectors by the pixel size (in meter) but shows its limits whith modern pixel
+detectors.
+
+\subsubsection{Detectors classes}
+Large area pixel detector are often composed from the assembly of smaller
+modules. Often such detector exhibit gaps beteween modules and pixels of various
+sizes within a module, hench requires a specific mask.
+To take the specificites of each detector into account, pyFAI contains about
+40 detectors class definition which contains the mask (invalid pixels, gaps,
+\ldots) and a method to calculate the pixel positon in cartesian coordinates. 
+
+\subsubsection{Nexus Detectors}
+Optically coupled CCD detector and Pilatus detectors should also be corrected
+for small spacial displacement of the pixel, often called geometric distortion. 
+Any detector object in PyFAI, can be saved to a HDF5 file
+following the NeXus conversion (slightly modified).
+Detector objects can then be restored from the disk, making detector definition
+less error-prone.
+Pixels of a 2D detector are saved as a 4D HDF5-dataset: 2D array of vertices
+pointing to every corner of each pixel, which makes an array of shape: (ny, nx, 4, 3)
+This can define detectors no longer planar, like tiled detectors from 
+ImXpad or the Pilatus12M from Dectris, even accounting for the normal of each
+pixel.
+
+\subsection{Geometry}
+
+\subsubsection{Binning}
+One of the strength of this geometry is capability to perform binning of the
+detector without having to re-calibrate or re-calculate the position in space.
+All pyFAI detector classes have a binning option which will increase the pixel
+size accordingly and divide setector shape accordingly.
+\section{Calibration}
+\subsection{calibrant}
+\subsection{Peak-picking}
+\subsubsection{Massif}
+\subsubsection{blob detection}
+\section{Integration}
+\subsection{Pixel splitting schemes}
+\subsubsection{No splitting}
+\subsubsection{Bounding box splitting}
+\subsubsection{Tight pixel splitting}
+\subsubsection{Pixel correlation}
+
+\section{Other features}
+\subsection{Forward projection}
+\subsection{Image offset}
+\subsection{amorphous background removal}
+
+\section{Conclusion}
+
+
+
+
+\bibliographystyle{iucr}
+\bibliography{biblio}
+\appendix
+\section{Project structure}
+PyFAI is an open source project licensed under the GPL mainly written in Python (v2.6 or 2.7) 
+and heavily relying on the python scientific ecosystem: NumPy, SciPy and Matplotlib. 
+It provides high performances image treatment thanks to Cython and PyOpenCL.
+
+The project is hosted on GitHub (https://github.com/kif/pyFAI) which provides
+the issue tracker in addition to code hosting. 
+To ease the distribution, the
+software is available as official Debian package and included in some of the
+most famous linux distribution like Ubuntu and Debian. 
+The program runs also on other operating systems like Windows and MacOSX. 
+
+Anybody can fork the project and adapt it to his own needs: CEA-saclay,
+Synchrotrons Soleil and APS did it. If developments are useful to be shared,
+they can be merged into the main branch via pull-requests.
+
+\Section{Parallel implementations using OpenCL}
+Azimuthal integration and many other computing parts in pyFAI were written in
+OpenCL kernels and interfaced using PyOpenCL \cite{pyopencl}. PyOpenCL offers a
+shared execution model effective both on processors (CPU), graphics cars (GPU)
+and accelerators like FPGA.
+
+\subsection{Azimuthal Integration}
+The direct azimuthal integration is basically a scatter operation which 
+requires large locked section. 
+To overcome this limitation, pixels have been
+associated to the output bin of the histogram and stored in a look-up
+table (LUT), making the integration look like a simple (if large and sparse)
+matrix vector product.
+The sparse matrix ``Compressed Sparse Row'' (CSR) format is now used in pyFAI,
+saving about half of the space of the LUT previously used.
+Secondly, all threads within a workgroup are collaborating to calculate the
+matrix-vector product via a so-called ``parallel reduction'', offering
+additional speed-up (especially on GPUs).
+The compensated algebra (Kahan summation) is kept to maintain the precision 
+of the calculation while using single precision (32 bits) floating points
+arithmetics.
+
+\subsection{Look-up table creation}
+
+
+\ack{Acknowledgements}
+
+The author would like to thank all ESRF beamline teams for \ldots 
+
+In the instrumentation division (ISDD) we would like to thank Claudio Ferrero,
+head of data analysis unit, and Andy G\"otz, head of software group, for
+supporting the parallelization work on the presented algorithm.
+V. Armando Solé, the author of PyMca, is also acknowledged for providing a
+
+LinkSCEEM \ldots
+
+
+
+\end{document}
