@@ -75,11 +75,20 @@ size accordingly and divide detector shape accordingly.
 Calibration of the position of the detector is performed using Debye-Scherrer
 rings of a reference powder called ``calibrant''.
 Rings are extracted and control points are located as maxima of those rings.
-The geomtry of the experiment is obtained from a least-squares refinement of the
-
-
+The geometry of the experiment is obtained from a least-squares refinement of
+the $2\theta$ angles.
 \subsection{Calibrant}
+PyFAI provides ten calibrants files among the most used ones: ceria, corundum,
+gold, lantahnide hexaboride and silicon for powder diffraction; silver behenate,
+tetradecanol and para-bromobenzoic acid for small angle scattering.
+Any file containing d-spacing in angstrom can be used as calibrant for a
+geometry calibration and will be loaded by the $Calibrant$ class.
+This class,
+together with the provided wavelength provide the reference $2\theta$ position
+against which the geometry will be refined.
+
 \subsection{Peak-picking}
+
 \subsubsection{Massif}
 \subsubsection{blob detection}
 \subsection{User interface}
