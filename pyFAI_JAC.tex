@@ -99,10 +99,84 @@ against which the geometry will be refined.
 \subsubsection{Tight pixel splitting}
 \subsubsection{Pixel correlation}
 \subsection{User interface}
-\section{Other features}
-\subsection{Forward projection}
-\subsection{Image offset}
-\subsection{amorphous background removal}
+
+\section{Signal separation}
+\subsection{Diffraction image generation}
+
+As an azimuthal integrator object knows about the position of the detector in
+space, hence the $2\theta$ and $\chi$ position of every single pixel, it is not
+only able to perform averaging and regrouping  but also to
+reconstruct various types of images assuming an azimuthal symmetry.
+#: simulated
+#2D diffraction patterns (mainly for testing) but also from actual signal.
+This method, $calcfrom1d$, is for example used together with a calibrant object
+to generate a fake diffraction image suitable for testing pyFAI or other
+calibration codes (for example to validate the geometry translation from one
+program to another).
+
+\subsection{Image offset and validation of the calibration}
+By regenerating a 2D diffraction image from the integrated powder pattern one
+can assess the quality of the calibration used for the integration.
+The calibration tool, pyFAI-calib, offers  a ``validate'' command which measures
+the offset on the image (x, y) between the 2D diffraction image and the one
+regenerated from the integrated patern, using a phase correlation algorithm.
+This allows a measurement of the precision of the PONI, which is often better
+than a tenth of a pixel !
+To obtain such a result, a proper calibration image with continuous rings (i.e.
+not spotty) and a mask to remove the beam stop are mandatory.
+
+\subsection{Amorphous background removal}
+
+PyFAI's azimuthal integrator features a $separate$ method able to separate
+the backgound with an azimuthal symmetry (amorphous scattering or powder ring),
+from Bragg peaks automatically.
+
+Based on what was described in \cite{PyFAI_PDJ}, a bidimentional azimuthal
+integration is performed on the input image.
+The output 2D image is filtered out along the azimuthal $\chi$ axis using a
+percentile filter to construct the powder diffraction curve without the punctual
+Bragg spots.
+The number of points in azimuthal and radial direction as well as
+the percentile value can be adjusted but the default values are reasonnably
+good.
+
+The reconstructed 2D image corresponds to the amorphous/powder/isotropic
+composant of the input image and the subtraction of this generated image from
+the raw data contains only the bragg signal.
+Figure \ref{separate} (left)
+presents a close-up look at the first image of a Lysozyme dataset provided by Dectris to
+advertize their Pilatus 6M detectors (image taken at the Swiss Light Source). A
+moderate ice-ring is clearly visible. After using the automatic amorphous
+background removal, which takes into account the mask needed for such pixel
+detector, only Bragg peaks remains (right of the image).
+
+\begin{figure}
+\label{separate}
+\begin{center}
+\includegraphics[width=15cm]{separate.eps}
+\caption{Automatic separation of amorphous signal from Bragg peaks in a
+protein crystallography experiment.}
+\end{center}
+\end{figure}
+
+\subsubsection{Application to high-pressure diffraction}
+When high-pressure diffraction is performed using diamond anvil cells, the Bragg
+reflection from diamond tend to polluted the powder diffraction signal. PyFAI's
+isotropic component separation can also be used to retieve the powder signal and
+discard the signal from the the diamond.
+
+\subsubsection{Application to serial crystallography}
+In those experiment, tiny crystals in their medium (liquid) are sent in front of
+the X-ray beam (using a jet or moving a motor) and data are acquired
+continuously, using a fast detector (from dozens of Hertz to kHz).
+Those experiment produce a huge amount of data and only a small fraction of the
+frames contain actually diffraction signal.
+PyFAI, when integrated into the LImA data acquisition system \cite{lima},
+can be used to assess the amount of single crystall diffraction data and decide
+to save or not any frame, saving a huge amount of disk space and network
+bandwidth.
+
+
 
 \section{Conclusion}
 
