@@ -64,7 +64,15 @@ ImXpad or the Pilatus12M from Dectris, even accounting for the normal of each
 pixel.
 
 \subsection{Geometry}
+The experiment geometry is defined in pyFAI by six parameters: the sample
+detector distance along with the detector coordinates of the sample's ortohgonal
+projection on the detector plane, called PONI. The detector's rotation along the
+three axes are completing those six parameters. All three distances are handeled
+as meter and all three rotation are given in radians. Those S.I. units may look
+unadapted and odd to users familliar to other code like FIT2D \cite{fit2d},
+therefore the geometry can be exported to (or imported from) other software.   
 
+ 
 \subsubsection{Binning}
 One of the strength of this geometry is capability to perform binning of the
 detector without having to re-calibrate or re-calculate the position in space.
@@ -73,10 +81,11 @@ size accordingly and divide detector shape accordingly.
 
 \section{Calibration}
 Calibration of the position of the detector is performed using Debye-Scherrer
-rings of a reference powder called ``calibrant''.
+rings collected from a reference powder called ``calibrant''.
 Rings are extracted and control points are located as maxima of those rings.
 The geometry of the experiment is obtained from a least-squares refinement of
 the $2\theta$ angles.
+
 \subsection{Calibrant}
 PyFAI provides ten calibrants files among the most used ones: ceria, corundum,
 gold, lantahnide hexaboride and silicon for powder diffraction; silver behenate,
@@ -92,9 +101,13 @@ against which the geometry will be refined.
 \subsubsection{Massif}
 \subsubsection{blob detection}
 \subsection{User interface}
+
 \section{Integration}
 \subsection{Pixel splitting schemes}
 \subsubsection{No splitting}
+
+TODO \ldots \cite{bilinge2014}
+
 \subsubsection{Bounding box splitting}
 \subsubsection{Tight pixel splitting}
 \subsubsection{Pixel correlation}
@@ -206,7 +219,7 @@ they can be merged into the main branch via pull-requests.
 Azimuthal integration and many other computing parts in pyFAI were written in
 OpenCL kernels and interfaced using PyOpenCL \cite{pyopencl}. PyOpenCL offers a
 shared execution model effective both on processors (CPU), graphics cars (GPU)
-and accelerators like FPGA.
+and accelerators like the Intel's Xeon Phi.
 
 \subsection{Azimuthal Integration}
 The direct azimuthal integration is basically a scatter operation which
