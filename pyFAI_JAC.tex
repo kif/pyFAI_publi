@@ -16,6 +16,7 @@
     \author[a]{Giannis}{Ashiotis}
     \author[b]{Zubair}{Nawaz}
     \author[a]{Jonathan P.}{Wright}
+    \author[a]{Dimitrios}{Karkoulis}
     \author[c]{Fr\'ed\'eric-Emmanuel}{Picca}
     \cauthor[a]{J\'er\^ome}{Kieffer}{jerome.kieffer@esrf,fr}{}
     \aff[a]{European Synchrotron Radiation Facility, \city{Grenoble}, \country{France}}
@@ -44,40 +45,48 @@ detectors.
 
 \subsubsection{Detectors classes}
 Large area pixel detector are often composed from the assembly of smaller
-modules. Often such detector exhibit gaps beteween modules and pixels of various
-sizes within a module, hench requires a specific mask.
+modules (Pilatus from Dectris, Maxipix from ESRF, \ldots). 
+Often such detector
+exhibit gaps between modules and pixels of various sizes within a module, hench
+requires a specific mask. 
 To take the specificites of each detector into account, pyFAI contains about
 40 detectors class definition which contains the mask (invalid pixels, gaps,
-\ldots) and a method to calculate the pixel positon in cartesian coordinates.
+\ldots) and a method to calculate the pixel position in cartesian coordinates.
 
 \subsubsection{Nexus Detectors}
-Optically coupled CCD detector and Pilatus detectors should also be corrected
+Optically coupled CCD detector should also be corrected
 for small spacial displacement of the pixel, often called geometric distortion.
-Any detector object in PyFAI, can be saved to a HDF5 file
-following the NeXus conversion (slightly modified).
+Any detector object in PyFAI, can be saved to a HDF5 file following the NeXus
+conversion (slightly modified).
 Detector objects can then be restored from the disk, making detector definition
 less error-prone.
 Pixels of a 2D detector are saved as a 4D HDF5-dataset: 2D array of vertices
 pointing to every corner of each pixel, which makes an array of shape: (ny, nx, 4, 3)
 This can define detectors no longer planar, like tiled detectors from
 ImXpad or the Pilatus12M from Dectris, even accounting for the normal of each
-pixel.
+pixel. 
+While extremely flexible, this detector definition come at the cost of
+large description files.
 
 \subsection{Geometry}
 The experiment geometry is defined in pyFAI by six parameters: the sample
-detector distance along with the detector coordinates of the sample's ortohgonal
-projection on the detector plane, called PONI. The detector's rotation along the
-three axes are completing those six parameters. All three distances are handeled
-as meter and all three rotation are given in radians. Those S.I. units may look
-unadapted and odd to users familliar to other code like FIT2D \cite{fit2d},
-therefore the geometry can be exported to (or imported from) other software.   
+detector distance along with the detector coordinates of the sample's orthogonal
+projection on the detector plane, called PONI. 
+The detector's rotation along the three axes are completing those six
+parameters. 
+All three distances are given in meter and all three rotation are given
+in radians.
+Those S.I. units may look inaddapted or odd to users familiar to other code
+like FIT2D \cite{fit2d} or SPD \cite{spd}, therefore the geometry can be
+exported to (or imported from) other software.
 
  
 \subsubsection{Binning}
 One of the strength of this geometry is capability to perform binning of the
 detector without having to re-calibrate or re-calculate the position in space.
 All pyFAI detector classes have a binning option which will increase the pixel
-size accordingly and divide detector shape accordingly.
+size accordingly and divide detector shape accordingly. 
+This even works for detectors with distortion files. 
 
 \section{Calibration}
 Calibration of the position of the detector is performed using Debye-Scherrer
@@ -85,35 +94,80 @@ rings collected from a reference powder called ``calibrant''.
 Rings are extracted and control points are located as maxima of those rings.
 The geometry of the experiment is obtained from a least-squares refinement of
 the $2\theta$ angles.
+In this contribution we will call them ``ring'' event if, for planar detector,
+they are actually conics formed by the intersection of the Debye-Scerrer cones
+with the detector plan. 
+PyFAI does not assume rings are circles, ellipses or parabola and is able to fit
+any kind of geometry. The support for the geometry refinement of non planar
+detector is still under development.
 
 \subsection{Calibrant}
 PyFAI provides ten calibrants files among the most used ones: ceria, corundum,
 gold, lantahnide hexaboride and silicon for powder diffraction; silver behenate,
 tetradecanol and para-bromobenzoic acid for small angle scattering.
 Any file containing d-spacing in angstrom can be used as calibrant for a
-geometry calibration and will be loaded by the $Calibrant$ class.
-This class,
-together with the provided wavelength provide the reference $2\theta$ position
-against which the geometry will be refined.
+geometry calibration and can be loaded by the $Calibrant$ class instance.
+This computer object is in charge of
+calculating the reference $2\theta$ cone opening 
+against which the geometry will be refined (provided the wavelength/energy is
+known).
 
 \subsection{Peak-picking}
+With the nano-focused beam available on modern synchrotron facilities
+\cite{id13}, fewer crystal get hit by the beam going through the
+sample making Debye-Scherrer ring obtained from the diffraction of reference
+powders spotty.
+As grinding reference powder is not advices (it would at least broaden peaks if
+not changing crystal structure), we decided to address this issue by image analysis 
+and reconstruct Debye-Scherrer rings.
+An alternative approach is to use single crystal indexation technics, for
+example using the Fable software \cite{bonnin}.
 
-\subsubsection{Massif}
-\subsubsection{blob detection}
+\subsubsection{Massif extraction}
+allows a clear separation between regions containing large
+photon counts (rings) and the background.
+It uses a difference of the image with itself, blured with a given width,
+$\sigma$. 
+Border of the regions with high intensity are negative in this
+difference with a gaussian image, so positive region are labeled and represents
+a ring (or a fraction of it). Peaks, which are local maxima, are sample within
+the same region.
+The width of the gaussian has to be larger than the typical distance
+between two peaks within a ring and smaller than the distance between two
+rings. 
+PyFAI includes some heuristics to guess an acceptable parameter in most cases
+but they can be overridden by the command line argument $--gaussian=XX$.
+
+\subsubsection{Sub-pixel precision} 
+on the peak position is obtained using a second order developemnt of the
+intensity on the vinicy of the peak:
+$$ f(x) = f(x_0) + \nabla f(x_0)\cdot (x-x_0) + \frac{1}{2}
+(x-x_0)^T\cdot\mathcal{H} f(x_0)\cdot(x-x_0)$$ 
+which can be derived into:
+$$\nabla f(x) =\nabla f(x_0) + \mathcal{H}f(x_0)\cdot(x-x_0)$$
+Extrema are define by $\nabla f(x)=0$, hence:
+$$x = x_0 - (\mathcal{H} f(x_0))^(-1)\cdot\nabla f(x_0)$$
+where $\nabla$ and $\mathcal{H}$ are the gradient (vector) and hessian
+(matrix), respectively.
+\subsubsection{Blob detection}
+
 \subsection{User interface}
 
 \section{Integration}
 \subsection{Pixel splitting schemes}
 \subsubsection{No splitting}
 
-TODO \ldots \cite{bilinge2014}
 
 \subsubsection{Bounding box splitting}
 \subsubsection{Tight pixel splitting}
 \subsubsection{Pixel correlation}
+It is woth mentionning that direct histogram without pixel splitting is the only
+method which allows precise measurement of the error\cite{billinge2014}.
+
 \subsection{User interface}
 
 \section{Signal separation}
+
 \subsection{Diffraction image generation}
 
 As an azimuthal integrator object knows about the position of the detector in
