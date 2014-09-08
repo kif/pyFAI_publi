@@ -32,8 +32,22 @@
 \end{abstract}
 
 \section{Introduction}
+Azimuthal integration allows using area detectors for recording powder diffraction patterns, which 
+ensure larger solid angle coverage and hence a better harvest of X­ray photons. 
+This data reduction 
+step is one of the most time ­consuming tasks in the processing pipeline and
+sometimes limits the productivity of modern synchrotron beamlines, where diffraction is used to probe samples with a 
+pencil beam in 2D raster scans or diffraction tomography experiments by using very fast detectors. 
 
-\subsection{Experiment description}
+Python\ldots. pyFAI 
+
+This contribution introduces how a powder diffraction 
+experiment is described within pyFAI: composed of a detector and its position
+in space.
+
+Then Calibration
+ - 
+\section{Experiment description}
 In pyFAI, a basic experiment is defined by an area-detector which position in
 space is defined versus the intersection of the incoming pencil beam and the
 sample plan.
@@ -94,7 +108,7 @@ rings collected from a reference powder called ``calibrant''.
 Rings are extracted and control points are located as maxima of those rings.
 The geometry of the experiment is obtained from a least-squares refinement of
 the $2\theta$ angles.
-In this contribution we will call them ``ring'' event if, for planar detector,
+In this contribution we will call them ``ring'' even if, for planar detector,
 they are actually conics formed by the intersection of the Debye-Scerrer cones
 with the detector plan. 
 PyFAI does not assume rings are circles, ellipses or parabola and is able to fit
@@ -141,14 +155,18 @@ but they can be overridden by the command line argument $--gaussian=XX$.
 \subsubsection{Sub-pixel precision} 
 on the peak position is obtained using a second order developemnt of the
 intensity on the vinicy of the peak:
-$$ f(x) = f(x_0) + \nabla f(x_0)\cdot (x-x_0) + \frac{1}{2}
-(x-x_0)^T\cdot\mathcal{H} f(x_0)\cdot(x-x_0)$$ 
-which can be derived into:
-$$\nabla f(x) =\nabla f(x_0) + \mathcal{H}f(x_0)\cdot(x-x_0)$$
-Extrema are define by $\nabla f(x)=0$, hence:
-$$x = x_0 - (\mathcal{H} f(x_0))^(-1)\cdot\nabla f(x_0)$$
-where $\nabla$ and $\mathcal{H}$ are the gradient (vector) and hessian
-(matrix), respectively.
+$$ I(\overrightarrow{x}) = I(\overrightarrow{x_0}) + \nabla
+I(\overrightarrow{x_0})\cdot (\overrightarrow{x}-\overrightarrow{x_0}) +
+\frac{1}{2} (\overrightarrow{x}-\overrightarrow{x_0})^T\cdot\mathcal{H}
+I(\overrightarrow{x_0})\cdot(\overrightarrow{x}-\overrightarrow{x_0})$$ which
+can be derived into:
+$$\nabla I(\overrightarrow{x}) =\nabla I(\overrightarrow{x_0}) +
+\mathcal{H}I(\overrightarrow{x_0})\cdot(\overrightarrow{x}-\overrightarrow{x_0})$$
+Extrema are define by $\nabla I(\overrightarrow{x})=0$, hence:
+$$\overrightarrow{x} = \overrightarrow{x_0} - (\mathcal{H}
+I(\overrightarrow{x_0}))^{-1}\cdot\nabla I(\overrightarrow{x_0})$$ where $I$,
+$\nabla I$ and $\mathcal{H} I$ are the scalar field of intensity, its gradient
+(vector) and hessian (matrix), respectively, measured at the maximum pixel position.
 \subsubsection{Blob detection}
 
 \subsection{User interface}
@@ -170,16 +188,30 @@ method which allows precise measurement of the error\cite{billinge2014}.
 
 \subsection{Diffraction image generation}
 
-As an azimuthal integrator object knows about the position of the detector in
-space, hence the $2\theta$ and $\chi$ position of every single pixel, it is not
-only able to perform averaging and regrouping  but also to
-reconstruct various types of images assuming an azimuthal symmetry.
-#: simulated
-#2D diffraction patterns (mainly for testing) but also from actual signal.
-This method, $calcfrom1d$, is for example used together with a calibrant object
-to generate a fake diffraction image suitable for testing pyFAI or other
+Once the geometry defined, the $2\theta$ and $\chi$ position of every single
+pixel of the detector are known.
+If one assumes the isotropy of signal (real powder without prefered
+orientation), $2D$ diffraction patterns can be generated.
+The method, $calcfrom1d$ is available from any $Azimuthal Integrator$ or
+$Geometry$ instance, is used together with a calibrant object
+to generate a fake diffraction image suitable for testing pyFAI or other 
 calibration codes (for example to validate the geometry translation from one
 program to another).
+
+\begin{verbatim}
+import pyFAI, pyFAI.calibrant
+det = pyFAI.detectors.detector_factory("pilatus1m")
+ai = pyFAI.AzimuthalIntegrator(dist=0.1, poni1=0.1, poni2=0.1, detector=det)
+lab6 = pyFAI.calibrant.ALL_CALIBRANTS["LaB6"]
+lab6.set_wavelength(1e-10)
+img = lab6.fake_calibration_image(ai)
+\end{verbatim}
+
+In this sniplet of code, after importing the library, a detector is instancated
+from its name (line 2) and positionned in space (line 3).
+A reference sample is defined on line 4 from the known calibrants and the
+wavelength is set on line 5. Line 6 generates a 2D numpy array containing
+Debye-Scherrer diffraction ring which can be saved or displayed on the screen.
 
 \subsection{Image offset and validation of the calibration}
 By regenerating a 2D diffraction image from the integrated powder pattern one
