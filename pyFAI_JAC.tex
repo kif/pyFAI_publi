@@ -185,7 +185,43 @@ $$\overrightarrow{x} = \overrightarrow{x_0} - (\mathcal{H}
 I(\overrightarrow{x_0}))^{-1}\cdot\nabla I(\overrightarrow{x_0})$$ where $I$,
 $\nabla I$ and $\mathcal{H} I$ are the scalar field of intensity, its gradient
 (vector) and hessian (matrix), respectively, measured at the maximum pixel position.
+
 \subsubsection{Blob detection}
+is a computer vision method which allows to perform peak-picking without
+\textit{a-priori} knowledge on the level of the image.
+This feature is essential to us as diffraction images exhibit a very large
+dynamic range.
+
+The diffraction image is sequencially blured with gaussian filter which
+width $\sigma$ follows the geomtric serie: $\frac{1}{2}$,
+$\frac{\sqrt{2}}{2}$, 1, $\sqrt{2}$, 2, $2\sqrt{2}$, \ldots
+For each blured image at scale $\sigma$, the subsequent blured (at
+$\sigma'=\sigma\cdot\sqrt(2)$
+is subtracted to create a difference of Gaussian
+image (called DoG) which highligths the features of the image which typical size
+is $\sigma$. 
+A 3D scale-space ($x,y,\sigma$) representation is created from those DoG images.
+
+This method provides us not only the peaks location, as local maxima in
+scale-space, but also the typical size of the peak. 
+Peak position, scales and intensity are refined as described in the former
+paragraph, extended to the scale space.
+
+To keep the computation time reasonable, the implementation of the blob
+detection relies on gaussian convolution in real space (i.e. without Fourier
+transform), separated in horizontal and vertical direction, with small
+convolution kernel of width $8 \sigma +1$.
+To prevent the growth of the window with larger $\sigma$, a pyramid of Gaussians
+is built by binning the blured image by a factor 2 when it reaches a $\sigma=2$.
+
+The drawback of this algoritm, beside the calcualtion time, is its very high
+sensitivity to noise in flat regions. 
+This is why blob detection is only used in the re-calibration procedure to
+re-extract all peaks in a region of interest, ROI determined form an
+approximative geometry.
+Moreover blob detection cannot find peaks wich width is smaller than  
+$\sigma=0.7$ which correspond to 3 pixels.
+
 
 \subsection{User interface}
 
