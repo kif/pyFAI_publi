@@ -3,6 +3,7 @@
  \papertype{CP}
 
 \usepackage{graphicx}
+\usepackage{minted}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -217,15 +218,53 @@ is built by binning the blured image by a factor 2 when it reaches a $\sigma=2$.
 The drawback of this algoritm, beside the calcualtion time, is its very high
 sensitivity to noise in flat regions. 
 This is why blob detection is only used in the re-calibration procedure to
-re-extract all peaks in a region of interest, ROI determined form an
+extract all peaks in a region of interest, ROI determined form an
 approximative geometry.
 Moreover blob detection cannot find peaks wich width is smaller than  
 $\sigma=0.7$ which correspond to 3 pixels.
 
-
 \subsection{User interface}
+The calibration tool of pyFAI has been available along with the
+integration tool since the very begining of the project as a core idea is to
+use the same code to calculate the geometry and to perform the integration,
+avoiding any error of copy-paste of coordinates.
 
-\subection{Automatic distance calibration}
+The user interface for calibration has improved a lot recently: the assignement
+of the ring number is now possible graphically, as shown in figure \ref{calib}.
+The inital refinement is obtaines from two mouse clicks on the two inner-most
+rings (ring extraction using the Massif algorithm). Six rings are overlaid on
+the TODO 
+
+\begin{figure}
+\label{calib}
+\begin{center}
+\includegraphics[width=15cm]{calib.eps}
+\caption{The calibration window allows manual peak-picking and
+ring assignment.}
+\end{center}
+\end{figure}
+
+
+Try to get the help of a given action, like 'refine?'. Use done when finished. Most command are composed of 'action parameter value' like 'set wavelength 1e-10'.
+Valid actions: set, help, get, bound, free, abort, done, refine, validate, recalib, reset, fix, show, bounds, integrate
+Valid parameters: dist, poni1, poni2, rot1, rot2, rot3, wavelength
+
+\subsection{Automatic distance/center calibration}
+The previous procedure has been automated for specific types of beamlines: 
+Macromolecular Crystallography beamlines at the ESRF (MX) need to input the
+sample distance togeather with the beam center automatically in the header of
+their collected images to be able to process them automatically.
+As the area detector is on a moving stage, dictance and center position are
+changing from data-collection to data-collection.
+The ``MX-calibrate'' tool from pyFAI allows the automatic callibration of
+a set of images taken at various distances using Debye-Scherrer rings of a
+reference compound (ceria).
+After perfroming subsequently peak-picking based on blob-detection and least
+square refinement of the geometry on every input frame, distances and
+beam-center position are returned as function of the motor position without
+human intervention.
+
+\subsection{Graphical user interface}
 
 
 \section{Integration}
@@ -259,14 +298,17 @@ to generate a fake diffraction image suitable for testing pyFAI or other
 calibration codes (for example to validate the geometry translation from one
 program to another).
 
-\begin{verbatim}
+%\begin{verbatim}
+\begin{minted}{python}
+
 import pyFAI, pyFAI.calibrant
 det = pyFAI.detectors.detector_factory("pilatus1m")
 ai = pyFAI.AzimuthalIntegrator(dist=0.1, poni1=0.1, poni2=0.1, detector=det)
 lab6 = pyFAI.calibrant.ALL_CALIBRANTS["LaB6"]
 lab6.set_wavelength(1e-10)
 img = lab6.fake_calibration_image(ai)
-\end{verbatim}
+\end{minted}
+%\end{verbatim}
 
 In this sniplet of code, after importing the library, a detector is instancated
 from its name (line 2) and positionned in space (line 3).
@@ -313,8 +355,8 @@ detector, only Bragg peaks remains (right of the image).
 \begin{figure}
 \label{separate}
 \begin{center}
-\includegraphics[width=15cm]{separate.eps}
-\caption{Automatic separation of amorphous signal from Bragg peaks in a
+\includegraphics[width=15cm]{merged.eps}
+\caption{Automatic removal of amorphous signal (ice ring) from Bragg peaks in a
 protein crystallography experiment.}
 \end{center}
 \end{figure}
