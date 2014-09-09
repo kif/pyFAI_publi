@@ -32,21 +32,34 @@
 \end{abstract}
 
 \section{Introduction}
-Azimuthal integration allows using area detectors for recording powder diffraction patterns, which 
-ensure larger solid angle coverage and hence a better harvest of X­ray photons. 
+Azimuthal integration allows using area detectors for recording powder
+diffraction patterns, which  ensure larger solid angle coverage and hence a better harvest of X­ray photons. 
 This data reduction 
 step is one of the most time ­consuming tasks in the processing pipeline and
-sometimes limits the productivity of modern synchrotron beamlines, where diffraction is used to probe samples with a 
-pencil beam in 2D raster scans or diffraction tomography experiments by using very fast detectors. 
+sometimes limits the productivity of modern synchrotron beamlines, where
+diffraction is used to probe samples with a  pencil beam in 2D raster scans or
+diffraction tomography experiments by using very fast detectors. 
 
-Python\ldots. pyFAI 
+This contribution describes the Python library pyFAI in its version 0.10 (fall
+2014) which can be used to calibrate the experimental setup of a powder
+diffraction experiment or a SAXS experiement using area detector using
+Debye-Scherrer rings of a reference compound. 
+Afer describing how the geometry is internally represented, the various
+image analysis algorithm used to extract Debye-Scherrer rings are presented.
+Those ring positions are combined with a calibrant to perform the refinement
+of the geometry.
 
-This contribution introduces how a powder diffraction 
-experiment is described within pyFAI: composed of a detector and its position
-in space.
+Once this geometry known, azimuthal regrouping can be performed. 
+PyFAI implements various algorithm for intergrating with various pixel splitting
+schemes which will be exposed. 
+The latest algorithms have been optimized for
+manycore computer devices, they are benchamarked with previous implementation on
+many classes of devices.
 
-Then Calibration
- - 
+Finally some scientific examples are given on how pyFAI can be used to decompose 
+diffraction images into amorphous and Bragg component and its application
+to serial crystallography.
+ 
 \section{Experiment description}
 In pyFAI, a basic experiment is defined by an area-detector which position in
 space is defined versus the intersection of the incoming pencil beam and the
@@ -54,22 +67,27 @@ sample plan.
 
 \subsection{Detector}
 Like most other image processing packages, pyFAI allows the definition of 2D
-detectors by the pixel size (in meter) but shows its limits with modern pixel
-detectors.
-
-\subsubsection{Detectors classes}
+detectors by a constant pixel size (in meter) but this approach shows its limits
+with various types of detectors.
 Large area pixel detector are often composed from the assembly of smaller
 modules (Pilatus from Dectris, Maxipix from ESRF, \ldots). 
-Often such detector
-exhibit gaps between modules and pixels of various sizes within a module, hench
-requires a specific mask. 
+By construction, such detector exhibit gaps between modules and pixels of
+various sizes within a module, hench requires a specific mask.
+Optically coupled CCD detector should also be corrected
+for small spacial displacement of the pixel, often called geometric distortion.
+
+\subsubsection{Detectors classes} are used to define a familly of detectors/ 
 To take the specificites of each detector into account, pyFAI contains about
 40 detectors class definition which contains the mask (invalid pixels, gaps,
 \ldots) and a method to calculate the pixel position in cartesian coordinates.
+For tapper coupled CCD detectors, the geometrical distortion is often
+described as a bi-dimentional cubic spline and save in a so called ``spline
+file''. 
+Such files have been introduced by FIT2D \cite{fit2d} and are still widely
+used. PyFAI can create a detector description by loading into a ``FReLon''
+detector object
 
 \subsubsection{Nexus Detectors}
-Optically coupled CCD detector should also be corrected
-for small spacial displacement of the pixel, often called geometric distortion.
 Any detector object in PyFAI, can be saved to a HDF5 file following the NeXus
 conversion (slightly modified).
 Detector objects can then be restored from the disk, making detector definition
@@ -171,16 +189,23 @@ $\nabla I$ and $\mathcal{H} I$ are the scalar field of intensity, its gradient
 
 \subsection{User interface}
 
+\subection{Automatic distance calibration}
+
+
 \section{Integration}
+
 \subsection{Pixel splitting schemes}
+
 \subsubsection{No splitting}
 
-
 \subsubsection{Bounding box splitting}
+
 \subsubsection{Tight pixel splitting}
+
 \subsubsection{Pixel correlation}
-It is woth mentionning that direct histogram without pixel splitting is the only
-method which allows precise measurement of the error\cite{billinge2014}.
+
+It is worth mentionning that direct histogram without pixel splitting is the
+only method which allows precise measurement of the error\cite{billinge2014}.
 
 \subsection{User interface}
 
