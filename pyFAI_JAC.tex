@@ -157,6 +157,7 @@ An alternative approach is to use single crystal indexation technics, for
 example using the Fable software \cite{bonnin}.
 
 \subsubsection{Massif extraction}
+\label{massif}
 allows a clear separation between regions containing large
 photon counts (rings) and the background.
 It uses a difference of the image with itself, blured with a given width,
@@ -172,6 +173,7 @@ PyFAI includes some heuristics to guess an acceptable parameter in most cases
 but they can be overridden by the command line argument $--gaussian=XX$.
 
 \subsubsection{Sub-pixel precision} 
+\label{subpixel}
 on the peak position is obtained using a second order developemnt of the
 intensity on the vinicy of the peak:
 $$ I(\overrightarrow{x}) = I(\overrightarrow{x_0}) + \nabla
@@ -188,6 +190,7 @@ $\nabla I$ and $\mathcal{H} I$ are the scalar field of intensity, its gradient
 (vector) and hessian (matrix), respectively, measured at the maximum pixel position.
 
 \subsubsection{Blob detection}
+\label{blob}
 is a computer vision method which allows to perform peak-picking without
 \textit{a-priori} knowledge on the level of the image.
 This feature is essential to us as diffraction images exhibit a very large
@@ -231,23 +234,48 @@ avoiding any error of copy-paste of coordinates.
 
 The user interface for calibration has improved a lot recently: the assignement
 of the ring number is now possible graphically, as shown in figure \ref{calib}.
-The inital refinement is obtaines from two mouse clicks on the two inner-most
-rings (ring extraction using the Massif algorithm). Six rings are overlaid on
-the TODO 
+An rough estimate of the geometry is usually obtained from a mouse click on the
+two inner-most rings. 
+The blue and green dots correspond to the control points extracted using the
+algorithm described in \ref{massif}. 
+After refinement of the geometry, six thin, plain curves are drawn on the
+image to mark where Debye-Scherrer rings are expected, allowing a visual
+validation of the calibration.
 
 \begin{figure}
 \label{calib}
 \begin{center}
 \includegraphics[width=15cm]{calib.eps}
 \caption{The calibration window allows manual peak-picking and
-ring assignment.}
+ring assignment. A Silver Behenate sample is used as a calibant for the SAXS
+beamline BM26/Dubble working at $\lambda=1\AA$ }
 \end{center}
 \end{figure}
 
-
-Try to get the help of a given action, like 'refine?'. Use done when finished. Most command are composed of 'action parameter value' like 'set wavelength 1e-10'.
-Valid actions: set, help, get, bound, free, abort, done, refine, validate, recalib, reset, fix, show, bounds, integrate
-Valid parameters: dist, poni1, poni2, rot1, rot2, rot3, wavelength
+From an inital rough calibration, pyFAI allows to perform many operation to
+refine all parameters: distance, PONI position, rotation of the detector and
+optionnaly the wavelength. The available commands are:
+\begin{itemize}
+\item help: show the help message
+\item abort: quit the program
+\item done: performs the azimuthal integration and quits
+\item get: prints out the value of a parameter \textem{get wavelength}
+\item set: defines the value of a parameter, \textem{set wavelength 1.54e-10} 
+\item bound: select the region of validity for a parameter, \textem{ bound dist
+0.1 0.5}
+\item bounds: review and modify all region of validity for all parameters
+\item fix: prevent the parameter to be refined \textem{fix wavelength}
+\item free: allows the paramter to be refined \textem{free rot1}
+\item refine: re-runs the least squares refinement
+\item validate: Estimate the precision of the calibration on the whole
+image by overlaying the raw image with the integrated pattern retro-projected.
+\item recalib: extract a new set of control points from the n inner most rings
+\textem{recalib 5}
+\item reset: reset the geometry to its default values,
+\item show: prints out the current calibration parameters
+\item integrate: performs the 1D and 2D integration to validate the quality of
+the calibration.
+\end{itemize}
 
 \subsection{Automatic distance/center calibration}
 The previous procedure has been automated for specific types of beamlines: 
@@ -265,24 +293,45 @@ beam-center position are returned as function of the motor position without
 human intervention.
 
 \subsection{Graphical user interface}
+PyFAI is primarly a Python library, a graphical user interface (GUI) offering
+calibration and integration would limit the flexibility of the tool and
+constrain the processing piepline. 
+Neverthless the Dioptas project 
+\cite{diopas}, which is devleopped independently at the APS synchotron, is based
+on pyFAI and is offering a graphical user interface for the calibration and
+azimuthal integration.
 
+\section{Azimuthal Integration}
 
-\section{Integration}
+The core of pyFAI is to be able to perform azimuthal integration in 1D or 2D as
+fast as possible, using python binary extention, often multi-threaded or even
+graphics processors (GPU) and other accelerators, while offering a common
+interface. 
+The implementation details have been described in
+\cite{kieffer_ashiotis-proc-euroscipy-2014}.
 
-\subsection{Pixel splitting schemes}
+%\begin{verbatim}
+\begin{minted}{python}
+import pyFAI, fabio, pylab
+ai = pyFAI.load("geometry.poni)
+img = fabio.open("imagefile.tif").data
+tth, I = ai.integrate1d(img, 1000, method="splitpixel", unit="2th_deg")
+pylab.plot(tth, I)
+\end{minted}
+%\end{verbatim}
+In this sniplet of code one can adapt the number of output points, 
+the radial unit ($2\theta$ angle, radius or scattering verctor norm $q$) and the
+integration scheme which is summarized into table \ref{split}.
+This table contains 3 pixel splitting schemes: no splitting, splitting of the
+bounding box or tight pixel spliting. Each algorithm can be implemented as a
+direct transformation like in histogram or using a look-up table.
+ In this table we summarized in addition the speed-up observed (versus the pure
+ NumPy \cite{numpy} implementation, on  quad-core computer) and the memory
+ footprint for integrating a 2048x2048 pixel image.
 
-\subsubsection{No splitting}
-
-\subsubsection{Bounding box splitting}
-
-\subsubsection{Tight pixel splitting}
-
-\subsubsection{Pixel correlation}
-
-It is worth mentionning that direct histogram without pixel splitting is the
-only method which allows precise measurement of the error\cite{billinge2014}.
-
-\subsection{User interface}
+It is worth mentioning that while pixel splitting provides smoother results, any
+pixel splitting scheme introduces some cross-correlation between
+neighboring bins\cite{billinge2014}.
 
 \section{Signal separation}
 
