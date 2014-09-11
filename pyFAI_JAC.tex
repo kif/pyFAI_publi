@@ -26,10 +26,15 @@
 \maketitle
 
 \begin{synopsis}
-
+The Python library for high performance azimuthal integration 
 \end{synopsis}
 
 \begin{abstract}
+PyFAI is an opensource software package designed to perform azimuthal and radial integration and,
+correspondingly, 2D regrouping on area detector frames for SAXS, WAXS and XRPD
+experiments. It is written in Python, a language widely accepted and used by the scientific community today, which enables
+the users to easily incorporate the PyFAI libraries into their processing pipeline. We present recent work
+which focuses both on the accuracy of the results and execution speed.
 \end{abstract}
 
 \section{Introduction}
@@ -41,7 +46,7 @@ sometimes limits the productivity of modern synchrotron beamlines, where
 diffraction is used to probe samples with a  pencil beam in 2D raster scans or
 diffraction tomography experiments by using very fast detectors. 
 
-This contribution describes the Python library pyFAI in its version 0.10 (fall
+This contribution describes the Python library pyFAI in its version 0.9.5 (fall
 2014) which can be used to calibrate the experimental setup of a powder
 diffraction experiment or a SAXS experiement using area detector using
 Debye-Scherrer rings of a reference compound. 
@@ -54,8 +59,9 @@ Once this geometry known, azimuthal regrouping can be performed.
 PyFAI implements various algorithm for intergrating with various pixel splitting
 schemes which will be exposed. 
 The latest algorithms have been optimized for
-manycore computer devices, they are benchamarked with previous implementation on
-many classes of devices.
+manycore computer devices.
+%, they are benchamarked with previous implementation
+%on many classes of devices.
 
 Finally some scientific examples are given on how pyFAI can be used to decompose 
 diffraction images into amorphous and Bragg component and its application
@@ -245,10 +251,10 @@ validation of the calibration.
 \begin{figure}
 \label{calib}
 \begin{center}
-\includegraphics[width=15cm]{calib.eps}
+\includegraphics[width=5cm]{calib.eps}
 \caption{The calibration window allows manual peak-picking and
 ring assignment. A Silver Behenate sample is used as a calibant for the SAXS
-beamline BM26/Dubble working at $\lambda=1\AA$ }
+beamline BM26/Dubble working at $\lambda=1.0${\AA}}
 \end{center}
 \end{figure}
 
@@ -317,23 +323,44 @@ ai = pyFAI.load("geometry.poni)
 img = fabio.open("imagefile.tif").data
 tth, I = ai.integrate1d(img, 1000, method="splitpixel", unit="2th_deg")
 pylab.plot(tth, I)
+pylab.show()
 \end{minted}
 %\end{verbatim}
 In this sniplet of code one can adapt the number of output points, 
 the radial unit ($2\theta$ angle, radius or scattering verctor norm $q$) and the
-integration scheme which is summarized into table \ref{split}.
+integration scheme which is summarized into table \ref{methods}.
 This table contains 3 pixel splitting schemes: no splitting, splitting of the
 bounding box or tight pixel spliting. Each algorithm can be implemented as a
 direct transformation like in histogram or using a look-up table.
- In this table we summarized in addition the speed-up observed (versus the pure
- NumPy \cite{numpy} implementation, on  quad-core computer) and the memory
- footprint for integrating a 2048x2048 pixel image.
+In this table we summarized in addition the speed-up observed (versus the pure
+NumPy \cite{numpy} implementation, on  quad-core computer) and the memory
+footprint for integrating a 2048x2048 pixel image into 1000 bins.
+
+\begin{table}[ht]
+\caption{Various ``method`` available within pyFAI for azimuthal integration
+featuring their speed-up (vs numpy histogram, on a quad-core computer) and
+memory footprint for a 2048x2048 pixel image.}
+\begin{tabular}[pos]{|c|l|l|l|}
+\hline
+Pixel split& No splitting & Bounding box & Tight pixel \\
+\hline
+Direct    & numpy (1x, 324MB) & splitbbox (7x, 327MB) & splitpixel(2x, 479MB)\\
+histogram & cython(3x, 323MB) &                       &                \\
+\hline
+Look-up   & -      & splitBBoxLUT (37x, 672MB)&splitpixelLUT (17x, ?MB)\\
+table     &        & splitBBoxCSR (42x, 294MB)&splitpixelCSR (17x, ?MB)\\
+\hline
+\end{tabular}
+\label{table:methods}
+\end{table}
 
 It is worth mentioning that while pixel splitting provides smoother results, any
-pixel splitting scheme introduces some cross-correlation between
-neighboring bins\cite{billinge2014}.
+pixel splitting scheme introduces some cross-correlation between neighboring
+bins, introducing an overestimation of errors, as described in \cite{billinge2014}.
 
 \section{Signal separation}
+
+
 
 \subsection{Diffraction image generation}
 
@@ -413,8 +440,8 @@ protein crystallography experiment.}
 \subsubsection{Application to high-pressure diffraction}
 When high-pressure diffraction is performed using diamond anvil cells, the Bragg
 reflection from diamond tend to polluted the powder diffraction signal. PyFAI's
-isotropic component separation can also be used to retieve the powder signal and
-discard the signal from the the diamond.
+isotropic component separation can also be used to retrieve the pure powder
+signal and discard the bragg diffraction signal from the the diamond.
 
 \subsubsection{Application to serial crystallography}
 In those experiment, tiny crystals in their medium (liquid) are sent in front of
@@ -422,14 +449,16 @@ the X-ray beam (using a jet or moving a motor) and data are acquired
 continuously, using a fast detector (from dozens of Hertz to kHz).
 Those experiment produce a huge amount of data and only a small fraction of the
 frames contain actually diffraction signal.
-PyFAI, when integrated into the LImA data acquisition system \cite{lima},
-can be used to assess the amount of single crystall diffraction data and decide
-to save or not any frame, saving a huge amount of disk space and network
-bandwidth.
-
-
+PyFAI has been integrated into the processing software NanoPeakCell which
+provides a graphical interface for frame selection in serial crystallography.
+But pyFAI can also be integrated into the LImA data acquisition system
+\cite{lima}, where it assesses the amount of single crystal
+diffraction data within each frame and decide to save it or not.
+By proceedings so, a huge amount of disk space and network bandwidth can be
+saved.
 
 \section{Conclusion}
+
 
 
 
@@ -446,7 +475,7 @@ The project is hosted on GitHub (https://github.com/kif/pyFAI) which provides
 the issue tracker in addition to code hosting.
 To ease the distribution, the
 software is available as official Debian package and included in some of the
-most famous linux distribution like Ubuntu and Debian.
+most famous Linux distribution like Ubuntu and Debian.
 The program runs also on other operating systems like Windows and MacOSX.
 
 Anybody can fork the project and adapt it to his own needs: CEA-saclay,
@@ -473,22 +502,52 @@ matrix-vector product via a so-called ``parallel reduction'', offering
 additional speed-up (especially on GPUs).
 The compensated algebra (Kahan summation) is kept to maintain the precision
 of the calculation while using single precision (32 bits) floating points
-arithmetics.
+arithmetics. 
 
-\subsection{Look-up table creation}
+\subsection{Performances}
+The table \ref{benchmark} shows the performance of pyFAI in frames processed per
+second depending on the input image size (in semi-logarithmic scale). 
+This
+benchmark has been performed on a dual Intel Xeon E5-2667 (2.9Ghz) computer with a Nvidia Tesla K20 GPU and an Intel
+Xeon Phi accelerator.
+
+\begin{figure}
+\label{benchmark}
+\begin{center}
+\includegraphics[width=5cm]{benchmark.eps}
+\caption{Benchmark of the various algorithm to perform azimuthal integration in
+pyFAI}
+\end{center}
+\end{figure}
+
+In this benchmark, four group of curves can be extracted.
+\begin{itemize}
+  \item The lower plain blue curve presenting the serial Cython code using
+  histograms (corresponding to the ``splitbbox'' method) which is the slowest
+  implementation (even if it is 7x faster than a numpy implementation).
+  \item The red and blue plain curves which correspond to the two parallel
+  cython implementation for look-up tables.
+  \item the group of dashed curves which represent the OpenCL optimized code
+  running on the 12 CPU core, the 60 cores from the accerator or the GPU (LUT
+  implementation).
+  \item The upper curve, in dashed black correspond the CSR sparse matrix
+  multiplication implemented in OpenCL code and running on the Tesla card which
+  is twice faster
+\end{itemize}  
 
 
 \ack{Acknowledgements}
 
-The author would like to thank all ESRF beamline teams for \ldots
-
+The author would like to thank all ESRF beamline teams for supporting the pyFAI
+developement, especially BM01, ID02, ID11, ID13, BM26, ID29, BM29, ID30,
 In the instrumentation division (ISDD) we would like to thank Claudio Ferrero,
 head of data analysis unit, and Andy G\"otz, head of software group, for
-supporting the parallelization work on the presented algorithm.
-V. Armando Solé, the author of PyMca, is also acknowledged for providing a
-
-LinkSCEEM \ldots
-
-
+supporting the algorithmic work performed on pyFAI in addition to the features
+seen by the user.
+V. Armando Solé, the author of PyMca, is also acknowledged for providing us some
+important graphical user interface building blocks.  
+The huge parallelization work on the core and porting to manycore devices
+was mainly done by Dimitris Karkoulis, Zubair Nawaz and Giannis Ashiotis,
+thanks the EU-grant LinkSCEEM-2 XXXX.
 
 \end{document}
