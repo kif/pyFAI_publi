@@ -92,7 +92,7 @@ various sizes within a single module, hence they require a specific mask.
 Optically coupled CCD detector should also be corrected
 for small spacial displacement of the pixel, often called geometric distortion.
 
-\subsubsection{Detectors classes} are used to define a familly of detectors. 
+\subsubsection{Detectors classes} are used to define a family of detectors. 
 To take the specificities of each detector into account, pyFAI contains about
 40 detectors class definition which contains the mask (invalid pixels, gaps,
 \ldots) and a method to calculate the pixel position in cartesian coordinates.
@@ -104,29 +104,32 @@ the detector instance and used to calculate the actual pixel position in space.
 Any detector object in pyFAI, can be saved to a HDF5 file following the NeXus
 \cite{nexus} conversion (slightly modified).
 Detector objects can subsequently then be restored from the disk, making
-detector definition less error-prone (for complicated detectors).
-Pixels of a 2D detector are saved as a 4-dimention dataset: 2D
+complex detector definition less error-prone.
+Pixels of an area detector are saved as a 4-dimension dataset: 2D
 array of vertices pointing to every corner of each pixel, which makes an array
-of shape: ($ny$, $nx$, 4, 3) where $nx$ and $ny$ are the dimentions of the
+of shape: ($ny$, $nx$, 4, 3) where $nx$ and $ny$ are the dimension of the
 detector.
-This definition, while using very large data-files, is the only which can
-cope for odd detectors layout which are no longer planar, for
-example tiled modules pixel detectors from ImXpad or the
-semi-cylindrical Pilatus12M from Dectris.
+This definition, while relying on large description file, is the only which
+can cope for complex detectors layout when the sensitive surface is no
+longer planar, for example curved imaging plates, tiled modules pixel detectors
+from ImXpad or the semi-cylindrical Pilatus12M from Dectris.
 
 \subsection{Geometry}
 The experiment geometry is defined in pyFAI by the position of the detector in
 space, the origin being located at the sample position, where the X-ray beam
 crosses the sample.
-As the detector is a rigid body, its position in space is described by six
+The detector being a rigid body, its position in space is described by six
 parameters: 3 coordinates and 3 rotations. 
-In PyFAI, the coodinates used are the (orthogonal) distance from the sample to
-the detector's surface and the position of this Point Of Normal Incidence
-(PONI) in the detector's coordinate system. 
-All 3 distances are given in meter and all 3 rotation are given
-in radians.
-Those S.I. units may look inadapted or odd to users familiar to other code
-like FIT2D \cite{fit2d}, therefore the geometry used in pyFAI can be
+In PyFAI, the coordinates used rely on the point, orthogonal projection of
+origin (sample) on the detector surface, called PONI (for point of Normal
+Incidence). The detector distance is the sample-PONI distance and the PONI
+coordinates are measured in the detector's referential (origin at the lower
+left of the image). As pixel size may vary, all 3 distances are given in meter.
+The 3 rotations, stored in radians, correspond to the rotation along the 3 axis.
+When all rotation are null, the detector is transmission mode with the incident
+beam othogonal to the detector's surface.
+The choice of S.I. units may look inadapted or odd to users familiar to
+other code like FIT2D \cite{fit2d}, therefore the geometry used in pyFAI can be
 exported to and imported from the parameter set from other software.
  
 \subsubsection{Binning}
@@ -606,8 +609,8 @@ In this benchmark, four group of curves can be extracted.
 \ack{Acknowledgements}
 
 The author would like to thank all ESRF beamline teams for supporting the pyFAI
-development, especially BM01, ID02, ID11, ID13, ID15, BM26, ID29, BM29, ID30,
-In the instrumentation division (ISDD) we would like to thank Claudio Ferrero,
+development, especially BM01, ID02, ID11, ID13, ID15, ID23, BM26, ID29, BM29,
+ID30, In the instrumentation division (ISDD) we would like to thank Claudio Ferrero,
 head of data analysis unit, and Andy G\"otz, head of software group, for
 supporting the algorithmic work performed on pyFAI in addition to the features
 seen by the user.
@@ -617,5 +620,8 @@ important graphical user interface building blocks.
 The huge parallelization work on the integration routines and their porting to
 manycore devices was mainly done by Dimitris Karkoulis, Zubair Nawaz and Giannis Ashiotis,
 thanks the EU-grant LinkSCEEM-2 (RI-261600).
+
+We would like to thank David Flot for the protein diffraction image (fig. XXX)
+and 
 
 \end{document}
