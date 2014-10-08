@@ -11,34 +11,50 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Geometry}{4}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Binning}{4}}
 \citation{id13}
+\citation{fable}
 \citation{bonnin}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Calibration}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Calibrant}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Peak-picking}{5}}
 \newlabel{massif}{{3.2.1}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Massif extraction}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}``Massif'' extraction}{6}}
 \newlabel{subpixel}{{3.2.2}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Sub-pixel precision}{6}}
-\newlabel{blob}{{3.2.3}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Blob detection}{6}}
+\newlabel{blob}{{3.2.3}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Blob detection}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Graphical user interface for calibration}{8}}
 \citation{kieffer_ashiotis-proc-euroscipy-2014}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Graphical user interface}{7}}
-\citation{numpy}
+\newlabel{calib}{{1}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Azimuthal Integration}{9}}
+\citation{fabio}
+\citation{matplotlib}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Programming interface for azimuthal integration}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Pixel splitting schemes and implementation}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Histogram vs Look-Up Table.}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Three pixel splitting}{11}}
 \citation{billinge2014}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Azimuthal Integration}{8}}
-\newlabel{table:methods}{{1}{8}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Example of applications}{9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Diffraction image generation}{9}}
+\newlabel{calib}{{2}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Summary about speed and memory consumption.}{12}}
+\newlabel{table:methods}{{1}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Graphical user interface for azimuthal integration}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Example of applications}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Diffraction image generation}{13}}
 \citation{caglioti}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Image offset and validation of the calibration}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Image offset and validation of the calibration}{14}}
 \citation{PyFAI_PDJ}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Amorphous background removal}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Amorphous background removal}{15}}
 \citation{lima}
-\newlabel{separate}{{1}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Application to serial crystallography}{12}}
+\newlabel{separate}{{3}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Application to serial crystallography}{16}}
+\citation{edna}
+\citation{bm29}
+\citation{dpdak}
 \bibstyle{iucr}
 \bibdata{biblio}
 \harvardcite{cython}{Behnel, Bradshaw, Citro, Dalcin, Seljebotn \harvardand \ Smith}{Behnel \emph {et~al.}}{2011}
+\harvardcite{dpdak}{Benecke, Wagermaier, Li, Schwartzkopf, Flucke, Hoerth, Zizak, Burghammer, Metwalli, M{\"{u}}ller-Buschbaum, Trebbin, F{\"{o}}rster, Paris, Roth \harvardand \ Fratzl}{Benecke \emph {et~al.}}{2014}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{17}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion and Future Work}{17}}
 \harvardcite{bonnin}{Bonnin, Wright, Tucoulou \harvardand \^^MPalancher}{Bonnin \emph {et~al.}}{2014}
 \harvardcite{spd}{B\"osecke}{B\"osecke}{2007}
 \harvardcite{caglioti}{Caglioti, Paoletti \harvardand \^^MRicci}{Caglioti \emph {et~al.}}{1958}
@@ -46,11 +62,15 @@
 \harvardcite{fit2d}{Hammersley, Svensson, Hanfland, Fitch \harvardand \ Hausermann}{Hammersley \emph {et~al.}}{1996}
 \harvardcite{lima}{Homs, Claustre, Kirov \harvardand \^^MPapillon}{Homs \emph {et~al.}}{2012}
 \harvardcite{matplotlib}{Hunter}{Hunter}{2007}
+\harvardcite{edna}{Incardona, Bourenkov, Levik, Pieritz, Popov \harvardand \ Svensson}{Incardona \emph {et~al.}}{2009}
 \harvardcite{scipy}{Jones, Oliphant \harvardand \^^MPeterson}{Jones \emph {et~al.}}{2001}
 \harvardcite{kieffer_ashiotis-proc-euroscipy-2014}{Kieffer \harvardand \^^MAshiotis}{Kieffer \harvardand \^^MAshiotis}{2014}
 \harvardcite{PyFAI_PDJ}{Kieffer \harvardand \ Wright}{Kieffer \harvardand \ Wright}{2013}
 \harvardcite{pyopencl}{{Kl{\"o}ckner}, {Pinto}, {Lee}, {Catanzaro}, {Ivanov} \harvardand \ {Fasih}}{{Kl{\"o}ckner} \emph {et~al.}}{2012}
+\harvardcite{fabio}{Knudsen, S{\o }rensen, Wright, Goret \harvardand \ Kieffer}{Knudsen \emph {et~al.}}{2013}
+\harvardcite{fable}{Oddershede, Schmidt, Poulsen, S{\o }rensen, Wright \harvardand \ Reimers}{Oddershede \emph {et~al.}}{2010}
 \harvardcite{numpy}{Oliphant}{Oliphant}{2007}
+\harvardcite{bm29}{Pernot, Round, Barrett, De~Maria~Antolinos, Gobbo, Gordon, Huet, Kieffer, Lentini, Mattenet, Morawe, Mueller-Dieckmann, Ohlsson, Schmid, Surr, Theveneau, Zerrad \harvardand \ McSweeney}{Pernot \emph {et~al.}}{2013}
 \harvardcite{id13}{Riekel, Burghammer \harvardand \^^MDavies}{Riekel \emph {et~al.}}{2010}
 \harvardcite{opencl}{Stone, Gohara \harvardand \ Shi}{Stone \emph {et~al.}}{2010}
 \harvardcite{billinge2014}{Yang X.and~Juhas \harvardand \ Billinge}{Yang X.and~Juhas \harvardand \ Billinge}{2014}
@@ -59,13 +79,11 @@
 \citation{matplotlib}
 \citation{cython}
 \citation{pyopencl}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{13}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion and Future Work}{13}}
-\newlabel{annex_calib}{{B}{14}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Calibration user interface}{15}}
-\newlabel{calib}{{2}{16}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}Automatic distance and center calibration}{17}}
+\newlabel{annex_calib}{{B}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Calibration user interface}{20}}
+\newlabel{calib}{{4}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}Automatic distance and center calibration}{22}}
 \citation{pyopencl}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.1}Azimuthal Integration}{18}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.2}Performances}{19}}
-\newlabel{benchmark}{{3}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.1}Azimuthal Integration}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.2}Performances}{24}}
+\newlabel{benchmark}{{5}{24}}

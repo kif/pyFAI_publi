@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{21}
 \baselineskip=9pt\parskip=0pt
 
 \harvarditem[Behnel \emph{et~al.}]{Behnel, Bradshaw, Citro, Dalcin, Seljebotn
@@ -6,6 +6,16 @@
 Behnel, S., Bradshaw, R., Citro, C., Dalcin, L., Seljebotn, D. \harvardand\
   Smith, K.  \harvardyearleft 2011\harvardyearright{}.
 \newblock \emph{{C}omput. {S}ci. {E}ng.} \volbf{13}(2), 31--39.
+
+\harvarditem[Benecke \emph{et~al.}]{Benecke, Wagermaier, Li, Schwartzkopf,
+  Flucke, Hoerth, Zizak, Burghammer, Metwalli, M{\"{u}}ller-Buschbaum, Trebbin,
+  F{\"{o}}rster, Paris, Roth \harvardand\ Fratzl}{2014}{dpdak}
+Benecke, G., Wagermaier, W., Li, C., Schwartzkopf, M., Flucke, G., Hoerth, R.,
+  Zizak, I., Burghammer, M., Metwalli, E., M{\"{u}}ller-Buschbaum, P., Trebbin,
+  M., F{\"{o}}rster, S., Paris, O., Roth, S.~V. \harvardand\ Fratzl, P.
+  \harvardyearleft 2014\harvardyearright{}.
+\newblock \emph{Journal of Applied Crystallography}, \volbf{47}(5), 1797--1803.
+\newline\harvardurl{http://dx.doi.org/10.1107/S1600576714019773}
 
 \harvarditem[Bonnin \emph{et~al.}]{Bonnin, Wright, Tucoulou \harvardand\
   Palancher}{2014}{bonnin}
@@ -48,6 +58,12 @@ Homs, A., Claustre, L., Kirov, A. \harvardand\ Papillon, E.and~Petitdemange, S.
 Hunter, J.~D.  \harvardyearleft 2007\harvardyearright{}.
 \newblock \emph{{C}omput. {S}ci. {E}ng.} \volbf{9}(3), 90--95.
 
+\harvarditem[Incardona \emph{et~al.}]{Incardona, Bourenkov, Levik, Pieritz,
+  Popov \harvardand\ Svensson}{2009}{edna}
+Incardona, M.-F., Bourenkov, G., Levik, K., Pieritz, R., Popov, A. \harvardand\
+  Svensson, O.  \harvardyearleft 2009\harvardyearright{}.
+\newblock \emph{J. Synchrotron Rad.} \volbf{16}(6), 872--879.
+
 \harvarditem[Jones \emph{et~al.}]{Jones, Oliphant \harvardand\
   Peterson}{2001}{scipy}
 Jones, E., Oliphant, T.~E. \harvardand\ Peterson, P.,  \harvardyearleft
@@ -73,9 +89,33 @@ Kieffer, J. \harvardand\ Wright, J.  \harvardyearleft 2013\harvardyearright{}.
   \harvardand\ {Fasih}, A.  \harvardyearleft 2012\harvardyearright{}.
 \newblock \emph{Parallel Computing}, \volbf{38}(3), 157--174.
 
+\harvarditem[Knudsen \emph{et~al.}]{Knudsen, S{\o}rensen, Wright, Goret
+  \harvardand\ Kieffer}{2013}{fabio}
+Knudsen, E.~B., S{\o}rensen, H.~O., Wright, J.~P., Goret, G. \harvardand\
+  Kieffer, J.  \harvardyearleft 2013\harvardyearright{}.
+\newblock \emph{J. Appl. Cryst.} \volbf{46}, 537--539.
+
+\harvarditem[Oddershede \emph{et~al.}]{Oddershede, Schmidt, Poulsen,
+  S{\o}rensen, Wright \harvardand\ Reimers}{2010}{fable}
+Oddershede, J., Schmidt, S., Poulsen, H.~F., S{\o}rensen, H.~O., Wright, J.
+  \harvardand\ Reimers, W.  \harvardyearleft 2010\harvardyearright{}.
+\newblock \emph{Journal of Applied Crystallography}, \volbf{43}(3), 539--549.
+\newline\harvardurl{http://dx.doi.org/10.1107/S0021889810012963}
+
 \harvarditem{Oliphant}{2007}{numpy}
 Oliphant, T.~E.  \harvardyearleft 2007\harvardyearright{}.
 \newblock \emph{{C}omput. {S}ci. {E}ng.} \volbf{9}(3), 10--20.
+
+\harvarditem[Pernot \emph{et~al.}]{Pernot, Round, Barrett, De~Maria~Antolinos,
+  Gobbo, Gordon, Huet, Kieffer, Lentini, Mattenet, Morawe, Mueller-Dieckmann,
+  Ohlsson, Schmid, Surr, Theveneau, Zerrad \harvardand\ McSweeney}{2013}{bm29}
+Pernot, P., Round, A., Barrett, R., De~Maria~Antolinos, A., Gobbo, A., Gordon,
+  E., Huet, J., Kieffer, J., Lentini, M., Mattenet, M., Morawe, C.,
+  Mueller-Dieckmann, C., Ohlsson, S., Schmid, W., Surr, J., Theveneau, P.,
+  Zerrad, L. \harvardand\ McSweeney, S.  \harvardyearleft
+  2013\harvardyearright{}.
+\newblock \emph{Journal of Synchrotron Radiation}, \volbf{20}(4), 660--664.
+\newline\harvardurl{http://dx.doi.org/10.1107/S0909049513010431}
 
 \harvarditem[Riekel \emph{et~al.}]{Riekel, Burghammer \harvardand\
   Davies}{2010}{id13}

@@ -350,52 +350,75 @@ a given geometry can be stored into a look-up table (LUT) and applied like a
 sparse matrix, dense vector multiplication. 
 While much more expensive in memory, this
 implementation is effective in parallelization and speed. 
-The Comressed Row storage (CSR) matrix representation is now used in place of
+The Compressed Row Storage (CSR) matrix representation is now used in place of
 the LUT and provides a lower memory footprint.
 
 \subsubsection{Three pixel splitting} schemes are available in pyFAI and define
 the way photons counted by a pixel are assigned to the various histogram bins,
 especially when the pixels are large (Pilatus detectors):
-\begin{temize}
-\item No splitting: the full intensity is assigned into  
-\end{temize}
-This table contains 3 pixel splitting schemes: no splitting, splitting of the
-bounding box or tight pixel splitting. Each algorithm can be implemented as a
-direct transformation like in histogram or using a look-up table (easy to
-parallelize).
-In this table we summarized in addition the speed-up observed (versus the pure
-NumPy \cite{numpy} implementation, on  quad-core computer) and the memory
-footprint for integrating a 2048x2048 pixel image into 1000 bins.
+\begin{itemize}
+\item No splitting: the full intensity is assigned into a single bin (dirac
+like shape)
+\item Bounding box splitting: the pixel is abstracted by a simpler shape
+oriented parallel to the radial and azimuthal directions.
+\item
+Tight/full pixel splitting: the only assumption made is that pixel
+edges are lines. 
+\end{itemize}
+The figure \ref{split} presents the way a single pixel is split on a 
+large number of bins using the three schemes exposed previously. The way Fit2D
+splits pixels has been added for comparison: it looks pretty similar to bounding
+box pixel splitting but the abstracted shape is likely to be smaller.
+
+\begin{figure}
+\label{calib}
+\begin{center}
+\includegraphics[width=15cm]{splitpixel.eps}
+\caption{Contribution to a powder diffraction pattern of a single pixel to
+highlight the pixel splitting algorithm underneath. PyFAI's implementations are
+compared to FIT2D.}
+\end{center}
+\end{figure}
+
+\subsubsection{Summary about speed and memory consumption.}
+
+The table {table:methods}  summarizes the various implementation available  
+with their execution speed and the memory footprint for integrating a 2048x2048
+pixels image into 1000 bins.
 
 \begin{table}
 \caption{Various ``methods`` available within pyFAI for azimuthal integration
-featuring their speed-up and memory footprint. Measured on a quad-core
+featuring their speed and memory footprint. Measured on a 3 GHz quad-core
 computer with a 2048x2048 pixels image.}
 \begin{tabular}[pos]{|c|l|l|l|}
 \hline
 Pixel split& No splitting & Bounding box & Tight pixel \\
 \hline
-Direct    & numpy (889 ms, 255 MB) & splitbbox (129 ms, 310 MB) &
-splitpixel(516 ms, 447 MB)\\
-histogram & cython (361 ms, 255 MB) &                       &                \\
+Direct    & numpy (889 ms, 336 MB) & splitbbox (129 ms, 343 MB) &
+splitpixel(516 ms, 480 MB)\\
+histogram & cython (361 ms, 323 MB) &                       &                \\
 \hline
-Look-up   &       & splitBBoxLUT (59 ms, 409MB) & splitpixelLUT (61 ms, 550MB)\\
-table     & CSR nosplit (48 ms, 333 MB)       & CSR bbox (52 ms, 347
-MB) & CSR full (51 ms, 504 MB)\\
+Look-up   &       & splitBBoxLUT (59 ms, 327 MB) &    \\
+table     & CSR nosplit (48 ms, 330 MB)       & CSR bbox (52 ms, 330
+MB) & CSR full (51 ms, 502 MB)\\
 \hline
 \end{tabular}
 \label{table:methods}
 \end{table}
 
 It is worth mentioning that while pixel splitting provides smoother results, any
-pixel splitting scheme introduces some cross-correlation between neighboring
-bins, introducing an overestimation of errors, as described in \cite{billinge2014}.
+pixel splitting scheme introduces some serial-correlation between
+neighboring bins, introducing an overestimation of errors, as described in \cite{billinge2014}.
+
+\subsection{Graphical user interface for azimuthal integration}
+
+TODO
 
 \section{Example of applications}
 
 Azimuthal regrouping and its opposite transformation (assuming
-iso-distribution over the azimuthal angle) can be performed
-using pyFAI which offers many opportunities of processing.
+uniform-distribution over the azimuthal angle) can be performed
+using pyFAI which offers many opportunities for processing.
 
 \subsection{Diffraction image generation}
 
@@ -437,14 +460,14 @@ img_lab6 = lab6.fake_calibration_image(ai)
 \end{minted}
 %\end{verbatim}
 
-In this snipplet of code, a reference sample $LaB_6$ is defined on second
+In this snippet of code, a reference sample LaB$_6$ is defined on the second
 line from the known calibrants before the the wavelength is set.
 Combined with the geometry, this calibrant is able to 
 generate a 2D numpy array containing the simulated Debye-Scherrer diffraction
-ring which can be saved or displayed on the screen.
+rings which can be saved or displayed on the screen.
 The \textem{fake\_calibration\_image} contains further option to set U, V and W
-parameters from Caglioti's law \cite{caglioti} to cope for the broadening of peaks at wide
-angle. 
+parameters from Caglioti's formula \cite{caglioti} to inlude the
+broadening of peaks acording to this simple resolution function. 
 Calibrants in pyFAI contain only their \textem{d-spacing}, so the
 reconstructed image will have all rings with the same
 intensity (once integrated).
@@ -457,7 +480,7 @@ measures the offset on the image (x, y) between the 2D diffraction image and the
 one regenerated from the integrated patern, using a phase correlation
 algorithm.
 This allows a measurement of the precision of localization of the PONI, which
-can be better than a tenth of a pixel, when calibrating image with continuous
+can be better than a tenth of a pixel, when calibrating images with continuous
 rings (i.e. not spotty) with a mask large enough to remove the beam stop and
 all parasitic scattering.
 
@@ -467,51 +490,65 @@ PyFAI's azimuthal integrator features a $separate$ method able to separate
 the background with an azimuthal symmetry (amorphous scattering or powder's
 ring), from Bragg peaks automatically.
 
-Based on what was described in \cite{PyFAI_PDJ}, a bidimentional azimuthal
+Based on what was described in \cite{PyFAI_PDJ}, a bidimensional azimuthal
 integration is performed on the input image.
-The output 2D image is filtered out along the azimuthal $\chi$ axis using a
-percentile (often median) filter to construct the powder diffraction curve
-without the punctual Bragg spots.
+The output 2D image is filtered along the azimuthal $\chi$ axis using a
+percentile (often median) filter to reconstruct the powder diffraction curve
+without the sharp Bragg spots.
 The number of points in azimuthal and radial direction as well as
 the percentile value can be adjusted but the default values are reasonably
 good.
 
 The reconstructed 2D image corresponds to the amorphous/powder/isotropic
 component of the input image and the subtraction of this generated image from
-the raw data contains only the signal comming from large crystals.
+the raw data contains only the signal coming from large crystals.
 Figure \ref{separate} (left)
-presents a close-up look at a protein single crystal recorded on a Pilatus3-2M
+presents a close-up of protein single crystal data recorded on a Pilatus3-2M
 detectors (image taken at the ID23-2 beamline from ESRF). A
-moderate ice-ring is clearly visible. 
+diffuse amorphous halo is clearly visible. 
 After using the automatic amorphous background removal, which takes into account
-the mask needed for such pixel detector, only Bragg peaks remains (right of the
-image).
+the mask needed for such pixel detectors, only Bragg peaks remain (right of
+the image).
 
 \begin{figure}
 \label{separate}
 \begin{center}
 \includegraphics[width=15cm]{separate_id23.eps}
 \caption{Automatic removal of amorphous signal (ice ring) from Bragg peaks in a
-protein crystallography experiment (data from ESF beamline ID23).}
+protein crystallography experiment (data from beamline ID23 at synchrotron
+ESRF).}
 \end{center}
 \end{figure}
 
 \subsubsection{Application to serial crystallography}
-In those experiment, tiny crystals in their medium (liquid) are sent in front of
-the X-ray beam (using a jet or moving a motor) and data are acquired
+In these experiments, tiny crystals in their solvent are sent in
+front of the X-ray beam (using a jet or moving a motor) and data are acquired
 continuously, using a fast detector (from dozens of Hertz to kHz).
-Those experiment produce a huge amount of data and only a small fraction of the
-frames contain actually diffraction signal.
-PyFAI has been integrated into the processing software NanoPeakCell which
-provides a graphical interface for frame selection in serial crystallography.
-But pyFAI can also be integrated into the LImA data acquisition system
+Those experiments produce a huge amount of data and only a small fraction of the
+frames contain diffraction signal.
+PyFAI has been integrated into the processing software \textem{NanoPeakCell}
+which provides a graphical interface for frame selection in serial crystallography.
+But pyFAI has also been integrated into the LImA data acquisition system
 \cite{lima}, where it assesses the amount of single crystal
-diffraction data within each frame and decide to save it or not.
-By proceedings so, a huge amount of disk space and network bandwidth can be
-saved.
+diffraction data within each frame and decides to save it or not.
+In this way, a huge amount of disk space and network bandwidth
+can be saved.
 
 \section{Related Work}
 
+As mentionned earlier, the pyFAI software library has been integrated
+into other pieces of code, mainly integrated at the different beamlines from
+synchrotron ESRF to perform azimuthal integration online, either using LImA or
+dedicated online data analysis server: EDNA\cite{edna} on the BioSaxs\cite{bm29}
+and DAHU at beamline TRUSAXS (ID02). 
+
+Other institutes have independently integrated pyFAI into their processing
+pipeline: \textem{NanoPeakCell} (developped at IBS by Nicolas Coquelle), PySAXS
+(developped at CEA by Olivier Taché), DpDak (developped at synchrotrons Petra
+III by Gunthard Benecke and co-workers) \cite{dpdak}
+and Dioptas (developped at synchrotron APS by Clemens Prescher). 
+Most of those software packages propose a graphical interface to ease the
+data processing for a specific type of experiment. 
 
 \section{Conclusion and Future Work}
 
@@ -545,24 +582,24 @@ most famous Linux distribution like Ubuntu and Debian.
 The program is also tested on other operating systems like Windows and
 MacOSX.
 
-Anybody can fork the project and adapt it to his own needs: CEA-saclay,
-Synchrotrons Soleil and APS did it. Collaboration is encouraged and 
+Anybody can fork the project and adapt it to their own needs: CEA-saclay,
+Synchrotrons Soleil, Desy and APS did. Collaboration is encouraged and 
 new developments can be submitted and merged into the main branch
 via pull-requests. 
 
-While there is a couple of official release each year (better
+While there are a couple of official releases each year (better
 tested versions), continuous integration is used to ensure any snapshot of the
 master branch provides \textem{correct} results.
 
 \section{Calibration tool}
 \label{annex_calib}
 
-The calibration tool of pyFAI, called \textem{pyFAI-cali} has been available
+The calibration tool of pyFAI, called \textem{pyFAI-calid} has been available
 along with the integration tool since the very beginning of the project as a core idea
 is to use the same code to calculate the geometry and to perform the integration.
 The geometry file (also called PONI-file) is updated at each refinement step and
 contains the whole description of the experiment (together with time-stamps),
-this avoids copy-paste error of coordinates.
+this avoids copy-paste errors of coordinates.
 
 \subsection{Calibration user interface}
 
@@ -609,7 +646,7 @@ dist 0.1 0.5}
 \item $refine$: re-runs the least squares refinement
 \item $validate$: estimate the precision of the calibration on the whole
 image by overlaying the raw image with the integrated pattern retro-projected
-\item \textem {recalib n}: extract a new set of control points from the $n$
+\item \textit{recalib n}: extract a new set of control points from the $n$
 \item $reset$: set the geometry to its default values (centered orthogonal detector)
 \item $show$: print out to the screen the current geometry parameters
 \item $integrate$: perform the 1D and 2D integration and display it in a
@@ -617,13 +654,14 @@ separate window to validate the quality of the calibration.
 \end{itemize}
 
 If the initial calibration is correct, like in \ref{calib}, the procedure
-to get a perfect calibration should be $recalib$, $done$.
+to get a perfect calibration should be ``$recalib$, $done$''.
 
 If the theoretical rings are becoming too large or too small compared to the
 actual ones, the wavelength may be refined. For this extract as many rings as
-reasonable using \textem{recalib n} then \textem{free wavelength} and $refine$
-to check if it is better. Distance and wavelength being heavily correlated, it is important
-to use as many rings as possible at high angle.
+reasonable using \textit{``recalib n''} then \textit{``free wavelength''} and
+\textit{``refine"} to check if it is better. 
+Distance and wavelength are
+heavily correlated, it is important to use as many rings as possible at high angle.
 
 The \textem{validate} option allows us to measure the offset between the actual
 diffraction image and an image generated from the refined geometry using phase
@@ -648,17 +686,17 @@ of the detector motor position without human intervention.
 \section{Parallel implementations using OpenCL}
 Azimuthal integration, as  many computing intensive parts in pyFAI were written
 in OpenCL kernels and interfaced using PyOpenCL \cite{pyopencl}. PyOpenCL offers a
-shared execution model effective both on processors (CPU), graphics cars (GPU)
+shared execution model effective both on processors (CPU), graphics cards (GPU)
 and accelerators like the Intel's Xeon Phi.
 
 \subsection{Azimuthal Integration}
 The direct azimuthal integration is basically a scatter operation which
-requires large locked section.
+requires large memory locked section.
 To overcome this limitation, pixels have been
 associated to the output bin of the histogram and stored in a look-up
 table (LUT), making the integration look like a simple (if large and sparse)
 matrix vector product.
-The sparse matrix ``Compressed Sparse Row'' (CSR) format is now used in pyFAI,
+The sparse matrix ``Compressed Row Storage'' (CSR) format is now used in pyFAI,
 saving about half of the space of the LUT previously used.
 Secondly, all threads within a workgroup are collaborating to calculate the
 matrix-vector product via a so-called ``parallel reduction'', offering
@@ -701,7 +739,7 @@ In this benchmark, four group of curves can be extracted.
 
 \ack{Acknowledgements}
 
-The author would like to thank all ESRF beamline teams for supporting the
+The authors would like to thank all ESRF beamline teams for supporting the
 pyFAI development, especially BM01, ID02, ID11, ID13, ID15, ID23, BM26, ID29, BM29,
 ID30. In the instrumentation division (ISDD) we would like to thank Claudio
 Ferrero, head of data analysis unit, and Andy G\"otz, head of software group, for
@@ -716,6 +754,6 @@ thanks the EU-grant LinkSCEEM-2 (RI-261600).
 
 We would like to thank David Flot for the protein
 diffraction image with ice-rings (fig. \ref{separate}) and Martha Brennich for
-the silver behenate calibration image.
+the silver behenate calibration image (fig. \ref{calib}).
 
 \end{document}

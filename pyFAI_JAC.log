@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.7.7)  8 OCT 2014 14:14
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.7.7)  8 OCT 2014 18:55
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -487,7 +487,14 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-)) (./pyFAI_JAC.aux)
+)) (./pyFAI_JAC.aux
+
+LaTeX Warning: Label `calib' multiply defined.
+
+
+LaTeX Warning: Label `calib' multiply defined.
+
+)
 \openout1 = `pyFAI_JAC.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -502,8 +509,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -587,17 +593,83 @@ Overfull \hbox (2.07805pt too wide) in paragraph at lines 67--74
 g mul-ti-ple pixel split-ting schemes,
  []
 
-[2] [3] [4] [5] [6]
+[2] [3] [4] [5]
 ! Undefined control sequence.
-l.260 \textem
-             {pyFAI-calib} which usage is described on annex \ref{annex_calib}.
+l.204 ...dden by the command line argument \textem
+                                                  {--gaussian=XX},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+[6]
+! Undefined control sequence.
+l.271 \textem
+             {pyFAI-calib}, figure \ref{calib}) is provided
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.279 SciPy (function \textem
+                             {scipy.optimize.min_slsqp}).
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.279 SciPy (function \textem{scipy.optimize.min_
+                                                 slsqp}).
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+l.279 ...unction \textem{scipy.optimize.min_slsqp}
+                                                  ).
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.280 ...try, the iso-contour for refined $2\theta
+                                                  $ array is
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
 [7]
+Package epstopdf Info: Source file: <calib.eps>
+(epstopdf)                    date: 2014-10-06 15:08:26
+(epstopdf)                    size: 2922665 bytes
+(epstopdf)             Output file: <calib-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-10-06 15:08:50
+(epstopdf)                    size: 178351 bytes
+(epstopdf)             Command: <epstopdf --outfile=calib-eps-converted-to.pdf 
+calib.eps>
+(epstopdf)             \includegraphics on input line 288.
+Package epstopdf Info: Output file is already uptodate.
+ <calib-eps-converted-to.pdf, id=41, 578.16pt x 433.62pt>
+File: calib-eps-converted-to.pdf Graphic file (type pdf)
+
+<use calib-eps-converted-to.pdf>
+Package pdftex.def Info: calib-eps-converted-to.pdf used on input line 288.
+(pdftex.def)             Requested size: 426.79134pt x 320.09303pt.
+
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 288--293
+ [] 
+ []
+
+[8] [9 <./calib-eps-converted-to.pdf>]
 \openout3 = `pyFAI_JAC.pyg'.
 
 runsystem(pygmentize -l python -f latex -F tokenmerge             -P "verboptio
@@ -617,19 +689,60 @@ runsystem(rm pyFAI_JAC.out.pyg)...executed.
 runsystem(rm pyFAI_JAC.pyg)...executed.
 
 
+! Undefined control sequence.
+l.348 Using a \textem
+                     {scatter to gather} transformation, the azimuthal integ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-LaTeX Warning: Reference `methods' on page 8 undefined on input line 287.
+[10]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 360.
 
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 360.
+
+
+LaTeX Warning: Reference `split' on page 11 undefined on input line 368.
+
+Package epstopdf Info: Source file: <splitpixel.eps>
+(epstopdf)                    date: 2014-10-08 17:43:34
+(epstopdf)                    size: 43893 bytes
+(epstopdf)             Output file: <splitpixel-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-10-08 18:54:50
+(epstopdf)                    size: 23926 bytes
+(epstopdf)             Command: <epstopdf --outfile=splitpixel-eps-converted-to
+.pdf splitpixel.eps>
+(epstopdf)             \includegraphics on input line 376.
+Package epstopdf Info: Output file is already uptodate.
+<splitpixel-eps-converted-to.pdf, id=55, 662.475pt x 456.70625pt>
+File: splitpixel-eps-converted-to.pdf Graphic file (type pdf)
+
+<use splitpixel-eps-converted-to.pdf>
+Package pdftex.def Info: splitpixel-eps-converted-to.pdf used on input line 376
+.
+(pdftex.def)             Requested size: 426.79134pt x 294.22832pt.
+
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 376--380
+ [] 
+ []
+
+[11]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 300.
+(Font)              <7> on input line 393.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 300.
+(Font)              <5> on input line 393.
 
-Overfull \hbox (90.7663pt too wide) in paragraph at lines 300--314
+Overfull \hbox (78.1305pt too wide) in paragraph at lines 393--407
 [][]
  []
 
-[8]
+[12 <./splitpixel-eps-converted-to.pdf>]
 \openout3 = `pyFAI_JAC.pyg'.
 
 runsystem(pygmentize -l python -f latex -F tokenmerge             -P "verboptio
@@ -642,7 +755,7 @@ runsystem(rm pyFAI_JAC.pyg)...executed.
 
 
 ! Undefined control sequence.
-l.350 The method, \textem
+l.447 The method, \textem
                          {calcfrom1d} is available from any
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -651,7 +764,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.351 \textem
+l.448 \textem
              {AzimuthalIntegrator} or \textem{Geometry} instance.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -660,7 +773,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.351 \textem{AzimuthalIntegrator} or \textem
+l.448 \textem{AzimuthalIntegrator} or \textem
                                              {Geometry} instance.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -668,7 +781,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[9]
+[13]
 \openout3 = `pyFAI_JAC.pyg'.
 
 runsystem(pygmentize -l python -f latex -F tokenmerge             -P "verboptio
@@ -681,7 +794,7 @@ runsystem(rm pyFAI_JAC.pyg)...executed.
 
 
 ! Undefined control sequence.
-l.371 The \textem
+l.468 The \textem
                  {fake\_calibration\_image} contains further option to set U...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -690,7 +803,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.374 ...rants in pyFAI contain only their \textem
+l.471 ...rants in pyFAI contain only their \textem
                                                   {d-spacing}, so the
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -699,7 +812,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.381 The calibration tool, \textem
+l.478 The calibration tool, \textem
                                    {pyFAI-calib}, offers  a ``validate'' com...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -707,7 +820,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[10]
+[14]
 Package epstopdf Info: Source file: <separate_id23.eps>
 (epstopdf)                    date: 2014-10-07 17:38:01
 (epstopdf)                    size: 1365379 bytes
@@ -716,25 +829,45 @@ Package epstopdf Info: Source file: <separate_id23.eps>
 (epstopdf)                    size: 407583 bytes
 (epstopdf)             Command: <epstopdf --outfile=separate_id23-eps-converted
 -to.pdf separate_id23.eps>
-(epstopdf)             \includegraphics on input line 419.
+(epstopdf)             \includegraphics on input line 516.
 Package epstopdf Info: Output file is already uptodate.
- <separate_id23-eps-converted-to.pdf, id=53, 825.0825pt x 696.6025pt>
+ <separate_id23-eps-converted-to.pdf, id=119, 825.0825pt x 696.6025pt>
 File: separate_id23-eps-converted-to.pdf Graphic file (type pdf)
 
 <use separate_id23-eps-converted-to.pdf>
 Package pdftex.def Info: separate_id23-eps-converted-to.pdf used on input line 
-419.
+516.
 (pdftex.def)             Requested size: 426.79134pt x 360.33275pt.
 
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 419--422
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 516--520
  [] 
  []
 
-[11] [12 <./separate_id23-eps-converted-to.pdf>] (./pyFAI_JAC.bbl
+[15]
+! Undefined control sequence.
+l.529 ...ated into the processing software \textem
+                                                  {NanoPeakCell}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[16 <./separate_id23-eps-converted-to.pdf>]
+! Undefined control sequence.
+l.546 pipeline: \textem
+                       {NanoPeakCell} (developped at IBS by Nicolas Coquelle...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+(./pyFAI_JAC.bbl [17]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.68 ...s.cambridge.org/article_S0885715613000924}
+l.84 ...s.cambridge.org/article_S0885715613000924}
                                                   
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -742,7 +875,7 @@ you left one out. Proceed, with fingers crossed.
 ! Extra }, or forgotten $.
 <recently read> \egroup 
                         
-l.68 ...s.cambridge.org/article_S0885715613000924}
+l.84 ...s.cambridge.org/article_S0885715613000924}
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -753,7 +886,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.69 
+l.85 
      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -761,7 +894,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.69 
+l.85 
      
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -769,9 +902,9 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-) [13]
+) [18]
 ! Undefined control sequence.
-l.474 master branch provides \textem
+l.592 master branch provides \textem
                                     {correct} results.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -780,17 +913,17 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.479 ...calibration tool of pyFAI, called \textem
-                                                  {pyFAI-cali} has been avai...
+l.597 ...calibration tool of pyFAI, called \textem
+                                                  {pyFAI-calid} has been ava...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[14]
+[19]
 ! Undefined control sequence.
-l.496 SciPy (function \textem
+l.614 SciPy (function \textem
                              {scipy.optimize.min_slsqp}).
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -801,13 +934,13 @@ and I'll forget about whatever was undefined.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.496 SciPy (function \textem{scipy.optimize.min_
+l.614 SciPy (function \textem{scipy.optimize.min_
                                                  slsqp}).
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Extra }, or forgotten $.
-l.496 ...unction \textem{scipy.optimize.min_slsqp}
+l.614 ...unction \textem{scipy.optimize.min_slsqp}
                                                   ).
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -818,7 +951,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.497 ...try, the iso-contour for refined $2\theta
+l.615 ...try, the iso-contour for refined $2\theta
                                                   $ array is
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -831,30 +964,20 @@ Package epstopdf Info: Source file: <calib.eps>
 (epstopdf)                    size: 178351 bytes
 (epstopdf)             Command: <epstopdf --outfile=calib-eps-converted-to.pdf 
 calib.eps>
-(epstopdf)             \includegraphics on input line 505.
+(epstopdf)             \includegraphics on input line 623.
 Package epstopdf Info: Output file is already uptodate.
-<calib-eps-converted-to.pdf, id=73, 578.16pt x 433.62pt>
 File: calib-eps-converted-to.pdf Graphic file (type pdf)
-
 <use calib-eps-converted-to.pdf>
-Package pdftex.def Info: calib-eps-converted-to.pdf used on input line 505.
+Package pdftex.def Info: calib-eps-converted-to.pdf used on input line 623.
 (pdftex.def)             Requested size: 426.79134pt x 320.09303pt.
 
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 505--510
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 623--628
  [] 
  []
 
-[15]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 518.
-
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 518.
-
+[20]
 ! Undefined control sequence.
-l.521 ...rint out the value of a parameter \textem
+l.639 ...rint out the value of a parameter \textem
                                                   {get wavelength}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -863,7 +986,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.522 ... define the value of a parameter, \textem
+l.640 ... define the value of a parameter, \textem
                                                   {set wavelength 1.54e-10}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -872,7 +995,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.523 ...gion of validity for a parameter, \textem
+l.641 ...gion of validity for a parameter, \textem
                                                   { bound
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -880,9 +1003,9 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[16 <./calib-eps-converted-to.pdf>]
+[21]
 ! Undefined control sequence.
-l.526 ...event the parameter to be refined \textem
+l.644 ...event the parameter to be refined \textem
                                                   {fix wavelength}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -891,7 +1014,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.527 ...allow the parameter to be refined \textem
+l.645 ...allow the parameter to be refined \textem
                                                   {free rot1}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -900,36 +1023,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-<recently read> \textem 
-                        
-l.531 \item \textem
-                    {recalib n}: extract a new set of control points from th...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.543 reasonable using \textem
-                              {recalib n} then \textem{free wavelength} and ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.543 ...ble using \textem{recalib n} then \textem
-                                                  {free wavelength} and $ref...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.547 The \textem
+l.666 The \textem
                  {validate} option allows us to measure the offset between t...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -938,7 +1032,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.559 The \textem
+l.678 The \textem
                  {MX-calibrate} tool from pyFAI allows the automatic calibra...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -947,7 +1041,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.562 ...ubsequently peak-picking based on \textem
+l.681 ...ubsequently peak-picking based on \textem
                                                   {blob-detection}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -955,7 +1049,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[17] [18]
+[22] [23]
 Package epstopdf Info: Source file: <benchmark.eps>
 (epstopdf)                    date: 2014-10-07 18:29:37
 (epstopdf)                    size: 274986 bytes
@@ -964,42 +1058,43 @@ Package epstopdf Info: Source file: <benchmark.eps>
 (epstopdf)                    size: 153206 bytes
 (epstopdf)             Command: <epstopdf --outfile=benchmark-eps-converted-to.
 pdf benchmark.eps>
-(epstopdf)             \includegraphics on input line 598.
+(epstopdf)             \includegraphics on input line 717.
 Package epstopdf Info: Output file is already uptodate.
- <benchmark-eps-converted-to.pdf, id=89, 684.5575pt x 584.1825pt>
+ <benchmark-eps-converted-to.pdf, id=154, 684.5575pt x 584.1825pt>
 File: benchmark-eps-converted-to.pdf Graphic file (type pdf)
 
 <use benchmark-eps-converted-to.pdf>
-Package pdftex.def Info: benchmark-eps-converted-to.pdf used on input line 598.
+Package pdftex.def Info: benchmark-eps-converted-to.pdf used on input line 717.
 
 (pdftex.def)             Requested size: 426.79134pt x 364.22177pt.
 
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 598--601
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 717--720
  [] 
  []
 
-[19 <./benchmark-eps-converted-to.pdf>]
-Finished processing article for Journal of Applied Crystallography [20]
-[21] (./pyFAI_JAC.aux)
+[24 <./benchmark-eps-converted-to.pdf>]
+Finished processing article for Journal of Applied Crystallography [25]
+[26] (./pyFAI_JAC.aux)
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  )
-(\end occurred inside a group at level 1)
+(\end occurred inside a group at level 2)
 
-### simple group (level 1) entered at line 496 ({)
+### simple group (level 2) entered at line 614 ({)
+### simple group (level 1) entered at line 279 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4421 strings out of 495059
- 57583 string characters out of 3182031
- 150749 words of memory out of 3000000
- 7498 multiletter control sequences out of 15000+200000
+ 4445 strings out of 495059
+ 57964 string characters out of 3182031
+ 152484 words of memory out of 3000000
+ 7521 multiletter control sequences out of 15000+200000
  17796 words of font info for 40 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,12n,37p,313b,339s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,12n,37p,313b,397s stack positions out of 5000i,500n,10000p,200000b,50000s
  </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx120
 0.600pk> </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk>
  </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1095.600pk> </users
@@ -1021,10 +1116,10 @@ public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy8.pfb>
-Output written on pyFAI_JAC.pdf (21 pages, 997587 bytes).
+Output written on pyFAI_JAC.pdf (26 pages, 1029674 bytes).
 PDF statistics:
- 699 PDF objects out of 1000 (max. 8388607)
- 134 compressed objects within 2 object streams
+ 780 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
