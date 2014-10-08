@@ -20,15 +20,17 @@
     \author[a]{Dimitrios}{Karkoulis}
     \author[c]{Fr\'ed\'eric-Emmanuel}{Picca}
     \cauthor[a]{J\'er\^ome}{Kieffer}{jerome.kieffer@esrf,fr}{}
-    \aff[a]{European Synchrotron Radiation Facility, \city{Grenoble}, \country{France}}
+    \aff[a]{European Synchrotron Radiation Facility, 71 Avenue
+    des Martyrs, \city{Grenoble},
+    \country{France}}
     \shortauthor{Kieffer et al.}
 
 \maketitle
 
 \begin{synopsis}
-The Python library for high performance azimuthal integration: details about the
-geometry, peak-picking, calibration and integration procedures on multi-core and
-many-core devices.
+Details about the geometry, peak-picking, calibration and integration procedures
+on multi- and many-core devices implemented in the Python library for high
+performance azimuthal integration.
 \end{synopsis}
 
 \begin{abstract}
@@ -39,7 +41,7 @@ It is written in Python, a language widely accepted and used by the scientific
 community today, which enables the users to easily incorporate the PyFAI 
 library into their processing pipeline. 
 This contribution focuses on recent work, especially the ease of
-calibration, its acuracy and the execution speed for integration.
+calibration, its accuracy and the execution speed for integration.
 \end{abstract}
 
 \section{Introduction}
@@ -48,38 +50,39 @@ diffraction patterns, which  ensure larger solid angle coverage and hence a
 better harvest of X­-ray photons.
 This data reduction step is often one of the most time ­consuming tasks in the
 processing pipeline and sometimes limits the productivity of modern synchrotron
-beamlines, where diffraction is used to probe samples with a  pencil beam in 2D
-raster scans or diffraction tomography experiments by using pencil beam with
+beamlines, where diffraction is used to probe samples with a point focussed
+beam in 2D raster scans or diffraction tomography experiments and
 very fast detectors.
 
 This contribution describes the Python library pyFAI in its version 0.10
 (released in october 2014) which can be used to calibrate the experimental
 setup of a powder diffraction experiment or a SAXS experiment using area
-detector thanks to Debye-Scherrer rings collected from a reference compound. 
+detector using Debye-Scherrer rings collected from a reference compound. 
 After describing how the geometry is internally represented in pyFAI, the
 various image analysis algorithm used to extract Debye-Scherrer rings are presented.
 Those peaks positions are combined with the knowledge of a calibrant and the
 wavelength of the radiation to perform the refinement of the detector position
 in space.
 
-Once this geometry known, azimuthal regrouping can be performed. 
+Once this geometry is known, azimuthal regrouping can be performed. 
 As pyFAI implements various algorithm for integration, including 
 multiple pixel splitting schemes, they will be exposed and compared
 for speed, precision and memory consumption.
 A scientific example is given on how pyFAI can be used to decompose 
-diffraction images into amorphous and Bragg component and its application
+diffraction images into amorphous and Bragg components and its application
 to serial crystallography.
 
-As pyFAI is only a library, and many users prefer an integrated graphical user
-interfaces, some other project related to pyFAI are described before concluding.
+As pyFAI is a library, and many users prefer an integrated graphical user
+interfaces (GUI), some other project related to pyFAI are described before
+concluding.
 
 Appendices contains information about the project structure, tutorials on
 calibration and precision on the many-core implementation of azimuthal
 integration using OpenCL \cite{opencl}.
  
 \section{Experiment description}
-In pyFAI, a basic experiment is defined by an area-detector which position in
-space is defined from the sample position and the incident radiation.
+In pyFAI, a basic experiment is defined by an area-detector whose position
+in space is defined from the sample position and the incident radiation.
 
 \subsection{Detector}
 Like most other diffraction processing packages, pyFAI allows the definition of
@@ -94,22 +97,22 @@ for small spatial displacement of the pixel, often called geometric distortion.
 
 \subsubsection{Detectors classes} are used to define a family of detectors. 
 To take the specificities of each detector into account, pyFAI contains about
-40 detectors class definition\cite{Rayonix is acknowledged for the comprehensive
-description of all their detectors} which contains the mask (invalid pixels,
+40 detectors class definitions which contain the mask (invalid pixels,
 gaps, \ldots) and a method to calculate the pixel position in cartesian coordinates.
 For optically coupled CCD detectors, the geometrical distortion is often
-described by a bi-dimentional cubic spline which can be imported into
+described by a bi-dimensional cubic spline which can be imported into
 the detector instance and used to calculate the actual pixel position in space.
 
-\subsubsection{Nexus Detectors}
+\subsubsection{Nexus Detectors:}
 Any detector object in pyFAI, can be saved to a HDF5 file following the NeXus
 \cite{nexus} convention.
 Detector objects can subsequently be restored from the disk, making
 complex detector definition less error-prone.
-Pixels of an area detector are saved as a 4-dimension dataset: 2D
+Pixels of an area detector are saved as a 4-dimensional dataset: 2D
 array of vertices pointing to every corner of each pixel, which makes an array
-of shape: ($ny$, $nx$, 4, 3) where $nx$ and $ny$ are the dimension of the
-detector.
+of shape: ($Ny$, $Nx$, $Nc$, 3) where $Nx$ and $Ny$ are the dimension of the
+detector, $Nc$ the number of corners of each pixel, usually 4, and the last
+dimension contains the vertex itself.
 This definition, while relying on large description file, is the only which
 can cope for complex detectors layout when the sensitive surface is no
 longer planar, for example curved imaging plates, tiled modules pixel detectors
@@ -118,23 +121,25 @@ from ImXpad or the semi-cylindrical Pilatus12M from Dectris can be described.
 \subsection{Geometry}
 The experiment geometry is defined in pyFAI by the position of the detector in
 space, the origin being located at the sample position, more precisely where the
-X-ray beam crosses the difractometer's main axis.
-The detector being a rigid body, its position in space is described by six
-parameters: 3 coordinates and 3 rotations. 
+X-ray beam crosses the diffractometer's main axis.
+The detector being a rigid body, its position in space is described by
+six parameters: 3 coordinates and 3 rotations. 
 In pyFAI, we use the point, orthogonal projection
-of origin (sample position) on the detector surface, called PONI (for Ooint Of
-Normal Incidence). The detector distance is the sample-PONI distance and the PONI
-coordinates are measured in the detector's referential (origin at the lower
+of origin on the detector surface (Z=0 in detector's coordinate system), called
+PONI (for Point Of Normal Incidence, \cite{spd}). 
+The detector distance is the sample-PONI distance
+and the PONI coordinates are measured in the detector's referential (origin at the lower
 left of the image). As pixel size could be non constant, all 3 distances are
 given in meter.
-The 3 rotations, stored in radians, correspond to the rotation along the 3 axis.
-When all rotation are null, the detector is in transmission mode with the
+The 3 rotations, stored in radians, correspond to the rotation along the 3
+axes.
+When all rotations are zero, the detector is in transmission mode with the
 incident beam orthogonal to the detector's surface.
 The choice of S.I. units may look unadapted or odd to users familiar to
 other code like FIT2D \cite{fit2d}, therefore the geometry used in pyFAI can be
-exported to and imported from the parameter set from other software.
+exported to and imported from the parameter sets from other software.
 We are happy to integrate geometries used in other software to ease the
-compariarison of results and cross-validate approaches.  
+comparison of results and cross-validate approaches.  
  
 \subsubsection{Binning}
 One of the strength of this geometry is capability to perform binning of the
@@ -154,14 +159,15 @@ the $2\theta$ angles.
 In this contribution we will call them ``ring'' even if, for planar detector,
 they are actually conics formed by the intersection of the Debye-Scherrer cones
 with the detector plan. 
-PyFAI does not assume rings are circles, ellipses or parabola and is able to fit
-any kind of geometry. The support for the geometry refinement of non planar
-detector is still under development.
+PyFAI does not assume rings are circles, ellipses or parabolas and is able to
+fit the geometry of a wide range of experiments.
+The support for the geometry refinement of non planar detectors is still under
+development.
 
 \subsection{Calibrant}
 PyFAI provides ten calibrant descriptions among the most used ones: ceria,
-corundum, gold, lantahnide hexaboride and silicon for powder diffraction; silver behenate,
-tetradecanol and para-bromobenzoic acid for small angle scattering.
+corundum, gold, lanthanum hexaboride and silicon for powder diffraction;
+silver behenate, tetradecanol and para-bromobenzoic acid for small angle scattering.
 Any file containing d-spacing in angstrom can be used as calibrant for a
 geometry calibration and can be loaded by the $Calibrant$ class instance.
 This $calibrant$ object is in charge of
@@ -170,36 +176,38 @@ against which the geometry will be refined (provided the wavelength/energy is
 known).
 
 \subsection{Peak-picking}
-With the nano-focused beam available on modern synchrotron facilities
-\cite{id13}, fewer crystal get hit by the beam going through the
+With micro and nano-focused beams available on modern synchrotron facilities
+\cite{id13}, fewer crystals get hit by the beam going through the
 sample making Debye-Scherrer ring obtained from the diffraction of reference
 powders spotty.
-As grinding reference powder is not advised (it would at least broaden peaks if
-not changing crystal structure), we decided to address this issue by image analysis 
-and reconstruct Debye-Scherrer rings.
-An alternative approach is to use single crystal indexation technic, for
-example using the Fable software \cite{bonnin}.
+As grinding reference powder is not advised (it would at least broaden peaks
+and may introduce strain), we decided to
+address this issue by image analysis and reconstruction of Debye-Scherrer rings.
+An alternative approach is to use single crystal indexation techniques for
+example using the Fable software \cite{fable} as demonstrated for diffraction
+tomography experiment \cite{bonnin}.
 
-\subsubsection{Massif extraction}
+\subsubsection{``Massif'' extraction}
 \label{massif}
 allows a clear separation between regions containing large
 photon counts (rings) and the background.
 It uses a difference of the image with itself, Gaussian blurred with a given
 width, $\sigma$. 
 Border of the regions with high intensity ($massif$) are negative in this
-difference with a Gaussian image, so positive region are labeled and represents
-a ring (or a fraction of it). Peaks, which are local maxima, are sample within
-the same region.
-The width of the Gaussian has to be larger than the typical distance
-between two peaks within a ring and smaller than the distance between two
+difference image, so positive regions are labeled and represent
+(a fraction of) a ring. Peaks, which are local maxima,
+are sampled within the same region and belong to the same ring.
+The width of the Gaussian, in pixel units, has to be larger than the typical
+distance between two peaks within a ring and smaller than the distance between two
 rings. 
 PyFAI includes some heuristics to guess an acceptable parameter in most cases
-but they can be overridden by the command line argument $--gaussian=XX$.
+but they can be overridden by the command line argument \textem{--gaussian=XX},
+where XX is the size of the gaussian in per-mille of the image size.
 
 \subsubsection{Sub-pixel precision} 
 \label{subpixel}
 on the peak position is obtained using a second order development of the
-intensity on the neighborhood of the peak:
+intensity on the neighborhood of the peak position $\overrightarrow{x_0}$:
 $$ I(\overrightarrow{x}) = I(\overrightarrow{x_0}) + \nabla
 I(\overrightarrow{x_0})\cdot (\overrightarrow{x}-\overrightarrow{x_0}) +
 \frac{1}{2} (\overrightarrow{x}-\overrightarrow{x_0})^T\cdot\mathcal{H}
@@ -207,26 +215,32 @@ I(\overrightarrow{x_0})\cdot(\overrightarrow{x}-\overrightarrow{x_0})$$ which
 can be derived into:
 $$\nabla I(\overrightarrow{x}) =\nabla I(\overrightarrow{x_0}) +
 \mathcal{H}I(\overrightarrow{x_0})\cdot(\overrightarrow{x}-\overrightarrow{x_0})$$
-Extrema are define by $\nabla I(\overrightarrow{x})=0$, hence:
+The position of the actual maximum $\overrightarrow{x}$ is define by
+$\nabla I(\overrightarrow{x})=0$, hence:
 $$\overrightarrow{x} = \overrightarrow{x_0} - (\mathcal{H}
 I(\overrightarrow{x_0}))^{-1}\cdot\nabla I(\overrightarrow{x_0})$$ where $I$,
 $\nabla I$ and $\mathcal{H} I$ are the scalar field of intensity, its gradient
-(vector) and hessian (matrix), respectively, measured at the maximum pixel position.
+(vector) and Hessian (matrix), respectively, measured at the maximum pixel position.
+Those derivatives are numerically assessed on a 3x3 neighborhood, so with noisy
+data, it happens that $\overrightarrow{x}$ is far away from 
+$\overrightarrow{x_0}$ (more than a pixel). In such cases, $\overrightarrow{x}$
+is taken as the center of mass of the 3x3 neighborhood around
+$\overrightarrow{x_0}$ (less precise, but more robust).
 
 \subsubsection{Blob detection}
 \label{blob}
 is a computer vision method which allows to perform peak-picking without
-\textit{a-priori} knowledge on the level of the image.
+\textit{a priori} knowledge on the level of the image.
 This feature is essential to us as diffraction images exhibit a very large
 dynamic range.
 
 The diffraction image is sequentially blurred with Gaussian filters which
-width $\sigma$ follows the geometric serie: $\frac{1}{2}$,
+width $\sigma$ follows the geometric series: $\frac{1}{2}$,
 $\frac{\sqrt{2}}{2}$, 1, $\sqrt{2}$, 2, $2\sqrt{2}$, \ldots
 For each blurred image at scale $\sigma$, the subsequent blurred (at
 $\sigma'=\sigma\cdot\sqrt(2)$
 is subtracted to create a difference of Gaussian
-image (called $DoG$) which highligths the features of the image which typical
+image (called $DoG$) which highlights the features of the image which typical
 size is $\sigma$. 
 A 3D scale-space ($x,y,\sigma$) representation is created from those DoG images.
 
@@ -252,36 +266,99 @@ Moreover blob detection cannot find peaks wich width is smaller than
 $\sigma=0.7$ which correspond to 3 pixels.
 
 
-\subsection{Graphical user interface}
-Only a minimalistic graphical user interface is provided for calibration, called 
-\textem{pyFAI-calib} which usage is described on annex \ref{annex_calib}.
-PyFAI being primarily a Python library, we believe an integrated graphical user
-interface (GUI) offering calibration and integration would limit the flexibility
-of the tool and constrain too much the processing piepline. 
+\subsection{Graphical user interface for calibration}
+Only a minimalistic graphical user interface (called
+\textem{pyFAI-calib}, figure \ref{calib}) is provided
+for calibration, with visual assignment of the ring number.
+An rough estimate of the geometry is usually obtained from a mouse click on 
+two of the inner-most rings. 
+The pink and yellow dots correspond to the control points (peaks) extracted
+using the algorithm described in \ref{massif} (with only two mouse clicks).
+The refinement is performed on the error in $2\theta$ (squared) using the 
+Sequential Least SQuares Programming  from
+SciPy (function \textem{scipy.optimize.min_slsqp}).
+After refinement of the geometry, the iso-contour for refined $2\theta$ array is
+overlaid to the diffraction image. Those are the four thin plain lines drawn on
+the image to mark where Debye-Scherrer rings are expected, allowing a visual 
+validation of the calibration.
 
+\begin{figure}
+\label{calib}
+\begin{center}
+\includegraphics[width=15cm]{calib.eps}
+\caption{The calibration window allows manual peak-picking and
+ring assignment. The data correspond to a silver behenate sample, used as a
+calibrant on the BioSAXS beamline BM29 at the synchrotron ESRF
+(detector: Pilatus 1M, $\lambda=1.0${\AA})}
+\end{center}
+\end{figure}
+
+From this initial rough calibration, pyFAI allows to perform many operations in
+Command Line Interface (CLI) mode, like setting, constaining, fixing and
+refining parameters, extracting a new set of keypoints or performing the
+integration. The complete description of options is described in annex
+\ref{annex_calib}.
 
 \section{Azimuthal Integration}
 
 The core of pyFAI is to be able to perform azimuthal integration in 1D or 2D as
-fast as possible, using Python binary extension, often multi-threaded or even
-manicore accelerated (i.e. graphics processors (GPU) and Intel Xeon Phi), while
-offering a common interface at the Python level.
-Many implementation details on the number-crunching part have been described in
-\cite{kieffer_ashiotis-proc-euroscipy-2014}.
+fast as possible, using Python binary extensions, often multi-threaded or even
+mani-core accelerated (i.e. Graphics Processors Units, GPU and Intel Xeon
+Phi accelerators), while offering a common interface at the Python level.
+Many details on the techniques used to speed up the code, especially porting
+it to GPU have been described in \cite{kieffer_ashiotis-proc-euroscipy-2014}.
+
+\subsection{Programming interface for azimuthal integration}
+
+The initial idea behind pyFAI is to provide a easy way to perform azimuthal
+integration, ideally in a single command. In the snippet of code we present how
+this is done:
 
 %\begin{verbatim}
 \begin{minted}{python}
 import pyFAI, fabio, pylab
-ai = pyFAI.load("geometry.poni)
 img = fabio.open("imagefile.tif").data
-tth, I = ai.integrate1d(img, 1000, method="splitpixel", unit="2th_deg")
+ai = pyFAI.load("geometry.poni")
+tth, I = ai.integrate1d(img, 1000, unit="2th_deg", method="splitpixel")
 pylab.plot(tth, I)
 pylab.show()
 \end{minted}
 %\end{verbatim}
-In this sniplet of code one can adapt the number of output points, 
-the radial unit ($2\theta$ angle, radius or scattering verctor norm $q$) and the
-integration scheme which is summarized into table \ref{methods}.
+
+The fist line load three important libraries: fabio \cite{fabio} to read
+images, pylab \cite{matplotlib} to display the result and pyFAI.
+The second and third line load the image and the geometry.
+the two last lines are about displaying the curve.
+
+In this snippet, the image $img$ is azimuthaly integrated into 1000 bins with an
+out, eventhly spaced in $2\theta$. Other units like the scattering vector length
+$q$ or the radius $r$ are available.
+The method keyword is a switch to select the algorithm used.
+
+\subsection{Pixel splitting schemes and implementation}
+
+PyFAI implementents a dozen of azimuthal integration procedures which can be
+classified according to they way integration is performed and the pixel
+splitting scheme used.
+
+\subsubsection{Histogram vs Look-Up Table.} 
+The naive way to integrate data is to treat an image pixel after pixel, 
+implemented like an histogram. This is a scatter operation which is hard to
+parallelize but cheap in memory.
+Using a \textem{scatter to gather} transformation, the azimuthal integration for
+a given geometry can be stored into a look-up table (LUT) and applied like a
+sparse matrix, dense vector multiplication. 
+While much more expensive in memory, this
+implementation is effective in parallelization and speed. 
+The Comressed Row storage (CSR) matrix representation is now used in place of
+the LUT and provides a lower memory footprint.
+
+\subsubsection{Three pixel splitting} schemes are available in pyFAI and define
+the way photons counted by a pixel are assigned to the various histogram bins,
+especially when the pixels are large (Pilatus detectors):
+\begin{temize}
+\item No splitting: the full intensity is assigned into  
+\end{temize}
 This table contains 3 pixel splitting schemes: no splitting, splitting of the
 bounding box or tight pixel splitting. Each algorithm can be implemented as a
 direct transformation like in histogram or using a look-up table (easy to
@@ -302,9 +379,9 @@ Direct    & numpy (889 ms, 255 MB) & splitbbox (129 ms, 310 MB) &
 splitpixel(516 ms, 447 MB)\\
 histogram & cython (361 ms, 255 MB) &                       &                \\
 \hline
-Look-up   &       & splitBBoxLUT (37x, 672MB) & splitpixelLUT (17x, ?MB)\\
+Look-up   &       & splitBBoxLUT (59 ms, 409MB) & splitpixelLUT (61 ms, 550MB)\\
 table     & CSR nosplit (48 ms, 333 MB)       & CSR bbox (52 ms, 347
-MB) & CSR full (17x, ?MB)\\
+MB) & CSR full (51 ms, 504 MB)\\
 \hline
 \end{tabular}
 \label{table:methods}
@@ -360,13 +437,13 @@ img_lab6 = lab6.fake_calibration_image(ai)
 \end{minted}
 %\end{verbatim}
 
-In this snipplet of code, a reference sample LaB6 is defined on second line 
-from the known calibrants before the the wavelength is set.
+In this snipplet of code, a reference sample $LaB_6$ is defined on second
+line from the known calibrants before the the wavelength is set.
 Combined with the geometry, this calibrant is able to 
 generate a 2D numpy array containing the simulated Debye-Scherrer diffraction
 ring which can be saved or displayed on the screen.
-The fake_calibration_image contains further option to set U, V and W parameters
-from Caglioti's law \cite{caglioti} to cope for the broadening of peaks at wide
+The \textem{fake\_calibration\_image} contains further option to set U, V and W
+parameters from Caglioti's law \cite{caglioti} to cope for the broadening of peaks at wide
 angle. 
 Calibrants in pyFAI contain only their \textem{d-spacing}, so the
 reconstructed image will have all rings with the same
@@ -413,9 +490,9 @@ image).
 \begin{figure}
 \label{separate}
 \begin{center}
-\includegraphics[width=15cm]{merged.eps}
+\includegraphics[width=15cm]{separate_id23.eps}
 \caption{Automatic removal of amorphous signal (ice ring) from Bragg peaks in a
-protein crystallography experiment.}
+protein crystallography experiment (data from ESF beamline ID23).}
 \end{center}
 \end{figure}
 
@@ -433,11 +510,19 @@ diffraction data within each frame and decide to save it or not.
 By proceedings so, a huge amount of disk space and network bandwidth can be
 saved.
 
-\section{Performance Evaluation} 
 \section{Related Work}
+
+
 \section{Conclusion and Future Work}
 
 
+Graphical user interface for calibration
+
+re-assignement of group of points to rings, especially useful for off-centered
+detectors where the ring number is not clear.
+
+The support for the geometry refinement of non planar detectors is still under
+development.
 
 
 \bibliographystyle{iucr}
@@ -446,11 +531,11 @@ saved.
 \section{Project structure}
 PyFAI is an open source project licensed under the GPL mainly written in Python (v2.6 or 2.7)
 and heavily relying on the python scientific ecosystem: NumPy\cite{numpy},
-SciPy\cite{scipy} and Matplotlib\cite{matplotlib}.
+SciPy \cite{scipy} and Matplotlib \cite{matplotlib}.
 It provides high performances image treatment and azimuthal integration thanks
-to Cython\cite{cython} and PyOpenCL \cite{pyopencl}. PyOpenCL remains an
-optional dependency, so all openCL \cite{opencl} code has a Python or Cython
-implementation.
+to Cython \cite{cython} and PyOpenCL \cite{pyopencl}. 
+PyOpenCL remains an optional dependency, so all OpenCL code has a
+Python or Cython implementation.
 
 The project is hosted on GitHub (https://github.com/kif/pyFAI) which provides
 the issue tracker in addition to code hosting.
@@ -472,94 +557,93 @@ master branch provides \textem{correct} results.
 \section{Calibration tool}
 \label{annex_calib}
 
-The calibration tool of pyFAI, called $pyFAI-calib$ has been available along
-with the integration tool since the very beginning of the project as a core idea
+The calibration tool of pyFAI, called \textem{pyFAI-cali} has been available
+along with the integration tool since the very beginning of the project as a core idea
 is to use the same code to calculate the geometry and to perform the integration.
 The geometry file (also called PONI-file) is updated at each refinement step and
-contains the whole description of the experiment, this avoids copy-paste 
-error of coordinates.
+contains the whole description of the experiment (together with time-stamps),
+this avoids copy-paste error of coordinates.
 
 \subsection{Calibration user interface}
 
 The user interface for calibration has improved a lot recently: the assignment
 of the ring number is now possible graphically, as shown in figure \ref{calib}.
-An rough estimate of the geometry is usually obtained from mouse clicks on 
+An rough estimate of the geometry is usually obtained from a mouse click on 
 two of the inner-most rings. 
 The pink and yellow dots correspond to the control points extracted using
 the algorithm described in \ref{massif} (two mouse clicks).
 The refinement is performed on the error in $2\theta$ (squared) using the 
 Sequential Least SQuares Programming  from
-SciPy (scipy.optimize.min_slsqp).
-After refinement of the geometry, four thin, plain curves are drawn on the image
-to mark where Debye-Scherrer rings are expected, allowing a visual validation of
-the calibration. 
+SciPy (function \textem{scipy.optimize.min_slsqp}).
+After refinement of the geometry, the iso-contour for refined $2\theta$ array is
+overlaid to the diffraction image. Those are the four thin plain lines drawn on
+the image to mark where Debye-Scherrer rings are expected, allowing a visual 
+validation of the calibration.
 
 \begin{figure}
 \label{calib}
 \begin{center}
-\includegraphics[width=5cm]{calib.eps}
+\includegraphics[width=15cm]{calib.eps}
 \caption{The calibration window allows manual peak-picking and
 ring assignment. The data correspond to a silver behenate sample, used as a
-calibrant on the SAXS beamline BM29 (BioSaxs) at synchrotron ESRF
-(detector: Pilatis_1M, $\lambda=1.0${\AA})}
+calibrant on the BioSAXS beamline BM29 at the synchrotron ESRF
+(detector: Pilatus 1M, $\lambda=1.0${\AA})}
 \end{center}
 \end{figure}
 
 From an initial rough calibration, pyFAI allows to perform many operation to
 refine all parameters: distance, center position, rotation of the detector and
-optionaly the wavelength (all units are S.I). 
+optionally the wavelength (all units are S.I). 
 The available commands are:
 \begin{itemize}
 \item $help$: show the help message
-\item $abort$: quit the program without saving
-\item $done$: performs the azimuthal integration and quits
-\item $get$: prints out the value of a parameter \textem{get wavelength}
-\item $set$: defines the value of a parameter, \textem{set wavelength 1.54e-10} 
+\item $abort$: quit the program directly
+\item $done$: perform the azimuthal integration and quit
+\item $get$: print out the value of a parameter \textem{get wavelength}
+\item $set$: define the value of a parameter, \textem{set wavelength 1.54e-10} 
 \item $bound$: select the region of validity for a parameter, \textem{ bound
 dist 0.1 0.5}
 \item $bounds$: review and modify all region of validity for all parameters
 \item $fix$: prevent the parameter to be refined \textem{fix wavelength}
-\item $free$: allows the paramter to be refined \textem{free rot1}
-\item $refine$: re-runs the least squares refinement, using scipy.
-\item $validate$: Estimate the precision of the calibration on the whole
+\item $free$: allow the parameter to be refined \textem{free rot1}
+\item $refine$: re-runs the least squares refinement
+\item $validate$: estimate the precision of the calibration on the whole
 image by overlaying the raw image with the integrated pattern retro-projected
-\item $recalib$: extract a new set of control points from the $n$ inner most
-rings,
-\textem{recalib 5}
-\item $reset$: set the geometry to its default values (centerd normal detector)
-\item $show$: prints out the current geometry parameters
-\item $integrate$: performs the 1D and 2D integration to validate the quality of
-the calibration.
+\item \textem {recalib n}: extract a new set of control points from the $n$
+\item $reset$: set the geometry to its default values (centered orthogonal detector)
+\item $show$: print out to the screen the current geometry parameters
+\item $integrate$: perform the 1D and 2D integration and display it in a
+separate window to validate the quality of the calibration.
 \end{itemize}
 
 If the initial calibration is correct, like in \ref{calib}, the procedure
-to get a perfect calibration should be $recalib$, $integrate$, $done$.
+to get a perfect calibration should be $recalib$, $done$.
 
 If the theoretical rings are becoming too large or too small compared to the
 actual ones, the wavelength may be refined. For this extract as many rings as
-reasonable using $recalib\ n$ then $free\ wavelength$ and $refine$ to check if
-it is better. Distance and wavelength being heavily correlated, it is important
+reasonable using \textem{recalib n} then \textem{free wavelength} and $refine$
+to check if it is better. Distance and wavelength being heavily correlated, it is important
 to use as many rings as possible at high angle.
 
-The $validate$ option allows us to measure the offset between the actual
+The \textem{validate} option allows us to measure the offset between the actual
 diffraction image and an image generated from the refined geometry using phase
 correlation. In most cases it is possible to obtain a precision better the 0.1
 pixel in all directions.
 
 \subsection{Automatic distance and center calibration}
-The previous procedure has been automated for specific types of beamlines: 
-Macromolecular Crystallography beamlines at the synchrotron ESRF (MX) need to
-input the sample distance togeather with the beam center automatically in the header of
-their collected images to be able to process them automatically.
-As the area detector is on a moving stage, dictance and center position are
+The previous procedure has been automated for Macromolecular Crystallography
+beamlines at the synchrotron ESRF (MX), as they need to input the sample
+distance together  with the beam center automatically in the header of their
+collected images to be able to process them automatically. 
+As the area detector is on a moving stage, distance and center position are
 changing from data-collection to data-collection.
-The $MX-calibrate$ tool from pyFAI allows the automatic calibration of
+The \textem{MX-calibrate} tool from pyFAI allows the automatic calibration of
 a set of images taken at various distances using Debye-Scherrer rings of a
 reference compound.
-After performing subsequently peak-picking based on blob-detection and least
-square refinement of the geometry on every input frame, distances and
-beam-center position are returned as function of the motor position without
-human intervention.
+After performing subsequently peak-picking based on \textem{blob-detection}
+(as described in \ref{blob}) and least square refinement of the geometry on
+every input frame, distances and beam-center position are returned as function
+of the detector motor position without human intervention.
 
 \section{Parallel implementations using OpenCL}
 Azimuthal integration, as  many computing intensive parts in pyFAI were written
@@ -584,16 +668,15 @@ of the calculation while using single precision (32 bits) floating points
 arithmetic. 
 
 \subsection{Performances}
-The table \ref{benchmark} shows the performance of pyFAI in frames processed per
+The figure \ref{benchmark} shows the performance of pyFAI in frames processed per
 second depending on the input image size (in semi-logarithmic scale). 
-This
-benchmark has been performed on a dual Intel Xeon E5-2667 (2.9Ghz) computer with a Nvidia Tesla K20 GPU and an Intel
-Xeon Phi accelerator.
+This benchmark has been performed on a dual Intel Xeon E5-2667 (2.9Ghz) computer
+with a Nvidia Tesla K20 GPU and an Intel Xeon Phi accelerator.
 
 \begin{figure}
 \label{benchmark}
 \begin{center}
-\includegraphics[width=5cm]{benchmark.eps}
+\includegraphics[width=15cm]{benchmark.eps}
 \caption{Benchmark of the various algorithm to perform azimuthal integration in
 pyFAI}
 \end{center}

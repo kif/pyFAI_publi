@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Mon Sep 08 13:14:12 CEST 2014
+markTmpDer=true
+builderNum=5
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=pyFAI_JAC.tex
+outputFile=pyFAI_JAC.pdf
+langSpell=en
+markDer=true
+srcDir=

@@ -1,0 +1,98 @@
+\begin{thebibliography}{16}
+\baselineskip=9pt\parskip=0pt
+
+\harvarditem[Behnel \emph{et~al.}]{Behnel, Bradshaw, Citro, Dalcin, Seljebotn
+  \harvardand\ Smith}{2011}{cython}
+Behnel, S., Bradshaw, R., Citro, C., Dalcin, L., Seljebotn, D. \harvardand\
+  Smith, K.  \harvardyearleft 2011\harvardyearright{}.
+\newblock \emph{{C}omput. {S}ci. {E}ng.} \volbf{13}(2), 31--39.
+
+\harvarditem[Bonnin \emph{et~al.}]{Bonnin, Wright, Tucoulou \harvardand\
+  Palancher}{2014}{bonnin}
+Bonnin, A., Wright, J.~P., Tucoulou, R. \harvardand\ Palancher, H.
+  \harvardyearleft 2014\harvardyearright{}.
+\newblock \emph{Applied Physics Letters}, \volbf{105}(8), --.
+\newline\harvardurl{http://scitation.aip.org/content/aip/journal/apl/105/8/10.1063/1.4894009}
+
+\harvarditem{B\"osecke}{2007}{spd}
+B\"osecke, P.  \harvardyearleft 2007\harvardyearright{}.
+\newblock \emph{J. Appl. Cryst.} \volbf{40}(s1), s423--s427.
+\newline\harvardurl{http://dx.doi.org/10.1107/S0021889807001100}
+
+\harvarditem[Caglioti \emph{et~al.}]{Caglioti, Paoletti \harvardand\
+  Ricci}{1958}{caglioti}
+Caglioti, G., Paoletti, A. \harvardand\ Ricci, F.~P.  \harvardyearleft
+  1958\harvardyearright{}.
+\newblock \emph{Nuclear Instruments}, \volbf{3}, 223--228.
+
+\harvarditem{Comittee}{2003}{nexus}
+Comittee, N. I.~A.,  \harvardyearleft 2003\harvardyearright{}.
+\newblock A common data format for neutron, x-ray and muon science.
+\newline\harvardurl{http://www.nexusformat.org/}
+
+\harvarditem[Hammersley \emph{et~al.}]{Hammersley, Svensson, Hanfland, Fitch
+  \harvardand\ Hausermann}{1996}{fit2d}
+Hammersley, A.~P., Svensson, S.~O., Hanfland, M., Fitch, A.~N. \harvardand\
+  Hausermann, D.  \harvardyearleft 1996\harvardyearright{}.
+\newblock \emph{High Press. Res.} \volbf{14}(4-6), 235--248.
+\newline\harvardurl{http://www.tandfonline.com/doi/abs/10.1080/08957959608201408}
+
+\harvarditem[Homs \emph{et~al.}]{Homs, Claustre, Kirov \harvardand\
+  Papillon}{2012}{lima}
+Homs, A., Claustre, L., Kirov, A. \harvardand\ Papillon, E.and~Petitdemange, S.
+   \harvardyearleft 2012\harvardyearright{}.
+\newblock In \emph{Contributions to the Proceedings of ICALEPCS 2011}, pp.
+  676--679.
+
+\harvarditem{Hunter}{2007}{matplotlib}
+Hunter, J.~D.  \harvardyearleft 2007\harvardyearright{}.
+\newblock \emph{{C}omput. {S}ci. {E}ng.} \volbf{9}(3), 90--95.
+
+\harvarditem[Jones \emph{et~al.}]{Jones, Oliphant \harvardand\
+  Peterson}{2001}{scipy}
+Jones, E., Oliphant, T.~E. \harvardand\ Peterson, P.,  \harvardyearleft
+  2001\harvardyearright{}.
+\newblock {SciPy}: Open source scientific tools for {Python}.
+\newline\harvardurl{http://www.scipy.org/}
+
+\harvarditem{Kieffer \harvardand\
+  Ashiotis}{2014}{kieffer_ashiotis-proc-euroscipy-2014}
+Kieffer, J. \harvardand\ Ashiotis, G.  \harvardyearleft
+  2014\harvardyearright{}.
+\newblock In \emph{Proceedings of the 7th European Conference on Python in
+  Science (EuroSciPy 2014)}, edited by P.~de~Buyl \harvardand\ N.~Varoquaux.
+
+\harvarditem{Kieffer \harvardand\ Wright}{2013}{PyFAI_PDJ}
+Kieffer, J. \harvardand\ Wright, J.  \harvardyearleft 2013\harvardyearright{}.
+\newblock \emph{Powder Diffraction}, \volbf{28}, S339--S350.
+\newline\harvardurl{http://journals.cambridge.org/article_S0885715613000924}
+
+\harvarditem[{Kl{\"o}ckner} \emph{et~al.}]{{Kl{\"o}ckner}, {Pinto}, {Lee},
+  {Catanzaro}, {Ivanov} \harvardand\ {Fasih}}{2012}{pyopencl}
+{Kl{\"o}ckner}, A., {Pinto}, N., {Lee}, Y., {Catanzaro}, B., {Ivanov}, P.
+  \harvardand\ {Fasih}, A.  \harvardyearleft 2012\harvardyearright{}.
+\newblock \emph{Parallel Computing}, \volbf{38}(3), 157--174.
+
+\harvarditem{Oliphant}{2007}{numpy}
+Oliphant, T.~E.  \harvardyearleft 2007\harvardyearright{}.
+\newblock \emph{{C}omput. {S}ci. {E}ng.} \volbf{9}(3), 10--20.
+
+\harvarditem[Riekel \emph{et~al.}]{Riekel, Burghammer \harvardand\
+  Davies}{2010}{id13}
+Riekel, C., Burghammer, M. \harvardand\ Davies, R.  \harvardyearleft
+  2010\harvardyearright{}.
+\newblock \emph{IOP Conference Series: Materials Science and Engineering},
+  \volbf{14}(1), 012013.
+\newline\harvardurl{http://stacks.iop.org/1757-899X/14/i=1/a=012013}
+
+\harvarditem[Stone \emph{et~al.}]{Stone, Gohara \harvardand\ Shi}{2010}{opencl}
+Stone, J.~E., Gohara, D. \harvardand\ Shi, G.  \harvardyearleft
+  2010\harvardyearright{}.
+\newblock \emph{Computing in Science and Engineering}, \volbf{12}(3), 66--73.
+
+\harvarditem{Yang X.and~Juhas \harvardand\ Billinge}{2014}{billinge2014}
+Yang X.and~Juhas, P. \harvardand\ Billinge, S. J.~L.  \harvardyearleft
+  2014\harvardyearright{}.
+\newblock \emph{J. Appl. Cryst.} \volbf{47}, 1273--1283.
+
+\end{thebibliography}

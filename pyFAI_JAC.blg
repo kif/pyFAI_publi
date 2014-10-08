@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: pyFAI_JAC.aux
+The style file: iucr.bst
+Database file #1: biblio.bib
+You've used 16 entries,
+            2962 wiz_defined-function locations,
+            744 strings with 7664 characters,
+and the built_in function-call counts, 8982 in all, are:
+= -- 864
+> -- 523
+< -- 15
++ -- 161
+- -- 143
+* -- 834
+:= -- 1431
+add.period$ -- 44
+call.type$ -- 16
+change.case$ -- 117
+chr.to.int$ -- 16
+cite$ -- 16
+duplicate$ -- 380
+empty$ -- 565
+format.name$ -- 212
+if$ -- 1800
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 14
+newline$ -- 75
+num.names$ -- 81
+pop$ -- 228
+preamble$ -- 1
+purify$ -- 111
+quote$ -- 0
+skip$ -- 337
+stack$ -- 0
+substring$ -- 459
+swap$ -- 85
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 192
+warning$ -- 0
+while$ -- 67
+width$ -- 0
+write$ -- 192
