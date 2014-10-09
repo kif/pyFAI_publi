@@ -106,7 +106,7 @@ the detector instance and used to calculate the actual pixel position in space.
 
 \subsubsection{Nexus Detectors:}
 Any detector object in pyFAI, can be saved to a HDF5 file following the NeXus
-\cite{nexus} convention.
+ convention \cite{nexus}.
 Detector objects can subsequently be restored from the disk, making
 complex detector definition less error-prone.
 Pixels of an area detector are saved as a 4-dimensional dataset: 2D
@@ -570,14 +570,14 @@ can be saved.
 As mentionned earlier, the pyFAI software library has been integrated
 into other software, mainly integrated at the different beamlines from
 synchrotron ESRF to perform azimuthal integration online, either using LImA or
-dedicated online data analysis server: EDNA\cite{edna} on the BioSaxs\cite{bm29}
-and DAHU at beamline TRUSAXS (ID02).
+dedicated online data analysis server: EDNA \cite{edna} on the
+BioSaxs beamline \cite{bm29} and DAHU at beamline TRUSAXS (ID02).
 
 Other institutes have independently integrated pyFAI into their processing
-pipeline: \textit{NanoPeakCell} (developped at IBS by Nicolas Coquelle), PySAXS
-(developped at CEA by Olivier Taché), \textit{Dpdak} (developped at synchrotrons
-Petra III by Gunthard Benecke and co-workers) \cite{dpdak}
-and \textit{Diopta}s (developped at synchrotron APS by Clemens Prescher).
+pipeline: \textit{NanoPeakCell} (developped at IBS by Nicolas Coquelle),
+\textit{PySAXS} (developped at CEA by Olivier Taché), \textit{Dpdak} (developped
+at synchrotrons Petra III by Gunthard Benecke and co-workers) \cite{dpdak}
+and \textit{Dioptas} (developped at synchrotron APS by Clemens Prescher).
 Most of those software packages propose a graphical interface to ease the
 data processing for a specific type of experiment.
 
@@ -681,7 +681,8 @@ separate window to validate the quality of the calibration.
 \end{itemize}
 
 If the initial calibration is correct, like in \ref{calib}, the procedure
-to get a perfect calibration should be ``\textit{recalib}, \textit{done}''.
+to get a perfect calibration should be ``\textit{recalib}$\hookleftarrow $
+\textit{done}$\hookleftarrow \hookleftarrow $''.
 
 If the theoretical rings are becoming too large or too small compared to the
 actual ones, the wavelength can be refined. For this extract as many rings as
