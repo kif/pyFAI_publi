@@ -45,6 +45,7 @@ calibration, its accuracy and the execution speed for integration.
 \end{abstract}
 
 \section{Introduction}
+
 Azimuthal integration allows the usage of area detectors for recording powder
 diffraction patterns, which  ensure larger solid angle coverage and hence a
 better harvest of X­-ray photons.
@@ -81,6 +82,7 @@ on how to calibrate an experimental setup and precisions on the many-core
 implementation of azimuthal integration using OpenCL \cite{opencl}.
 
 \section{Experiment description}
+
 In pyFAI, a basic experiment is defined by an area-detector whose position
 in space is defined from the sample position and the incident radiation.
 
@@ -164,6 +166,7 @@ This even works for detectors with distortions (as the spline can be
 evaluated on various grid size).
 
 \section{Calibration}
+
 Calibration of the position of the detector is performed using Debye-Scherrer
 rings collected from a reference powder called ``calibrant''.
 Rings are extracted (see \ref{massif}) and control points are located as maxima
@@ -611,6 +614,7 @@ in future versions to be able to implemente those new features.
 \bibliography{biblio}
 \appendix
 \section{Project structure}
+
 PyFAI is an open source project licensed under the GPL mainly written in Python (v2.6 or 2.7)
 and heavily relying on the python scientific ecosystem: NumPy \cite{numpy},
 SciPy \cite{scipy} and Matplotlib \cite{matplotlib}.
@@ -712,6 +716,7 @@ every input frame, distances and beam-center position are returned as function
 of the detector motor position without human intervention.
 
 \section{Parallel implementations using OpenCL}
+
 Azimuthal integration, as  many computing intensive parts in pyFAI were written
 in OpenCL kernels and interfaced using PyOpenCL \cite{pyopencl}. PyOpenCL offers a
 shared execution model effective both on processors (CPU), graphics cards (GPU)
