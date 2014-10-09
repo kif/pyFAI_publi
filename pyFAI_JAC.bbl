@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{22}
 \baselineskip=9pt\parskip=0pt
 
 \harvarditem[Behnel \emph{et~al.}]{Behnel, Bradshaw, Citro, Dalcin, Seljebotn
@@ -124,6 +124,12 @@ Riekel, C., Burghammer, M. \harvardand\ Davies, R.  \harvardyearleft
 \newblock \emph{IOP Conference Series: Materials Science and Engineering},
   \volbf{14}(1), 012013.
 \newline\harvardurl{http://stacks.iop.org/1757-899X/14/i=1/a=012013}
+
+\harvarditem[Solé \emph{et~al.}]{Solé, Papillon, Cotte, Walter \harvardand\
+  Susini}{2007}{pymca}
+Solé, V., Papillon, E., Cotte, M., Walter, P. \harvardand\ Susini, J.
+  \harvardyearleft 2007\harvardyearright{}.
+\newblock \emph{Spectrochim. Acta Part B}, \volbf{62}(1), 63--68.
 
 \harvarditem[Stone \emph{et~al.}]{Stone, Gohara \harvardand\ Shi}{2010}{opencl}
 Stone, J.~E., Gohara, D. \harvardand\ Shi, G.  \harvardyearleft
