@@ -583,10 +583,11 @@ data processing for a specific type of experiment.
 
 \section{Conclusion and Future Work}
 
-This contribution described how the pyFAI library represents the detectors in
-space, ring extraction algorithms and pixel splitting schemes for azimuthal
-integration. The number of project relying on pyFAI proves it fulfils a need in
-the Python scientific ecosystem.
+This contribution described improvements in the version 0.10 of the pyFAI
+library, especially how itrepresents the detectors in space, ring extraction
+algorithms and pixel splitting schemes for azimuthal integration.
+The number of independant projects relying now on pyFAI proves it fulfils a need
+in the Python scientific ecosystem.
 
 On the other hand there are plent of issues remaining: all algorithm to perform
 azimuthal integration are not yet implemented in 2D. Can all algorithm used in
@@ -594,10 +595,16 @@ pyFAI be ported to GPU to off-load the processor? The graphical user interface
 for calibration and integration, while helpful, are really minimalistic.
 The re-assignement of group of points to rings is missing, this is
 especially needed for off-centered detectors when the ring number is not clear.
-The automatic extraction of ring using computer vision can be improved and maybe
-one day the calibration will totally be automatic.
-The support for the geometry refinement of non planar detectors is
-still under development.
+The automatic extraction of ring using \textit{computer vision} techniques can
+be improved and maybe the calibration can be fully automatized.
+The support for the geometry refinement of non planar detectors is not yet
+finalized.
+
+This summarizes well the work already done and gives an
+outlook for forthcomming features.
+The version number of this release, 0.10, clearly indicates a lot of work has
+been done but also warns about possible change in the programming interface
+in future versions to be able to implemente those new features.
 
 
 \bibliographystyle{iucr}
