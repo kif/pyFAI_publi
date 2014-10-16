@@ -240,7 +240,7 @@ but they can be overridden by the command line argument \textit{--gaussian}.
 
 \subsubsection{Sub-pixel precision} 
 \label{subpixel}
-is often needed when measuring strains in materals, like highlighted in 
+is often needed when measuring strains in materials, like highlighted in 
 \cite{to5079}.
 This precision on the peak position is obtained using a second order
 development of the intensity on the neighborhood of the peak position $\overrightarrow{x_0}$:
@@ -276,14 +276,15 @@ $\frac{\sqrt{2}}{2}$, 1, $\sqrt{2}$, 2, $2\sqrt{2}$, \ldots
 For each blurred image at scale $\sigma$, the subsequent blurred (at
 $\sigma'=\sigma\cdot\sqrt(2)$
 is subtracted to create a difference of Gaussian
-image (called $DoG$) which highlights the features of the image which typical
-size is $\sigma$.
+image (called $DoG$). 
+Features of the initial image with typical size $\sigma$ are highlighted in
+the $DoG$ image.
 A 3D scale-space ($x,y,\sigma$) representation is created from those DoG images.
 
 This method provides us not only the peaks location, as local maxima in
 scale-space, but also the typical size of the peak.
 Peak position, scales and intensity are refined as described in
-\ref{subpixel}, extended to the 3D scale space.
+\ref{subpixel} (in the 3D scale space).
 
 To keep the computation time reasonable, the implementation of the blob
 detection relies on Gaussian convolution in real space (i.e. without Fourier
@@ -377,7 +378,7 @@ to be used.
 
 \subsection{Pixel splitting schemes and implementation}
 
-PyFAI implementents a dozen of azimuthal integration procedures which can be
+PyFAI implements a dozen of azimuthal integration procedures which can be
 classified according to they way integration is performed and the pixel
 splitting scheme used.
 
@@ -398,12 +399,13 @@ the way photons counted by a pixel are assigned to the various histogram bins,
 especially when the pixels are large (Pilatus detectors):
 \begin{itemize}
 \item No splitting: the full intensity is assigned into a single bin (dirac
-like shape)
+like shape), the one at the middle of the pixel (like in the histogram).
 \item Bounding box splitting: the pixel is abstracted by a simpler shape
-oriented parallel to the radial and azimuthal directions.
+oriented parallel to the radial and azimuthal directions like FIT2D does.
 \item
 Tight/full pixel splitting: the only assumption made is that pixel
-edges are lines.
+edges are lines. This is also known as polygon-based interpolation
+\cite{stefanvdw}
 \end{itemize}
 The figure \ref{split} presents the way a single pixel is split on a
 large number of bins using the three schemes exposed previously. The way Fit2D
