@@ -25,7 +25,7 @@
     \country{France}}
     \aff[b]{SESAME, P.O. Box 7, \city{Allan} 19252, \country{Jordan}}
     \aff[c]{Synchrotron Soleil, L'Orme des Merisiers, 91190 \city{Saint-Aubin},
-    \country{France}} 
+    \country{France}}
     \shortauthor{Kieffer et al.}
 
 \keyword{Powder diffraction}
@@ -59,7 +59,7 @@ calibration, its accuracy and the execution speed for integration.
 
 Azimuthal integration is a common mathematical operation when using area
 detectors for recording powder diffraction patterns, which  ensure larger solid
-angle coverage and hence a better harvest of X­-ray photons. 
+angle coverage and hence a better harvest of X­-ray photons.
 This data reduction step is often one of the most time ­consuming tasks in the
 processing pipeline and limits sometimes the productivity of modern synchrotron
 beamlines, where diffraction is used to probe samples with a point-focussed
@@ -103,7 +103,7 @@ incident radiation.
 Like most other diffraction processing packages, pyFAI allows the definition of
 2D detectors by a constant pixel size (in meters) but this approach shows its
 limits with different types of detectors, especially multi-module detectors and fiber
-optic taper coupled detectors. 
+optic taper coupled detectors.
 Large area pixel detector are often composed from
 the assembly of smaller modules (i.e. Pilatus from Dectris, Maxipix from ESRF,
 \ldots).
@@ -111,7 +111,7 @@ By construction, such detector exhibits gaps between modules together with
 pixels of various sizes within a single module, hence they require a specific mask.
 Optically coupled detectors need also to be corrected
 for small spatial displacement, often called geometric distortion.
-This is why detectors need more complex definition than just the pixel size. 
+This is why detectors need more complex definition than just the pixel size.
 To avoid complicated and error-prone sets of parameters, detector classes have
 been introduced.
 
@@ -149,16 +149,20 @@ X-ray beam crosses the diffractometer's main axis (figure \ref{PONI}).
 With the detector being a rigid body, its position in space is described by
 six parameters: 3 coordinates and 3 rotations.
 In pyFAI, the beam-center is not directly used as it is ill-defined with
-highly tilted detectors.  
-Like \cite{spd}, we use  the point, orthogonal projection of origin on
-the detector surface (Z=0 in detector's coordinate system, for non planar detectors), 
+highly tilted detectors.
+Like \cite{spd}, we use the point, orthogonal projection of origin on
+the detector surface (Z=0 in detector's coordinate system, for non planar detectors),
 called PONI (for Point Of Normal Incidence).
-The detector distance is defined as the sample-PONI distance
-and the PONI coordinates are measured in the detector's referential (origin at the lower
-left of the image). As pixel size could be non constant, all 3 distances are
-given in meter.
+The detector distance is defined as the sample-PONI distance.
+The PONI coordinates are measured in the detector's referential (origin at the lower
+left of the detector).
+As pixel size could be non constant, all 3 distances are given in meter.
 The 3 rotations, stored in radians, correspond to the rotation along the 3
 axes.
+When the detector is in transmission mode, i.e. with the
+incident beam orthogonal to the detector's surface, all three rotations are
+zero.
+
 
 \begin{figure}
 \label{PONI}
@@ -168,18 +172,16 @@ axes.
 \end{center}
 \end{figure}
 
-When all rotations are zero, the detector is in transmission mode with the
-incident beam orthogonal to the detector's surface.
 The choice of S.I. units may look unadapted or odd to users familiar with
 other tools like FIT2D \cite{fit2d}. To address such issues, the geometry used in pyFAI can be
 exported to and imported from parameter sets compatible with other software.
-We are happy to integrate geometries used in other software to ease 
+We are happy to integrate geometries used in other software to ease
 comparison of results and cross-validation of approaches.
 
 \subsubsection{Binning:}
 One of the strength of this geometry is the capability to perform binning on the
 detector without having to re-calibrate or re-calculate the position in space.
-All pyFAI detector classes have a binning option available that can increase the 
+All pyFAI detector classes have a binning option available that can increase the
 pixel size and divide detector shape accordingly.
 This works even for detectors that require distortion correction (as the spline can be
 evaluated on various grid sizes).
@@ -226,10 +228,10 @@ tomography experiment \cite{bonnin}.
 \label{massif}
 allows a clear separation between regions containing large
 photon counts (rings) and the background.
-This is done by calculating the difference between the image and a blurred version 
+This is done by calculating the difference between the image and a blurred version
 of the same image, with a Gaussian blur filter of a given width $\sigma$.
 The border of regions with high intensity (\textit{massif}) is negative in this
-difference image, so positive regions are labeled as 
+difference image, so positive regions are labeled as
 (fractions of) a ring. Peaks, which are local maxima,
 are sampled within the same region and belong to the same ring.
 The width of the Gaussian, in pixel units, has to be larger than the typical
@@ -238,9 +240,9 @@ rings.
 PyFAI includes some heuristics to guess an acceptable parameter in most cases,
 while also providing a manual override through the command line argument \textit{--gaussian}.
 
-\subsubsection{Sub-pixel precision} 
+\subsubsection{Sub-pixel precision}
 \label{subpixel}
-is often needed when measuring strains in materials, like highlighted in 
+is often needed when measuring strains in materials, like highlighted in
 \cite{to5079}.
 This precision on the peak position is obtained using a second order
 development of the intensity on the neighborhood of the peak position $\overrightarrow{x_0}$:
@@ -276,7 +278,7 @@ $\frac{\sqrt{2}}{2}$, 1, $\sqrt{2}$, 2, $2\sqrt{2}$, \ldots
 For each blurred image at scale $\sigma$, the subsequent blurred (at
 $\sigma'=\sigma\cdot\sqrt(2)$
 is subtracted to create a difference of Gaussian
-image (called $DoG$). 
+image (called $DoG$).
 Features of the initial image with typical size $\sigma$ are highlighted in
 the $DoG$ image.
 A 3D scale-space ($x,y,\sigma$) representation is created from those DoG images.
@@ -339,7 +341,7 @@ integration. The complete set of options is described in annex
 
 \section{Azimuthal Integration}
 
-The core task of pyFAI, as the name suggests, is to perform 1D or 2D azimuthal 
+The core task of pyFAI, as the name suggests, is to perform 1D or 2D azimuthal
 integration as fast as possible. To achieve good performances in a Python environment
 several binary extensions were used to enable multi-threading or even many-core
 acceleration (i.e. Graphics Processors Units, GPU and Intel Xeon Phi accelerators).
@@ -618,7 +620,7 @@ The number of independent projects relying now on pyFAI proves that it fulfills 
 need in the Python scientific ecosystem.
 
 On the other hand there are plenty of issues remaining: all algorithms to
-perform azimuthal integration are not yet implemented in 2D. 
+perform azimuthal integration are not yet implemented in 2D.
 Can all algorithms used in
 pyFAI be ported to GPU to off-load the processor? The graphical user interface
 for calibration and integration, while helpful, are really minimalistic.
@@ -745,8 +747,8 @@ of the detector motor position without human intervention.
 
 \section{Parallel implementations using OpenCL}
 
-Azimuthal integration, as  many computing intensive parts in pyFAI, was 
-written in OpenCL kernels and interfaced using PyOpenCL \cite{pyopencl}. 
+Azimuthal integration, as  many computing intensive parts in pyFAI, was
+written in OpenCL kernels and interfaced using PyOpenCL \cite{pyopencl}.
 PyOpenCL offers a
 shared execution model effective both on processors (CPU), graphics cards (GPU)
 and accelerators like the Intel's Xeon Phi.
