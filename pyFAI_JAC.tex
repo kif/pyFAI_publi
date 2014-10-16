@@ -49,10 +49,10 @@ PyFAI is an open source software package designed to perform azimuthal and
 radial integration and, correspondingly, 2D regrouping on area detector frames for small and wide
 angle X-ray scattering experiments.
 It is written in Python, a language widely accepted and used by the scientific
-community today, which enables the users to easily incorporate the PyFAI
+community today, enabling users, this way, to easily incorporate the PyFAI
 library into their processing pipeline.
 This contribution focuses on recent work, especially the ease of
-calibration, its accuracy and the execution speed for integration.
+calibration, its accuracy and the execution integration speed.
 \end{abstract}
 
 \section{Introduction}
@@ -62,12 +62,12 @@ diffraction patterns, which  ensure larger solid angle coverage and hence a
 better harvest of X­-ray photons.
 This data reduction step is often one of the most time ­consuming tasks in the
 processing pipeline and sometimes limits the productivity of modern synchrotron
-beamlines, where diffraction is used to probe samples with a point focussed
+beamlines, where diffraction is used to probe samples with a point-focused
 beam in 2D raster scans or diffraction tomography experiments and
 very fast detectors.
 
 This contribution describes the Python library pyFAI in its version 0.10
-(released in october 2014) which can be used to calibrate the experimental
+(released in October 2014) which can be used to calibrate the experimental
 setup of a powder diffraction experiment or a SAXS experiment using area
 detector using Debye-Scherrer rings collected from a reference compound.
 After describing how the geometry is internally represented in pyFAI, the
@@ -105,7 +105,7 @@ optic taper coupled detectors.
 Large area pixel detector are often composed from
 the assembly of smaller modules (i.e. Pilatus from Dectris, Maxipix from ESRF,
 \ldots).
-By construction, such detector exhibits gaps between modules togeather with
+By construction, such detector exhibits gaps between modules together with
 pixels of various sizes within a single module, hence they require a specific mask.
 Optically coupled detectors need also to be corrected
 for small spatial displacement, often called geometric distortion.
@@ -116,7 +116,7 @@ been introduced.
 \subsubsection{Detectors classes} are used to define a family of detectors.
 To take the specificities of each detector into account, pyFAI contains about
 40 detectors class definitions which contain the mask (invalid pixels,
-gaps, \ldots) and a method to calculate the pixel position in cartesian coordinates.
+gaps, \ldots) and a method to calculate the pixel position in Cartesian coordinates.
 For optically coupled CCD detectors, the geometrical distortion is often
 described by a bi-dimensional cubic spline which can be imported into
 the detector instance and used to calculate the actual pixel position in space.
@@ -149,7 +149,7 @@ six parameters: 3 coordinates and 3 rotations.
 In pyFAI, the beam-center is not directly used as it is ill-defined with
 highly tilted detectors.  
 Like \cite{spd}, we use  the point, orthogonal projection of origin on
-the detector surface (Z=0 in detector's coordinate system, for non planar detecors), 
+the detector surface (Z=0 in detector's coordinate system, for non planar detectors), 
 called PONI (for Point Of Normal Incidence).
 The detector distance is the sample-PONI distance
 and the PONI coordinates are measured in the detector's referential (origin at the lower
@@ -238,7 +238,7 @@ but they can be overridden by the command line argument \textit{--gaussian}.
 
 \subsubsection{Sub-pixel precision} 
 \label{subpixel}
-is often needed when measuring strains in materals, like highlighted in 
+is often needed when measuring strains in materials, like highlighted in 
 \cite{to5079}.
 This precision on the peak position is obtained using a second order
 development of the intensity on the neighborhood of the peak position $\overrightarrow{x_0}$:
@@ -329,8 +329,8 @@ calibrant on the BioSAXS beamline BM29 at the synchrotron ESRF
 \end{figure}
 
 From this initial rough calibration, pyFAI allows to perform many operations in
-Command Line Interface (CLI) mode, like setting, constaining, fixing and
-refining parameters, extracting a new set of keypoints or performing the
+Command Line Interface (CLI) mode, like setting, constraining, fixing and
+refining parameters, extracting a new set of key-points or performing the
 integration. The complete description of options is described in annex
 \ref{annex_calib}.
 
@@ -375,7 +375,7 @@ to be used.
 
 \subsection{Pixel splitting schemes and implementation}
 
-PyFAI implementents a dozen of azimuthal integration procedures which can be
+PyFAI implements a dozen of azimuthal integration procedures which can be
 classified according to they way integration is performed and the pixel
 splitting scheme used.
 
@@ -456,10 +456,10 @@ It has most of the feature available in pyFAI:
 the top frame contains the geometric description of the experiment.
 The second frame is about correction to be applied: dark current subtraction,
 flat-field correction, polarization and solid-angle effects, static and dynamic
-masking. The checkboxes next to each field allows to activate (or not) the given
+masking. The check-boxes next to each field allows to activate (or not) the given
 correction.
 The third frame contains information about the output format, the number of bins
-in radial and azimuthal dimensions togeather with the output space.
+in radial and azimuthal dimensions together with the output space.
 The last frame allows the use to run calculation on an OpenCL device and
 chose it.
 
@@ -482,14 +482,14 @@ using pyFAI which offers many opportunities for processing.
 
 Once the geometry defined (i.e. by loading a poni-file), the $2\theta$ and
 $\chi$ position of every single pixel of the detector are known.
-If one assumes the isotropy of signal (real powder without prefered
+If one assumes the isotropy of signal (real powder without preferred
 orientation), \textit{2D} diffraction patterns can be generated as exposed in this
 example:
 
 %\begin{verbatim}
 \begin{minted}{python}
 import numpy, scipy.signal, pyFAI
-N = 1000 # generate the powder curve as a single gaussian
+N = 1000 # generate the powder curve as a single Gaussian
 tth = numpy.linspace(0, 60, N)
 I = scipy.signal.gaussian(N, 5)
 det = pyFAI.detectors.detector_factory("Pilatus1M")
@@ -545,7 +545,7 @@ PyFAI's azimuthal integrator features a \textit{separate} method able to separat
 the background with an azimuthal symmetry (amorphous scattering or powder's
 ring), from Bragg peaks automatically.
 
-Based on what was described in \cite{PyFAI_PDJ}, a bidimensional azimuthal
+Based on what was described in \cite{PyFAI_PDJ}, a bi-dimensional azimuthal
 integration is performed on the input image.
 The output 2D image is filtered along the azimuthal $\chi$ axis using a
 percentile (often median) filter to reconstruct the powder diffraction curve
@@ -591,17 +591,17 @@ can be saved.
 
 \section{Related Work}
 
-As mentionned earlier, the pyFAI software library has been integrated
+As mentioned earlier, the pyFAI software library has been integrated
 into other software, mainly integrated at the different beamlines from
-synchrotron ESRF to perform azimuthal integration online, either using LImA or
-dedicated online data analysis server: EDNA \cite{edna} on the
+synchrotron ESRF to perform azimuthal integration on-line, either using LImA or
+dedicated on-line data analysis server: EDNA \cite{edna} on the
 BioSaxs beamline \cite{bm29} and DAHU at beamline TRUSAXS (ID02).
 
 Other institutes have independently integrated pyFAI into their processing
-pipeline: \textit{NanoPeakCell} (developped at IBS by Nicolas Coquelle),
-\textit{PySAXS} (developped at CEA by Olivier Taché), \textit{Dpdak} (developped
-at synchrotrons Petra III by Gunthard Benecke and co-workers) \cite{dpdak}
-and \textit{Dioptas} (developped at synchrotron APS by Clemens Prescher).
+pipeline: \textit{NanoPeakCell} (developed at IBS by Nicolas Coquelle),
+\textit{PySAXS} (developed at CEA by Olivier Taché), \textit{Dpdak} (developed
+at synchrotron Petra III by Gunthard Benecke and co-workers) \cite{dpdak}
+and \textit{Dioptas} (developed at synchrotron APS by Clemens Prescher).
 Most of those software packages propose a graphical interface to ease the
 data processing for a specific type of experiment.
 
@@ -610,7 +610,7 @@ data processing for a specific type of experiment.
 This contribution described improvements in the version 0.10 of the pyFAI
 library, especially how it represents detectors in space, ring
 extraction algorithms and pixel splitting schemes for azimuthal integration.
-The number of independent projects relying now on pyFAI proves that it fulfils a
+The number of independent projects relying now on pyFAI proves that it fulfills a
 need in the Python scientific ecosystem.
 
 On the other hand there are plenty of issues remaining: all algorithms to
@@ -618,7 +618,7 @@ perform azimuthal integration are not yet implemented in 2D.
 Can all algorithms used in
 pyFAI be ported to GPU to off-load the processor? The graphical user interface
 for calibration and integration, while helpful, are really minimalistic.
-The re-assignement of group of points to rings is missing, this is
+The re-assignment of group of points to rings is missing, this is
 especially needed for off-centered detectors when the ring number is not clear.
 The automatic extraction of ring using \textit{computer vision} techniques can
 be improved and maybe the calibration can be fully automatized.
@@ -626,7 +626,7 @@ The support for the geometry refinement of non planar detectors is not yet
 finalized.
 
 This summarizes well the work already done and gives an
-outlook for forthcomming features.
+outlook for forthcoming features.
 The version number of this release, 0.10, clearly indicates a lot of work has
 been done but also warns about possible changes in the programming interface
 in future versions to implement those new features.
@@ -644,8 +644,8 @@ It provides high performances image treatment and azimuthal integration thanks
 to Cython \cite{cython} and PyOpenCL \cite{pyopencl}.
 PyOpenCL remains an optional dependency, so all OpenCL code has a
 Python or Cython implementation.
-For consistency with other software project developped at ESRF \cite{pymca},
-the graphical user interface is developped using PyQt.
+For consistency with other software project developed at ESRF \cite{pymca},
+the graphical user interface is developed using PyQt.
 
 The project is hosted on GitHub (https://github.com/kif/pyFAI) which provides
 the issue tracker in addition to code hosting.
@@ -806,7 +806,7 @@ V. Armando Solé, the author of PyMca, is also acknowledged for providing us som
 important graphical user interface building blocks.
 
 The huge parallelization work on the integration routines and their porting to
-manycore devices was mainly done by Dimitris Karkoulis, Zubair Nawaz and Giannis Ashiotis,
+many-core devices was mainly done by Dimitris Karkoulis, Zubair Nawaz and Giannis Ashiotis,
 thanks the EU-grant LinkSCEEM-2 (RI-261600).
 
 We would like to thank David Flot for the protein
