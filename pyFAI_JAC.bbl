@@ -1,4 +1,4 @@
-\begin{thebibliography}{22}
+\begin{thebibliography}{24}
 \baselineskip=9pt\parskip=0pt
 
 \harvarditem[Behnel \emph{et~al.}]{Behnel, Bradshaw, Citro, Dalcin, Seljebotn
@@ -24,6 +24,13 @@ Bonnin, A., Wright, J.~P., Tucoulou, R. \harvardand\ Palancher, H.
 \newblock \emph{Applied Physics Letters}, \volbf{105}(8), --.
 \newline\harvardurl{http://scitation.aip.org/content/aip/journal/apl/105/8/10.1063/1.4894009}
 
+\harvarditem[Borbely \emph{et~al.}]{Borbely, Renversade, Kenesei \harvardand\
+  Wright}{2014}{to5079}
+Borbely, A., Renversade, L., Kenesei, P. \harvardand\ Wright, J.
+  \harvardyearleft 2014\harvardyearright{}.
+\newblock \emph{Journal of Applied Crystallography}, \volbf{47}(3), 1042--1053.
+\newline\harvardurl{http://dx.doi.org/10.1107/S160057671400898X}
+
 \harvarditem{B\"osecke}{2007}{spd}
 B\"osecke, P.  \harvardyearleft 2007\harvardyearright{}.
 \newblock \emph{J. Appl. Cryst.} \volbf{40}(s1), s423--s427.
@@ -34,11 +41,6 @@ B\"osecke, P.  \harvardyearleft 2007\harvardyearright{}.
 Caglioti, G., Paoletti, A. \harvardand\ Ricci, F.~P.  \harvardyearleft
   1958\harvardyearright{}.
 \newblock \emph{Nuclear Instruments}, \volbf{3}, 223--228.
-
-\harvarditem{Comittee}{2003}{nexus}
-Comittee, N. I.~A.,  \harvardyearleft 2003\harvardyearright{}.
-\newblock A common data format for neutron, x-ray and muon science.
-\newline\harvardurl{http://www.nexusformat.org/}
 
 \harvarditem[Hammersley \emph{et~al.}]{Hammersley, Svensson, Hanfland, Fitch
   \harvardand\ Hausermann}{1996}{fit2d}
@@ -95,6 +97,11 @@ Knudsen, E.~B., S{\o}rensen, H.~O., Wright, J.~P., Goret, G. \harvardand\
   Kieffer, J.  \harvardyearleft 2013\harvardyearright{}.
 \newblock \emph{J. Appl. Cryst.} \volbf{46}, 537--539.
 
+\harvarditem{NIAC}{2003}{nexus}
+NIAC,  \harvardyearleft 2003\harvardyearright{}.
+\newblock A common data format for neutron, x-ray and muon science.
+\newline\harvardurl{http://www.nexusformat.org/}
+
 \harvarditem[Oddershede \emph{et~al.}]{Oddershede, Schmidt, Poulsen,
   S{\o}rensen, Wright \harvardand\ Reimers}{2010}{fable}
 Oddershede, J., Schmidt, S., Poulsen, H.~F., S{\o}rensen, H.~O., Wright, J.
@@ -135,6 +142,12 @@ Solé, V., Papillon, E., Cotte, M., Walter, P. \harvardand\ Susini, J.
 Stone, J.~E., Gohara, D. \harvardand\ Shi, G.  \harvardyearleft
   2010\harvardyearright{}.
 \newblock \emph{Computing in Science and Engineering}, \volbf{12}(3), 66--73.
+
+\harvarditem{van~der Walt}{2010}{stefanvdw}
+van~der Walt, S.~J.  \harvardyearleft 2010\harvardyearright{}.
+\newblock \emph{Super-resolution imaging}.
+\newblock Ph.D. thesis, Stellenbosch University, South Africa.
+\newline\harvardurl{http://hdl.handle.net/10019.1/5189}
 
 \harvarditem{Yang X.and~Juhas \harvardand\ Billinge}{2014}{billinge2014}
 Yang X.and~Juhas, P. \harvardand\ Billinge, S. J.~L.  \harvardyearleft

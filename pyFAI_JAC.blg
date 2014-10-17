@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: pyFAI_JAC.aux
 The style file: iucr.bst
 Database file #1: biblio.bib
-You've used 21 entries,
+You've used 24 entries,
             2962 wiz_defined-function locations,
-            780 strings with 9553 characters,
-and the built_in function-call counts, 14119 in all, are:
-= -- 1329
-> -- 1073
-< -- 15
-+ -- 316
-- -- 293
-* -- 1347
-:= -- 2205
-add.period$ -- 59
-call.type$ -- 21
-change.case$ -- 187
-chr.to.int$ -- 21
-cite$ -- 21
-duplicate$ -- 505
-empty$ -- 756
-format.name$ -- 382
-if$ -- 2842
+            796 strings with 10100 characters,
+and the built_in function-call counts, 15843 in all, are:
+= -- 1495
+> -- 1183
+< -- 17
++ -- 351
+- -- 323
+* -- 1511
+:= -- 2482
+add.period$ -- 68
+call.type$ -- 24
+change.case$ -- 209
+chr.to.int$ -- 24
+cite$ -- 24
+duplicate$ -- 573
+empty$ -- 856
+format.name$ -- 422
+if$ -- 3179
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 19
-newline$ -- 98
-num.names$ -- 106
-pop$ -- 443
+missing$ -- 21
+newline$ -- 113
+num.names$ -- 121
+pop$ -- 489
 preamble$ -- 1
-purify$ -- 181
+purify$ -- 203
 quote$ -- 0
-skip$ -- 542
+skip$ -- 607
 stack$ -- 0
-substring$ -- 642
-swap$ -- 115
+substring$ -- 729
+swap$ -- 130
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 252
+type$ -- 288
 warning$ -- 0
-while$ -- 90
+while$ -- 103
 width$ -- 0
-write$ -- 255
+write$ -- 294
