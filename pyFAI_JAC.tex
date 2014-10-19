@@ -3,7 +3,7 @@
  \papertype{CP}
 
 \usepackage{graphicx}
-\usepackage{minted}
+%\usepackage{minted}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -110,7 +110,7 @@ By construction, such detectors exhibit gaps between modules along with
 pixels of various sizes within a single module, hence they require specific
 data masks.
 Optically coupled detectors need also to be corrected
-for small spatial displacements, often called geometric distortion.
+for small spacial displacements, often called geometric distortion.
 This is why detectors need more complex definitions than just that of a pixel
 size.
 To avoid complicated and error-prone sets of parameters, detector classes have
@@ -275,10 +275,11 @@ $\nabla I(\overrightarrow{x})=\overrightarrow{0}$, in (\ref{eq2}) hence:
 \overrightarrow{x} = \overrightarrow{x_0} - (\mathcal{H}
 I(\overrightarrow{x_0}))^{-1}\cdot\nabla I(\overrightarrow{x_0})
  \end{equation}
-As those derivatives, $\nabla I$ and $\mathcal{H} I$, are numerically assessed
-on a 3x3 neighborhood. With noisy data, it could happen that
+Those derivatives, $\nabla I$ and $\mathcal{H} I$, are numerically assessed
+on a 3x3 neighborhood.
+With noisy data, it could happen that
 $\overrightarrow{x}$ is far away from $\overrightarrow{x_0}$ (more than one
-pixel).
+pixel) which is obviously wrong.
 In such cases, $\overrightarrow{x}$ is taken as the centre of mass of the 3x3
 neighborhood around $\overrightarrow{x_0}$ (less precise, but more robust).
 
@@ -376,16 +377,16 @@ The initial idea behind pyFAI was to provide a easy way to perform
 azimuthal/radial integration for scientists, ideally in a single command.
 In the following snippet code we show how this is done:
 
-%\begin{verbatim}
-\begin{minted}{python}
+%\begin{minted}{python}
+\begin{verbatim}
 import pyFAI, fabio, pylab
 img = fabio.open("imagefile.tif").data
 ai = pyFAI.load("geometry.poni")
 tth, I = ai.integrate1d(img, 1000, unit="2th_deg", method="splitpixel")
 pylab.plot(tth, I)
 pylab.show()
-\end{minted}
-%\end{verbatim}
+\end{verbatim}
+%\end{minted}
 
 In the first line, three key libraries are loaded: fabio \cite{fabio} to read
 images, pylab \cite{matplotlib} to display the results and pyFAI itself to be
@@ -404,7 +405,7 @@ algorithm to be used.
 
 PyFAI implements a dozen of azimuthal integration procedures which can be
 classified according to the way the integration is performed and which pixel
-splitting scheme used.
+splitting scheme is used.
 
 \subsubsection{Histogram vs Look-Up Table.}
 The naive way to integrate data (also called ``direct integration'') is to treat
@@ -450,7 +451,7 @@ compared to the FIT2D corresponding algorithms.}
 
 \subsubsection{Speed and memory consumption.}
 
-The table \ref{table:methods}  lists the various available implementations
+The table \ref{table_methods}  lists the various available implementations
 together with their execution speed and the memory footprint for integrating a 2048x2048
 pixel image into 1000 bins.
 
@@ -485,7 +486,7 @@ A minimalistic GUI called \textit{pyFAI-integrate}, is
 shown in figure \ref{pyFAI-integrate}.
 It has most of the feature available in pyFAI:
 the top frame contains the geometric description of the experiment.
-The second frame targets the pixel-wise correction to be applied: dark current
+The second frame targets the pixel-wise corrections to be applied: dark current
 subtraction, flat-field correction, polarization and solid-angle effects, static and dynamic
 masking. The check boxes next to each field are used to toggle the given correction.
 The third frame displays information about the output format, the
@@ -516,8 +517,8 @@ If one assumes the signal isotropy along the azimuthal angle range (like an
 ideal powder without preferred orientation), \textit{2D} diffraction patterns can be
 generated as illustrated in the example below:
 
-%\begin{verbatim}
-\begin{minted}{python}
+%\begin{minted}{python}
+\begin{verbatim}
 import numpy, scipy.signal, pyFAI
 N = 1000 # generate the powder curve as a single Gaussian
 tth = numpy.linspace(0, 60, N)
@@ -525,8 +526,8 @@ I = scipy.signal.gaussian(N, 5)
 det = pyFAI.detectors.detector_factory("Pilatus1M")
 ai = pyFAI.AzimuthalIntegrator(dist=0.1, poni1=0.1, poni2=0.1, detector=det)
 img = ai.calcfrom1d(tth, I)
-\end{minted}
-%\end{verbatim}
+\end{verbatim}
+%\end{minted}
 
 
 The method \textit{calcfrom1d} is available from any
@@ -536,14 +537,15 @@ image suitable to test pyFAI or other calibration codes (for example to
 validate the geometry transformation from one program to another).
 
 
-%\begin{verbatim}
-\begin{minted}{python}
+
+%\begin{minted}{python}
+\begin{verbatim}
 import pyFAI.calibrant
 lab6 = pyFAI.calibrant.ALL_CALIBRANTS["LaB6"]
 lab6.set_wavelength(1e-10)
 img_lab6 = lab6.fake_calibration_image(ai)
-\end{minted}
-%\end{verbatim}
+\end{verbatim}
+%\end{minted}
 
 In the above code snippet, in the second line, a reference sample,
 LaB$_6$, is chosen from the list of calibrants known to pyFAI before the
@@ -628,7 +630,7 @@ azimuthal/radial integration on-line:
   \item inside the LImA image acquisition library, running on the
   computer controling the camera,
   \item in on dedicated data-analysis server like EDNA \cite{edna} in the case
-  of the BioSaxs beamline, BM29 \cite{bm29} or DAHU server at the TRUSAXS
+  of the BioSaxs beamline, BM29 \cite{bm29} or the Dahu server at the TRUSAXS
   beamline ID02.
 \end{itemize}
 
