@@ -48,9 +48,8 @@ performance azimuthal integration.
 PyFAI is an open source software package designed to perform azimuthal and
 radial integration and, correspondingly, 2D regrouping on area detector frames for small and wide
 angle X-ray scattering experiments.
-It is written in Python, a language widely accepted and used by the scientific
-community today, which enables the users to easily incorporate the PyFAI
-library into their processing pipeline.
+It is written in Python\footnote{with binary sub-modules for performances}, a
+language widely accepted and used by the scientific community today, which enables the users to easily incorporate the pyFAI library into their processing pipeline.
 This work focuses on recent work, especially the ease of
 calibration, its accuracy and the execution speed for integration.
 \end{abstract}
@@ -77,7 +76,10 @@ rings are presented.
 The peak positions are combined with the knowledge of a calibrant (d-spacing)
 and the wavelength of the X-rays  to refine of the detector's position in space.
 
-Once this geometry is known, azimuthal regrouping can be performed.
+Once this geometry is known, azimuthal regrouping can be performed after
+typical preprocessings correction are done: dark-current subtraction, flatfield,
+solid-angle and polarization correction are included in the standard processing
+pipeline.
 As pyFAI implements various integration algorithm, including
 multiple pixel splitting schemes, they will be described and compared
 based on speed, accuracy and memory consumption.
@@ -152,7 +154,7 @@ With the detector being a rigid body, its position in space is described by
 six parameters: 3 coordinates and 3 rotations.
 In pyFAI, the beam center is not directly used as it is ill-defined with
 highly tilted detectors.
-Like \cite{spd}, we use the orthogonal projection of origin on
+Like SPD \cite{spd}, we use the orthogonal projection of origin on
 the detector surface called PONI (for Point Of Normal Incidence).
 For non planar detectors, the PONI is defined in the plan d3=0 in detector's
 coordinate system.
@@ -788,6 +790,45 @@ After performing subsequently the peak-picking using \textit{blob-detection}
 (as described in \ref{blob}) and the least squares refinement of the geometry on
 every input frame, distances and beam centre positions are returned as function
 of the detector motor position, without human intervention.
+
+\section{Layers in pyFAI library}
+PyFAI is a project about azimuthal regrouping in Python and has multiple
+entry-points depending on the type of application or the skills of the user.
+
+\subsection{Top level graphical application}
+A couple of top level applications: \textit{pyFAI-calib} and
+\textit{pyFAI-integrate} provide a graphical user interface to inexperienced
+users. Those interfaces are the least flexible ones.
+
+\subsection{Top level application}
+A bunch of small scripts are provided with pyFAI for multiple kind of
+processing (like \textit{pyFAI-saxs} and \textit{pyFAI-waxs} but also the
+\textit{diff_tomo} script) which can be integrated into shell scripts for batch
+processing.
+
+\subsection{Top level Python interface}
+PyFAI provides as top level, the AzimuthalIntegrator object which can be created
+from a \textit{PONI} file and used to integrate data. Preprocessing option
+(dark, flat, mask, solid angle and polarisation correction) can be passed to 
+the \textit{integrate1d} or \textit{integrate2d} methods. 
+Those methods also know how save processed data to the disk. 
+This is probably the most flexible level of use of pyFAI as nothing from the
+underlaying levels are hidden.
+
+\subsection{Mid level API}
+Below the AzimuthalIntegrator is the geometry calculation, the detector
+description, calibrants, geometry refinement \ldots. Those module are
+implemented in Python using NumPy but often, a second
+implementation exists in Cython for performances. 
+The equivalence of those implementation is a core part of the pyFAI test suite  
+
+\subsection{Regriding engines}
+Those engines are typically written in Cython or OpenCL with a Python binding
+and can only be accessed from the Python level. They expose only the core
+number crunching routines for integration or distortion correction.
+
+As presented the pyFAI project is very modular and can be accessed at various
+levels depending on the user's needs.
 
 \section{Parallel implementations using OpenCL}
 \label{annex_opencl}
