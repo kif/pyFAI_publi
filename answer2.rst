@@ -50,3 +50,47 @@ but I have the feeling the iPython notebook gets more momentum recently.
 
 To partially answer your question: when pyFAI saves the (processed) data, most parameters used for the processing are saved as metadata which is already a good start.
 
+Pixel thickness effect p4 l18.
+------------------------------
+Anything is possible within a HDF5 file. At least little things are impossible with HDF5 and the sensitive layer thickness is clearly possible to add.
+While this correction has been requested by high-energy diffractionists I have no idea how to deconvolute
+the point-spread function without introducing tons of noise.
+
+
+Constrained refinement: p6 l55
+------------------------------
+It is possible to provide a default parameter on the command line (parameter in [dist, poni1, poni2, rot1, rot2, rot3, wavelength]) and also fix or not its value.
+By default everything is free except the wavelength.
+This can be done, either on the command line (see pyFAI-calib --help) or during the refinement.
+For example, in the "new" figure2, the refinement has been perform this way:
+
+? set dist 0.615
+? fix dist
+? set rot1 0
+? fix rot1
+? refine
+
+Strains p7 l60
+--------------
+Calibrant are usually "strain-less". But to answer your question, pyFAI-calib is really used a lot on beamline doing strain measurement.
+They use CeO2 which gives very thin lines and provides calibration with a precision of 0.2 pixels for the PONI localization (in the best case).
+Mis-calibration leads to an error in sin(chi) whereas strains gives errors in sin(2*chi). So it is possible to distinguish them.
+
+p8 l33
+Peak position at the sub-pixel level is especially important in material science where they are looking for sharp features,
+so the smallest neighborhood possible has been chosen.
+
+p12 l68
+The way FIT2D makes the pixel splitting has been reverse-engineered: we got no support from its author.
+For sure,  FIT2D considers the pixel with border parallel to the 2theta/chi axes
+The pixel is smaller, maybe it considered as a square in output space with the same area ?
+PyFAI considers the bounding rectangle which causes an "over-smearing" of a fraction of a pixel.
+The ragged top of the FIT2D bin is also a surprise to me: I have no explanation.
+
+p15 About polarization:
+For now the polarization correction is the same as the one from FIT2D
+Issue #52 has not (yet) been implemented.
+
+P24 l39:
+The precision is "measured", as explained, by the offset measured between the raw image and and the image reconstructed from the 1D curve and the geometry.
+One could also take 2 section at 180° appart and measure the offset (planed for implementation).

@@ -1,12 +1,18 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.7.7)  17 OCT 2014 08:56
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.1.26)  17 FEB 2015 23:40
 entering extended mode
- \write18 enabled.
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **pyFAI_JAC.tex
 (./pyFAI_JAC.tex
 LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, cr
+oatian, bulgarian, ukrainian, russian, slovak, czech, danish, dutch, finnish, f
+rench, basque, ngerman, german, swissgerman, ngerman-x-2012-05-30, german-x-201
+2-05-30, monogreek, greek, ibycus, ancientgreek, hungarian, italian, latin, mon
+golian, mongolianlmc, nynorsk, bokmal, indonesian, esperanto, coptic, welsh, ir
+ish, interlingua, serbian, serbianc, slovenian, friulan, romansh, estonian, rom
+anian, armenian, uppersorbian, turkish, afrikaans, icelandic, kurmanji, polish,
+ portuguese, galician, catalan, spanish, swedish, loaded.
 (./iucr.cls
 \c@chapter=\count79
 \c@example=\count80
@@ -163,108 +169,7 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \Gin@req@height=\dimen118
 \Gin@req@width=\dimen119
 )
-(/usr/share/texlive/texmf-dist/tex/latex/minted/minted.sty
-Package: minted 2011/09/17 v1.7 Yet another Pygments shim for LaTeX
-
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2008/02/07
-
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)
-\FV@CodeLineNo=\count103
-\FV@InFile=\read1
-\FV@TabBox=\box66
-\c@FancyVerbLine=\count104
-\FV@StepNumber=\count105
-\FV@OutFile=\write3
-) (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package xcolor Info: Driver file: pdftex.def on input line 225.
-
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count106
-)
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
-Package xcolor Info: Model `RGB' extended on input line 1353.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count107
-\calc@Bcount=\count108
-\calc@Adimen=\dimen120
-\calc@Bdimen=\dimen121
-\calc@Askip=\skip52
-\calc@Bskip=\skip53
-LaTeX Info: Redefining \setlength on input line 76.
-LaTeX Info: Redefining \addtolength on input line 77.
-\calc@Ccount=\count109
-\calc@Cskip=\skip54
-)
-(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
-Package: ifplatform 2010/10/22 v0.4 Testing for the operating system
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
-Package: catchfile 2011/03/01 v1.6 Catch the contents of a file (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-))
-runsystem(uname -s > "pyFAI_JAC.w18")...executed.
-
-
-(./pyFAI_JAC.w18)
-runsystem(rm -- "pyFAI_JAC.w18")...executed.
-
-)
-\minted@bgbox=\box67
-\minted@code=\write4
-\@float@every@listing=\toks20
-\c@listing=\count110
-)
-runsystem(which pygmentize && touch pyFAI_JAC.aex)...executed.
-
-runsystem(rm pyFAI_JAC.aex)...executed.
-
- (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
@@ -273,8 +178,8 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks21
-\inpenc@posthook=\toks22
+\inpenc@prehook=\toks20
+\inpenc@posthook=\toks21
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
@@ -503,54 +408,16 @@ LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-))
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-34.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
 Beginning to process article (iucr) 
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count111
-\scratchdimen=\dimen122
-\scratchbox=\box68
-\nofMPsegments=\count112
-\nofMParguments=\count113
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count114
-\MPscratchDim=\dimen123
-\MPnumerator=\count115
-\makeMPintoPDFobject=\count116
-\everyMPtoPDFconversion=\toks24
-)
-runsystem(pygmentize -S default -f latex > pyFAI_JAC.pyg)...executed.
-
- (./pyFAI_JAC.pyg)
 LaTeX Font Info:    Try loading font information for T1+cmss on input line 31.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 51.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 51.
+
 
 ! Package inputenc Error: Unicode char \u8:­ not set up for use with LaTeX.
 
@@ -583,191 +450,95 @@ Overfull \vbox (11.90976pt too high) has occurred while \output is active []
 
 Overfull \vbox (16.0pt too high) has occurred while \output is active []
 
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+ [1
 
-] [2] [3]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 139.
+]
+[2] [3]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 148.
 
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 139.
-Package epstopdf Info: Source file: <PONI.eps>
-(epstopdf)                    date: 2014-10-09 08:55:24
-(epstopdf)                    size: 69258 bytes
-(epstopdf)             Output file: <PONI-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-10-09 08:56:21
-(epstopdf)                    size: 39958 bytes
-(epstopdf)             Command: <epstopdf --outfile=PONI-eps-converted-to.pdf P
-ONI.eps>
-(epstopdf)             \includegraphics on input line 170.
-Package epstopdf Info: Output file is already uptodate.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 148.
+ [4]
+File: PONI.eps Graphic file (type eps)
 
-<PONI-eps-converted-to.pdf, id=23, 796.9775pt x 597.23125pt>
-File: PONI-eps-converted-to.pdf Graphic file (type pdf)
-
-<use PONI-eps-converted-to.pdf>
-Package pdftex.def Info: PONI-eps-converted-to.pdf used on input line 170.
-(pdftex.def)             Requested size: 426.79134pt x 319.82085pt.
-
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 170--172
+<PONI.eps>
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 179--181
  [] 
  []
 
-[4] [5 <./PONI-eps-converted-to.pdf>] [6] [7] [8]
-Package epstopdf Info: Source file: <calib.eps>
-(epstopdf)                    date: 2014-10-06 15:08:26
-(epstopdf)                    size: 2922665 bytes
-(epstopdf)             Output file: <calib-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-10-06 15:08:50
-(epstopdf)                    size: 178351 bytes
-(epstopdf)             Command: <epstopdf --outfile=calib-eps-converted-to.pdf 
-calib.eps>
-(epstopdf)             \includegraphics on input line 328.
-Package epstopdf Info: Output file is already uptodate.
+[5] [6] [7] [8] [9]
+File: calib_xpad.eps Graphic file (type eps)
+ <calib_xpad.eps>
 
-<calib-eps-converted-to.pdf, id=48, 578.16pt x 433.62pt>
-File: calib-eps-converted-to.pdf Graphic file (type pdf)
+! Package inputenc Error: Unicode char \u8:° not set up for use with LaTeX.
 
-<use calib-eps-converted-to.pdf>
-Package pdftex.def Info: calib-eps-converted-to.pdf used on input line 328.
-(pdftex.def)             Requested size: 426.79134pt x 320.09303pt.
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.374 \end{figure}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 328--333
- [] 
- []
 
-[9] [10 <./calib-eps-converted-to.pdf>]
-\openout3 = `pyFAI_JAC.pyg'.
+! Package inputenc Error: Unicode char \u8:° not set up for use with LaTeX.
 
-runsystem(pygmentize -l python -f latex -F tokenmerge             -P "verboptio
-ns= " -o pyFAI_JAC.out.pyg pyFAI_JAC.pyg)...executed.
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.374 \end{figure}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
- (./pyFAI_JAC.out.pyg
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 1.
+[10] [11]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 401.
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 2.
-)
-runsystem(rm pyFAI_JAC.out.pyg)...executed.
-
-runsystem(rm pyFAI_JAC.pyg)...executed.
-
- [11] [12]
-Package epstopdf Info: Source file: <splitpixel.eps>
-(epstopdf)                    date: 2014-10-08 17:43:34
-(epstopdf)                    size: 43893 bytes
-(epstopdf)             Output file: <splitpixel-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-10-08 18:54:50
-(epstopdf)                    size: 23926 bytes
-(epstopdf)             Command: <epstopdf --outfile=splitpixel-eps-converted-to
-.pdf splitpixel.eps>
-(epstopdf)             \includegraphics on input line 421.
-Package epstopdf Info: Output file is already uptodate.
-
-<splitpixel-eps-converted-to.pdf, id=65, 662.475pt x 456.70625pt>
-File: splitpixel-eps-converted-to.pdf Graphic file (type pdf)
-
-<use splitpixel-eps-converted-to.pdf>
-Package pdftex.def Info: splitpixel-eps-converted-to.pdf used on input line 421
-.
-(pdftex.def)             Requested size: 426.79134pt x 294.22832pt.
-
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 421--425
+) [12]
+[13]
+File: splitpixel.eps Graphic file (type eps)
+ <splitpixel.eps>
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 465--469
  [] 
- []
-
-
-Overfull \hbox (1.6164pt too wide) in paragraph at lines 430--433
- \T1/cmr/m/it/10.95 4.2.3. Speed and mem-ory con-sump-tion.[] \T1/cmr/m/n/10.95
- The table table:methods lists the var-i-ous imple-
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 438.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 438.
+(Font)              <7> on input line 483.
 
-Overfull \hbox (78.1305pt too wide) in paragraph at lines 438--452
-[][]
+Overfull \hbox (78.1305pt too wide) in paragraph at lines 483--496
+[][] 
  []
 
-[13 <./splitpixel-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <integrate.eps>
-(epstopdf)                    date: 2014-10-09 09:07:12
-(epstopdf)                    size: 2257987 bytes
-(epstopdf)             Output file: <integrate-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-10-09 09:07:27
-(epstopdf)                    size: 117538 bytes
-(epstopdf)             Command: <epstopdf --outfile=integrate-eps-converted-to.
-pdf integrate.eps>
-(epstopdf)             \includegraphics on input line 475.
-Package epstopdf Info: Output file is already uptodate.
-
-<integrate-eps-converted-to.pdf, id=119, 523.9575pt x 712.6625pt>
-File: integrate-eps-converted-to.pdf Graphic file (type pdf)
-
-<use integrate-eps-converted-to.pdf>
-Package pdftex.def Info: integrate-eps-converted-to.pdf used on input line 475.
-
-(pdftex.def)             Requested size: 426.79134pt x 580.51578pt.
-
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 475--478
+[14]
+File: integrate.eps Graphic file (type eps)
+ <integrate.eps>
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 520--523
  [] 
  []
 
-[14] [15 <./integrate-eps-converted-to.pdf>]
-\openout3 = `pyFAI_JAC.pyg'.
-
-runsystem(pygmentize -l python -f latex -F tokenmerge             -P "verboptio
-ns= " -o pyFAI_JAC.out.pyg pyFAI_JAC.pyg)...executed.
-
- (./pyFAI_JAC.out.pyg)
-runsystem(rm pyFAI_JAC.out.pyg)...executed.
-
-runsystem(rm pyFAI_JAC.pyg)...executed.
-
-\openout3 = `pyFAI_JAC.pyg'.
-
-runsystem(pygmentize -l python -f latex -F tokenmerge             -P "verboptio
-ns= " -o pyFAI_JAC.out.pyg pyFAI_JAC.pyg)...executed.
-
-
-(./pyFAI_JAC.out.pyg)
-runsystem(rm pyFAI_JAC.out.pyg)...executed.
-
-runsystem(rm pyFAI_JAC.pyg)...executed.
-
- [16] [17]
-Package epstopdf Info: Source file: <separate_id23.eps>
-(epstopdf)                    date: 2014-10-07 17:38:01
-(epstopdf)                    size: 1365379 bytes
-(epstopdf)             Output file: <separate_id23-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-10-07 18:30:18
-(epstopdf)                    size: 407583 bytes
-(epstopdf)             Command: <epstopdf --outfile=separate_id23-eps-converted
--to.pdf separate_id23.eps>
-(epstopdf)             \includegraphics on input line 577.
-Package epstopdf Info: Output file is already uptodate.
-
-<separate_id23-eps-converted-to.pdf, id=136, 825.0825pt x 696.6025pt>
-File: separate_id23-eps-converted-to.pdf Graphic file (type pdf)
-
-<use separate_id23-eps-converted-to.pdf>
-Package pdftex.def Info: separate_id23-eps-converted-to.pdf used on input line 
-577.
-(pdftex.def)             Requested size: 426.79134pt x 360.33275pt.
-
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 577--581
+[15] [16] [17] [18]
+File: separate_id23.eps Graphic file (type eps)
+ <separate_id23.eps>
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 623--627
  [] 
  []
 
-[18] [19 <./separate_id23-eps-converted-to.pdf>] [20] (./pyFAI_JAC.bbl
+[19]
+Overfull \hbox (10.61795pt too wide) in paragraph at lines 646--649
+\T1/cmr/m/n/10.95 other soft-ware on sev-eral beam-lines at the syn-chrotron ES
+RF to per-form azimuthal/radial
+ []
+
+[20] (./pyFAI_JAC.bbl [21]
 ! Missing $ inserted.
 <inserted text> 
                 $
@@ -806,10 +577,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-[21])
+)
 ! Undefined control sequence.
-l.658 \testit
-             {sympa@esrf.fr} (send ``subscribe pyfai'' by email to subscribe...
+l.708 available on \testit
+                          {pyfai@esrf.fr} (send ``subscribe pyfai'' by e-mai...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -817,66 +588,71 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 [22] [23] [24] [25]
-Package epstopdf Info: Source file: <benchmark.eps>
-(epstopdf)                    date: 2014-10-07 18:29:37
-(epstopdf)                    size: 274986 bytes
-(epstopdf)             Output file: <benchmark-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-10-07 18:30:19
-(epstopdf)                    size: 153206 bytes
-(epstopdf)             Command: <epstopdf --outfile=benchmark-eps-converted-to.
-pdf benchmark.eps>
-(epstopdf)             \includegraphics on input line 781.
-Package epstopdf Info: Output file is already uptodate.
+! Missing $ inserted.
+<inserted text> 
+                $
+l.823 \textit{diff_tomo}
+                         script) which can be integrated into shell scripts ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
-<benchmark-eps-converted-to.pdf, id=169, 684.5575pt x 584.1825pt>
-File: benchmark-eps-converted-to.pdf Graphic file (type pdf)
+! Extra }, or forgotten $.
+<recently read> \egroup 
+                        
+l.823 \textit{diff_tomo}
+                         script) which can be integrated into shell scripts ...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
 
-<use benchmark-eps-converted-to.pdf>
-Package pdftex.def Info: benchmark-eps-converted-to.pdf used on input line 781.
+! Missing $ inserted.
+<inserted text> 
+                $
+l.825 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
-(pdftex.def)             Requested size: 426.79134pt x 364.22177pt.
 
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 781--784
+Overfull \hbox (137.47664pt too wide) in paragraph at lines 821--825
+\T1/cmr/m/it/10.95 pyFAI-saxs \T1/cmr/m/n/10.95 and \T1/cmr/m/it/10.95 pyFAI-wa
+xs \T1/cmr/m/n/10.95 but also the \T1/cmr/m/it/10.95 diff$[]\OML/cmm/m/it/10.95
+ omoscript\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 whichcanbeintegratedintoshell
+scriptsforbatchprocessing:$ 
+ []
+
+[26]
+Overfull \hbox (15.23131pt too wide) in paragraph at lines 850--857
+\T1/cmr/m/it/10.95 ten in OpenCL ker-nels and inter-faced using PyOpenCL ([]Kl�
+ckner \T1/cmr/m/n/10.95 et al.\T1/cmr/m/it/10.95 , 2012). PyOpenCL
+ []
+
+[27]
+File: benchmark.eps Graphic file (type eps)
+ <benchmark.eps>
+Overfull \hbox (19.91693pt too wide) in paragraph at lines 883--886
  [] 
  []
 
-[26] [27 <./benchmark-eps-converted-to.pdf>]
-Finished processing article for Journal of Applied Crystallography [28]
-(./pyFAI_JAC.aux) ) 
-Here is how much of TeX's memory you used:
- 4493 strings out of 495059
- 59113 string characters out of 3182031
- 151688 words of memory out of 3000000
- 7562 multiletter control sequences out of 15000+200000
- 19344 words of font info for 42 fonts, out of 3000000 for 9000
- 14 hyphenation exceptions out of 8191
- 37i,12n,37p,313b,309s stack positions out of 5000i,500n,10000p,200000b,50000s
- </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx
-1200.600pk> </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600
-pk> </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1095.600pk> </us
-ers/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </users/kief
-fer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </users/kieffer/.tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </users/kieffer/.texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecti0800.600pk> </users/kieffer/.texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecrm0800.600pk> </users/kieffer/.texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecbx1095.600pk> </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecsx0800.600pk> </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1
-095.600pk> </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600p
-k> </users/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk> </use
-rs/kieffer/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </users/kieff
-er/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
-fb>
-Output written on pyFAI_JAC.pdf (28 pages, 1193616 bytes).
-PDF statistics:
- 834 PDF objects out of 1000 (max. 8388607)
- 165 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+[28]
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 891.
+ [29]
+Finished processing article for Journal of Applied Crystallography [30]
+(./pyFAI_JAC.aux) )
+(\end occurred inside a group at level 1)
 
+### simple group (level 1) entered at line 823 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 2316 strings out of 493629
+ 26772 string characters out of 3148996
+ 109142 words of memory out of 3000000
+ 5553 multiletter control sequences out of 15000+200000
+ 25027 words of font info for 55 fonts, out of 3000000 for 9000
+ 935 hyphenation exceptions out of 8191
+ 28i,12n,24p,278b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on pyFAI_JAC.dvi (30 pages, 67952 bytes).
