@@ -939,7 +939,7 @@ In this benchmark, four groups of curves can be identified:
 
 The authors would like to thank all ESRF beamline teams for supporting the
 pyFAI development, especially BM01, BM02, ID02, ID11, ID13, ID15, ID21, ID23,
-BM26, ID29, BM29, ID30.
+BM26, ID29, BM29 and ID30.
 In the instrumentation division (ISDD) we would like to thank Claudio
 Ferrero, head of data analysis unit, for the critical revision of this
 manuscript and Andy G\"otz, head of software group, for supporting the
@@ -958,30 +958,7 @@ Erik Elka\"im from beamline Cristal at synchrotron Soleil for providing the Xpad
 calibration image (fig. \ref{calib}) and David Flot from beamline ID23 at
 synchrotron ESRF for the protein diffraction image with ice-rings (fig.
 \ref{separate}).
-
-% \onecolumn
-% 
-% \begin{table}
-% \label{table_methods}
-% \caption{Various ``methods`` available within pyFAI for azimuthal integration
-% featuring their speed and memory footprint. Measurements on a 3 GHz quad-core
-% computer with a 2048x2048 pixel image.}
-% \begin{tabular}{|c|l|l|l|}
-% %\begin{tabular}[pos]{|c|l|l|l|}
-% \hline
-% Pixel split& No splitting & Bounding box & Tight pixel splitting \\
-% \hline
-% Direct    & numpy (889ms 336MB) & splitbbox (129ms 343MB) & \
-% splitpixel(516ms, 480MB)\\ 
-% histogram & cython (361ms 323 MB) &                       &                \\
-% \hline
-% Look-up   &       & splitBBoxLUT (59ms 327MB) &    \\
-% table     & CSR nosplit (48ms 330 MB) & CSR bbox (52ms 330MB) & CSR
-% full (51ms, 502MB)\\
-% \hline
-% \end{tabular}
-% \end{table}
-
-
+Finally we would like to thank our reviewers, especially Brian R. Pauw, for
+their very contrustive comments which helped us to improve this article. 
 
 \end{document}

@@ -2,13 +2,14 @@ Dear Brian,
 
 Thanks you for reviewing this manuscript.
 As you stated, the code of pyFAI has been developed for speed, but we hoped not to compromised too much on the clarity.
-This focus on speed should also simplify the life of our users as pyFAI is designed to run on a single computer without needing any computer cluster/grid/cloud to get good preformances.
+This focus on speed should also simplify the life of our (your?) users as pyFAI is designed to run on a single computer without needing any computer cluster/grid/cloud
+to get acceptable performances.
 
 About errors
 ------------
 
 PyFAI tries to handle errors to the best extends possible and tries to be consistent with other software of reference like Fit2D and SPD.
-One should separate the "initialization" of the variance from the propagation of variance.
+One should separate the "initialization" of the variance from the propagation of errors.
 
 Initialization of the variance
 ..............................
@@ -29,11 +30,11 @@ Propagation of the error
 ........................
 
 All *regridding engines* in pyFAI provide the weighted and unweighted histograms in addition to integrated curve and the bin boundaries.
-Those values are used especially when propagating errors: sigma = sqrt( variance_weighted_histogram ) / variance_unweighted_histogram
+Those values are used especially when propagating errors: sigma = sqrt( variance_weighted_histogram ) / unweighted_histogram
 
 But this is only correct with *regridding engines* without pixel splitting as described in
 doi:10.1107/S1600576714010516
-As pixel splitting induces bin-correlation, the reported errors are overestimated (~20% if the bin size is a pixel).
+As pixel splitting induces bin-correlation, the reported errors are overestimated (~20% if the bin size equals the pixel size).
 One solution would be to take the trace of the covariance matrix as defined in Eq9 of this publication.
 While this is probably the way to go, there are currently no resources available to implement it.
 Pixel splitting is an issue only if the detector is perfect and has no point spread function which is true only for pixel detectors with large pixels (i.e. Pilatus).
@@ -46,7 +47,7 @@ dark/flat/polarization/solid angle correction as you described in your review ar
 
 I have the feeling you are looking for something like this:
 doi:10.1016/j.procs.2011.04.061
-but I have the feeling the iPython notebook gets more momentum recently.
+but I have the feeling the iPython notebook got more momentum recently.
 
 To partially answer your question: when pyFAI saves the (processed) data, most parameters used for the processing are saved as metadata which is already a good start.
 
@@ -73,7 +74,7 @@ For example, in the "new" figure2, the refinement has been perform this way:
 Strains p7 l60
 --------------
 Calibrant are usually "strain-less". But to answer your question, pyFAI-calib is really used a lot on beamline doing strain measurement.
-They use CeO2 which gives very thin lines and provides calibration with a precision of 0.2 pixels for the PONI localization (in the best case).
+They use CeO2 which gives very thin lines and provides calibration with a precision of 0.2 pixels (or better) for the PONI localization.
 Mis-calibration leads to an error in sin(chi) whereas strains gives errors in sin(2*chi). So it is possible to distinguish them.
 
 p8 l33
@@ -82,15 +83,23 @@ so the smallest neighborhood possible has been chosen.
 
 p12 l68
 The way FIT2D makes the pixel splitting has been reverse-engineered: we got no support from its author.
-For sure,  FIT2D considers the pixel with border parallel to the 2theta/chi axes
-The pixel is smaller, maybe it considered as a square in output space with the same area ?
+For sure,  FIT2D considers the pixel with border parallel to the 2theta/chi axes (proven by the figure)
+The pixel is smaller than the one from pyFAI, maybe it considered as a square in output space with the same area ?
 PyFAI considers the bounding rectangle which causes an "over-smearing" of a fraction of a pixel.
 The ragged top of the FIT2D bin is also a surprise to me: I have no explanation.
+Have a look at the talk we gave with Giannis at Euroscipy 2014:
+https://www.youtube.com/watch?v=QSlo_Nyzeig&index=8&list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi
 
 p15 About polarization:
 For now the polarization correction is the same as the one from FIT2D
-Issue #52 has not (yet) been implemented.
+Issue #52 has not (yet) been implemented (lack of resources).
 
 P24 l39:
 The precision is "measured", as explained, by the offset measured between the raw image and and the image reconstructed from the 1D curve and the geometry.
-One could also take 2 section at 180° appart and measure the offset (planed for implementation).
+One could also take 2 section at 180° apart and measure the offset (planed for implementation).
+
+I hope you got precise answers to your questions. The manuscript was greatly improved thanks to you contribution.
+
+Please receive our best regards.
+
+Jérôme Kieffer on behalf of the authors

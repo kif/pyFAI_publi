@@ -11,7 +11,7 @@ http://dx.doi.org/10.1017/S0885715613000924 (see figure 3)
 We did not emphasize on that aspect in this article.
 
 Following your suggestion, the SAXS calibration image has been replaced with a WAXS
-calibration image taken with a pixel-detector tilted of about 20 deg (no beam-stop on the image).
+calibration image taken with a pixel-detector tilted of about 15 deg (no beam-stop on the image).
 This Xpad detector exhibits large (vertical) gaps which sometimes eats-up rings, making such calibration
 especially challenging.
 
