@@ -1,18 +1,12 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.1.26)  17 FEB 2015 23:40
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2014.7.7)  18 FEB 2015 15:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**pyFAI_JAC.tex
+**pyFAI_JAC
 (./pyFAI_JAC.tex
 LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, cr
-oatian, bulgarian, ukrainian, russian, slovak, czech, danish, dutch, finnish, f
-rench, basque, ngerman, german, swissgerman, ngerman-x-2012-05-30, german-x-201
-2-05-30, monogreek, greek, ibycus, ancientgreek, hungarian, italian, latin, mon
-golian, mongolianlmc, nynorsk, bokmal, indonesian, esperanto, coptic, welsh, ir
-ish, interlingua, serbian, serbianc, slovenian, friulan, romansh, estonian, rom
-anian, armenian, uppersorbian, turkish, afrikaans, icelandic, kurmanji, polish,
- portuguese, galician, catalan, spanish, swedish, loaded.
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
 (./iucr.cls
 \c@chapter=\count79
 \c@example=\count80
@@ -66,6 +60,9 @@ Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \colbreak@box=\box51
 \multicol@sort@counter=\count89
 )
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
@@ -110,8 +107,8 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 (/usr/share/texlive/texmf-dist/tex/generic/dvips/colordvi.tex)
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count92
 \c@section=\count93
@@ -131,6 +128,117 @@ Package: harvard
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 ))
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 696.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/ptmcm/m/n on input line 696.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptmcm/m/n on input line 696.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/ptmcm/m/n --> OT1/ptm/b/n on input line 697.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 698.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/ptmcm/m/it on input line 698.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/ptmcm/m/it on input line 698.
+LaTeX Font Info:    Encoding `OML' has changed to `OT1' for symbol font
+(Font)              `letters' in the math version `bold' on input line 699.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/ptmcm/m/it --> OT1/ptm/b/it on input line 699.
+
+FONT WARNINGS CAN USUALLY BE IGNORED. IF YOU EXPERIENCE
+PROBLEMS WITH FONTS, USE THE [preprint] OPTION
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 702.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/cmsy/m/n on input line 702.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/cmsy/m/n on input line 702.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 703.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 703.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 703.
+\symbold=\mathgroup4
+\symitalic=\mathgroup5
+LaTeX Font Info:    Overwriting symbol font `italic' in version `bold'
+(Font)                  OT1/ptm/m/it --> OT1/ptm/b/it on input line 706.
+\symgreek=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `greek' in version `bold'
+(Font)                  OML/cmm/m/it --> OML/cmm/b/it on input line 708.
+\symuprightgreek=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `uprightgreek' in version `bold'
+(Font)                  OT1/ptmcm/m/n --> OT1/cmr/bx/n on input line 710.
+\symboldgreek=\mathgroup8
+\symbolduprightgreek=\mathgroup9
+LaTeX Font Info:    Redeclaring math symbol \alpha on input line 713.
+LaTeX Font Info:    Redeclaring math symbol \beta on input line 715.
+LaTeX Font Info:    Redeclaring math symbol \gamma on input line 717.
+LaTeX Font Info:    Redeclaring math symbol \delta on input line 719.
+LaTeX Font Info:    Redeclaring math symbol \epsilon on input line 721.
+LaTeX Font Info:    Redeclaring math symbol \zeta on input line 723.
+LaTeX Font Info:    Redeclaring math symbol \eta on input line 725.
+LaTeX Font Info:    Redeclaring math symbol \theta on input line 727.
+LaTeX Font Info:    Redeclaring math symbol \iota on input line 729.
+LaTeX Font Info:    Redeclaring math symbol \kappa on input line 731.
+LaTeX Font Info:    Redeclaring math symbol \lambda on input line 733.
+LaTeX Font Info:    Redeclaring math symbol \mu on input line 735.
+LaTeX Font Info:    Redeclaring math symbol \nu on input line 737.
+LaTeX Font Info:    Redeclaring math symbol \xi on input line 739.
+LaTeX Font Info:    Redeclaring math symbol \pi on input line 741.
+LaTeX Font Info:    Redeclaring math symbol \rho on input line 743.
+LaTeX Font Info:    Redeclaring math symbol \sigma on input line 745.
+LaTeX Font Info:    Redeclaring math symbol \tau on input line 747.
+LaTeX Font Info:    Redeclaring math symbol \upsilon on input line 749.
+LaTeX Font Info:    Redeclaring math symbol \phi on input line 751.
+LaTeX Font Info:    Redeclaring math symbol \chi on input line 753.
+LaTeX Font Info:    Redeclaring math symbol \psi on input line 755.
+LaTeX Font Info:    Redeclaring math symbol \omega on input line 757.
+LaTeX Font Info:    Redeclaring math symbol \varepsilon on input line 759.
+LaTeX Font Info:    Redeclaring math symbol \vartheta on input line 761.
+LaTeX Font Info:    Redeclaring math symbol \varpi on input line 763.
+LaTeX Font Info:    Redeclaring math symbol \varrho on input line 765.
+LaTeX Font Info:    Redeclaring math symbol \varsigma on input line 767.
+LaTeX Font Info:    Redeclaring math symbol \varphi on input line 769.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 771.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 773.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 775.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 777.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 779.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 781.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 783.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 785.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 787.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 789.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 791.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 793.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 793.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 793.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 794.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 794.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 794.
+LaTeX Font Info:    Redeclaring math alphabet \mathsfrm on input line 810.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfrm' in version `normal'
+(Font)                  OT1/ptm/m/n --> OT1/ppl/m/n on input line 810.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfrm' in version `bold'
+(Font)                  OT1/ptm/m/n --> OT1/ppl/m/n on input line 810.
+LaTeX Font Info:    Redeclaring math alphabet \mathsfit on input line 811.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfit' in version `normal'
+(Font)                  OT1/ptm/m/it --> OT1/ppl/m/it on input line 811.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfit' in version `bold'
+(Font)                  OT1/ptm/m/it --> OT1/ppl/m/it on input line 811.
+LaTeX Font Info:    Redeclaring math alphabet \mathsfbf on input line 812.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfbf' in version `normal'
+(Font)                  OT1/ptm/b/n --> OT1/ppl/b/n on input line 812.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfbf' in version `bold'
+(Font)                  OT1/ptm/b/n --> OT1/ppl/b/n on input line 812.
+LaTeX Font Info:    Redeclaring math alphabet \mathsfbi on input line 813.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfbi' in version `normal'
+(Font)                  OT1/ptm/b/it --> OT1/ppl/b/it on input line 813.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfbi' in version `bold'
+(Font)                  OT1/ptm/b/it --> OT1/ppl/b/it on input line 813.
 \colwidth=\skip47
 \frontwidth=\skip48
 \@ffnote=\box54
@@ -149,12 +257,34 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 \@NDB=\box63
 \@NDBscr@tch=\box64
 \t@tlebox=\box65
+LaTeX Font Info:    Try loading font information for OT1+ptmcm on input line 74
+34.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptmcm.fd
+File: ot1ptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ptmcm.
+)
+LaTeX Font Info:    Try loading font information for OML+ptmcm on input line 74
+34.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptmcm.fd
+File: omlptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ptmcm.
+)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 7434.
+(Font)              <7> on input line 7434.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 7434.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 7434.
+(Font)              <5> on input line 7434.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 7434
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 7434.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 7434.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 7434.
 \currentlineskip=\skip49
 \interblockskip=\skip50
 \defaultinterblockskip=\skip51
@@ -395,28 +525,98 @@ Now handling font encoding U ...
 )) (./pyFAI_JAC.aux)
 \openout1 = `pyFAI_JAC.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 12.
 
-Beginning to process article (iucr) 
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 31.
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
-File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 51.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 51.
+Beginning to process article (iucr) 
+\l@go=\box66
+\t@tle=\box67
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 14.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ppl.fd
+File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
+)
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 14.
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <9> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 14.
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--14
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--14
+
+ []
+
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 14.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 17.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ppl.fd
+File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
+)
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <8> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 32.
+\@ccline=\box68
+\c@pyline=\box69
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 40.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsppl.fd
+File: omsppl.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <7> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
+
+Overfull \hbox (159.33542pt too wide) detected at line 40
+[]
+ []
+
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 42.
+\@bstract=\box70
+
+Overfull \hbox (324.3614pt too wide) detected at line 57
+[]
+ []
+
+\topleft=\box71
+\topright=\box72
+\TOPscr@tch=\box73
+\toph@ight=\dimen120
+
+Overfull \hbox (364.19528pt too wide) detected at line 59
+[]
+ []
+
+
+Overfull \hbox (39.83386pt too wide) in paragraph at lines 59--59
+[] 
+ []
+
+
+Overfull \hbox (17.47351pt too wide) in paragraph at lines 59--59
+\T1/ppl/b/n/10 Giannis Ash-i-o-tis,$[]$ Aurore Deschil-dre,$[]$ Zubair Nawaz,$[
+]$ Jonathan P. Wright,$[]$
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 59
+[][]
+ []
 
 
 ! Package inputenc Error: Unicode char \u8:­ not set up for use with LaTeX.
@@ -425,7 +625,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.62 ...coverage and hence a better harvest of X­
+l.63 ...coverage and hence a better harvest of X­
                                                   -ray photons.
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -438,119 +638,206 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.63 ...tion step is often one of the most time ­
+l.64 ...tion step is often one of the most time ­
                                                   consuming tasks in the
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 139.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 139.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 139.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 139.
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <16> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 149.
 
-Overfull \vbox (11.90976pt too high) has occurred while \output is active []
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
+
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <7> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 149.
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 149.
+
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
 
 
-Overfull \vbox (16.0pt too high) has occurred while \output is active []
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
+ []
 
- [1
+[1
 
 ]
-[2] [3]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 148.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 150.
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 148.
- [4]
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
 File: PONI.eps Graphic file (type eps)
-
-<PONI.eps>
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 179--181
+ <PONI.eps>
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 183--185
  [] 
  []
 
-[5] [6] [7] [8] [9]
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 186.
+
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page 2 might be wrong on input line 245.
+
+
+
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
+ []
+
+[2]
+Overfull \hbox (7.00227pt too wide) detected at line 277
+[]\OML/ptmcm/m/it/10 I\OT1/ptmcm/m/n/10 ([]) = \OML/ptmcm/m/it/10 I\OT1/ptmcm/m
+/n/10 ([]) + \OMS/cmsy/m/n/10 r\OML/ptmcm/m/it/10 I\OT1/ptmcm/m/n/10 ([]) \OMS/
+cmsy/m/n/10 ^^A \OT1/ptmcm/m/n/10 ([] \OMS/cmsy/m/n/10 ^^@ []\OT1/ptmcm/m/n/10 
+) + []([] \OMS/cmsy/m/n/10 ^^@ []\OT1/ptmcm/m/n/10 )[] \OMS/cmsy/m/n/10 ^^A H\O
+ML/ptmcm/m/it/10 I\OT1/ptmcm/m/n/10 ([]) \OMS/cmsy/m/n/10 ^^A \OT1/ptmcm/m/n/10
+ ([] \OMS/cmsy/m/n/10 ^^@ []\OT1/ptmcm/m/n/10 )
+ []
+
 File: calib_xpad.eps Graphic file (type eps)
- <calib_xpad.eps>
-
-! Package inputenc Error: Unicode char \u8:° not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.374 \end{figure}
-                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+<calib_xpad.eps>
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 366--382
+ [] 
+ []
 
 
-! Package inputenc Error: Unicode char \u8:° not set up for use with LaTeX.
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
 
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.374 \end{figure}
-                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
 
-[10] [11]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 401.
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) [12]
-[13]
+
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
+ []
+
+[3]
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 410.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
+ []
+
+[4]
 File: splitpixel.eps Graphic file (type eps)
  <splitpixel.eps>
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 465--469
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 476--480
  [] 
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 483.
 
-Overfull \hbox (78.1305pt too wide) in paragraph at lines 483--496
+Overfull \hbox (252.0pt too wide) detected at line 498
+[]
+ []
+
+
+Overfull \hbox (252.0pt too wide) detected at line 501
+[]
+ []
+
+
+Overfull \hbox (252.0pt too wide) detected at line 504
+[]
+ []
+
+
+Overfull \hbox (10.65422pt too wide) in paragraph at lines 494--508
 [][] 
  []
 
-[14]
 File: integrate.eps Graphic file (type eps)
- <integrate.eps>
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 520--523
+<integrate.eps>
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 544--547
  [] 
  []
 
-[15] [16] [17] [18]
+
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
+ []
+
+[5]
+Overfull \hbox (1.63481pt too wide) in paragraph at lines 575--575
+[]                             \T1/pcr/m/n/8 poni2=0.1, detector=det)[] 
+ []
+
 File: separate_id23.eps Graphic file (type eps)
- <separate_id23.eps>
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 623--627
+<separate_id23.eps>
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 649--653
  [] 
  []
 
-[19]
-Overfull \hbox (10.61795pt too wide) in paragraph at lines 646--649
-\T1/cmr/m/n/10.95 other soft-ware on sev-eral beam-lines at the syn-chrotron ES
-RF to per-form azimuthal/radial
+
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
  []
 
-[20] (./pyFAI_JAC.bbl [21]
+[6]
+Underfull \hbox (badness 7433) in paragraph at lines 678--681
+[]\T1/ptm/m/n/10 in on ded-i-cated data-analysis server like EDNA
+ []
+
+(./pyFAI_JAC.bbl
+Overfull \hbox (30.40482pt too wide) in paragraph at lines 45--50
+\T1/ptm/b/n/9 URL: \T1/ptm/m/it/9 http://www.tandfonline.com/doi/abs/10.1080/08
+957959608201408 
+ []
+
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.86 ...s.cambridge.org/article_S0885715613000924}
+l.85 ...s.cambridge.org/article_S0885715613000924}
                                                   
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 85.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
 ! Extra }, or forgotten $.
 <recently read> \egroup 
                         
-l.86 ...s.cambridge.org/article_S0885715613000924}
+l.85 ...s.cambridge.org/article_S0885715613000924}
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -561,7 +848,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.87 
+l.86 
      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -569,7 +856,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.87 
+l.86 
      
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -578,8 +865,11 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 )
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 719.
+
 ! Undefined control sequence.
-l.708 available on \testit
+l.734 available on \testit
                           {pyfai@esrf.fr} (send ``subscribe pyfai'' by e-mai...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -587,72 +877,69 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[22] [23] [24] [25]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.823 \textit{diff_tomo}
-                         script) which can be integrated into shell scripts ...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-! Extra }, or forgotten $.
-<recently read> \egroup 
-                        
-l.823 \textit{diff_tomo}
-                         script) which can be integrated into shell scripts ...
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.825 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
 
 
-Overfull \hbox (137.47664pt too wide) in paragraph at lines 821--825
-\T1/cmr/m/it/10.95 pyFAI-saxs \T1/cmr/m/n/10.95 and \T1/cmr/m/it/10.95 pyFAI-wa
-xs \T1/cmr/m/n/10.95 but also the \T1/cmr/m/it/10.95 diff$[]\OML/cmm/m/it/10.95
- omoscript\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 whichcanbeintegratedintoshell
-scriptsforbatchprocessing:$ 
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
  []
 
-[26]
-Overfull \hbox (15.23131pt too wide) in paragraph at lines 850--857
-\T1/cmr/m/it/10.95 ten in OpenCL ker-nels and inter-faced using PyOpenCL ([]Kl�
-ckner \T1/cmr/m/n/10.95 et al.\T1/cmr/m/it/10.95 , 2012). PyOpenCL
+[7]
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
  []
 
-[27]
+[8]
 File: benchmark.eps Graphic file (type eps)
  <benchmark.eps>
-Overfull \hbox (19.91693pt too wide) in paragraph at lines 883--886
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 911--914
  [] 
  []
 
-[28]
-LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 891.
- [29]
-Finished processing article for Journal of Applied Crystallography [30]
-(./pyFAI_JAC.aux) )
-(\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 823 ({)
-### bottom level 
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
+ []
+
+[9]
+Finished processing article for Journal of Applied Crystallography
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \vbox (18.0pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (25.37231pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (1.90002pt too wide) has occurred while \output is active
+ []
+ []
+
+[10] (./pyFAI_JAC.aux) ) 
 Here is how much of TeX's memory you used:
- 2316 strings out of 493629
- 26772 string characters out of 3148996
- 109142 words of memory out of 3000000
- 5553 multiletter control sequences out of 15000+200000
- 25027 words of font info for 55 fonts, out of 3000000 for 9000
- 935 hyphenation exceptions out of 8191
- 28i,12n,24p,278b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 2559 strings out of 495060
+ 29439 string characters out of 3182054
+ 120389 words of memory out of 3000000
+ 5689 multiletter control sequences out of 15000+200000
+ 55464 words of font info for 95 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 30i,12n,24p,838b,454s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on pyFAI_JAC.dvi (30 pages, 67952 bytes).
+Output written on pyFAI_JAC.dvi (10 pages, 67300 bytes).

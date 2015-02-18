@@ -5,14 +5,14 @@ The style file: iucr.bst
 Database file #1: biblio.bib
 You've used 24 entries,
             2962 wiz_defined-function locations,
-            796 strings with 10100 characters,
-and the built_in function-call counts, 15843 in all, are:
+            795 strings with 10028 characters,
+and the built_in function-call counts, 15840 in all, are:
 = -- 1495
 > -- 1183
 < -- 17
 + -- 351
 - -- 323
-* -- 1511
+* -- 1509
 := -- 2482
 add.period$ -- 68
 call.type$ -- 24
@@ -26,13 +26,13 @@ if$ -- 3179
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 21
-newline$ -- 113
+newline$ -- 112
 num.names$ -- 121
 pop$ -- 489
 preamble$ -- 1
 purify$ -- 203
 quote$ -- 0
-skip$ -- 607
+skip$ -- 608
 stack$ -- 0
 substring$ -- 729
 swap$ -- 130
@@ -43,4 +43,4 @@ type$ -- 288
 warning$ -- 0
 while$ -- 103
 width$ -- 0
-write$ -- 294
+write$ -- 293
