@@ -90,7 +90,7 @@ As pyFAI implements various integration algorithms, including
 multiple pixel splitting schemes, they will be described and compared
 based on speed, accuracy and memory consumption.
 An example will be given on how pyFAI can be used to decompose
-diffraction images into amorphous and cristalline components and how this can be
+diffraction images into amorphous and crystalline components and how this can be
 applied to serial crystallography.
 
 As pyFAI is a library, other projects related to pyFAI have been created and
@@ -118,7 +118,7 @@ By construction, such detectors exhibit gaps between modules along with
 pixels of various sizes within a single module, hence they require specific
 data masks.
 Optically coupled detectors need also to be corrected
-for small spacial displacements, often called geometric distortion.
+for small spatial displacements, often called geometric distortion.
 This is why detectors need more complex definitions than just that of a pixel
 size.
 To avoid complicated and error-prone sets of parameters, detector classes have
@@ -241,7 +241,7 @@ and may even introduce strain), we decided to
 address this issue by further analyzing and reconstructing the Debye-Scherrer rings.
 An alternative approach would be the use of single crystal indexation techniques, using
 for example the Fable software \cite{fable} as demonstrated for diffraction
-tomography experiment \cite{bonnin}.
+tomography experiments \cite{bonnin}.
 
 \subsubsection{``Massif'' extraction}
 \label{massif}
@@ -278,7 +278,7 @@ I(\overrightarrow{x_0})\cdot(\overrightarrow{x}-\overrightarrow{x_0})
 where $I$,
 $\nabla I$ and $\mathcal{H} I$ are the scalar field of intensity, its gradient
 (vector) and Hessian (matrix), respectively, measured at the maximum pixel position.
-Deriving (\ref{eq1}), one obtains:
+Differentiating (\ref{eq1}), one obtains:
 \begin{equation}
 \label{eq2}
 \nabla I(\overrightarrow{x}) =\nabla I(\overrightarrow{x_0}) +
@@ -334,7 +334,7 @@ The drawback of this algorithm, beside the computation time, is its very high
 sensitivity to noise in flat regions.
 This is why blob detection is only used in the re-calibration procedure to
 extract all peaks in a region of interest, determined from an
-approximative geometry.
+approximate geometry.
 Moreover this algorithm cannot detect peaks the width of which is smaller than
 $\sigma=0.7$ (which corresponds to 3 pixels).
 
@@ -370,7 +370,7 @@ ring assignment can be performed though it.
 % behenate sample, used as a calibrant on the BioSAXS beamline BM29 at the synchrotron ESRF
 % (detector: Pilatus 1M, $\lambda=1.0${\AA})}
 The data correspond to a lanthanum hexaboride (LaB$_6$) calibrant on the Cristal
-beamline at synchrotron Soleil taken at 1857 keV on a Xpad S540 flat pixel
+beamline at synchrotron Soleil taken at 18.57 keV on a Xpad S540 flat pixel
 detector tilted vertically by about 15$^o$.
 This detector presents large gaps between modules explaining the incomplete arc
 of rings \textit{a, b} and \textit{d}.
@@ -378,7 +378,7 @@ Extracted control points are marked with dots, one color per group (assigned to
 a letter) and the fitted iso-$2\theta$ is overlaid in dashed lines
 (red, orange and yellow colored).
 The iso-$2\theta$ contour plot is not smooth due to gaps in the
-detector, esplaining the incompletness of some rings.}
+detector, explaining the incompletness of some rings.}
 \end{center}
 \end{figure}
 
@@ -458,7 +458,7 @@ especially when the pixels are large (like on Pilatus detectors):
 \item No splitting: the full intensity is assigned into a single bin (Dirac
 like shape), the one at the middle of the pixel (like in the histogram).
 \item Bounding box splitting: the pixel is abstracted by a simpler rectangular box
-oriented parallelly to the radial and azimuthal directions, as FIT2D does.
+oriented parallel to the radial and azimuthal directions
 \item
 Tight/full pixel splitting: the only assumption made is that pixel
 edges deemed to be straight lines. This is also known as polygon-based
@@ -466,9 +466,9 @@ interpolation \cite{stefanvdw}.
 \end{itemize}
 Figure \ref{split} Displays the way a single pixel is split into a
 large number of bins using the three schemes explained above.
-The way FIT2D splits pixels has been added for sake of comparison: it looks
-pretty similar to the bounding box pixel splitting but the abstracted shape is
-likely to be smaller.
+The way FIT2D splits pixels has been added for comparison: it looks
+similar to the bounding box pixel splitting but there are differences
+in the implementation details.
 
 \begin{figure}
 \label{split}
@@ -476,7 +476,7 @@ likely to be smaller.
 \includegraphics[width=9cm]{splitpixel.eps}
 \caption{Contribution to a powder diffraction pattern from a single pixel
 showcasing the different pixel splitting algorithms. PyFAI implementations are
-compared to the FIT2D corresponding algorithms.}
+compared to the FIT2D corresponding algorithm.}
 \end{center}
 \end{figure}
 
@@ -521,8 +521,8 @@ While pixel splitting provides smoother
 results, any pixel splitting scheme introduces some serial correlation between
 neighboring bins, resulting in an overestimation of the propagated error,
 as described in \cite{billinge2014}. 
-Nevertheless this effect is often neglectable due to the point-spread function
-of most area the detector.
+Nevertheless this effect is often neglible due to the point-spread function
+of typical area detectors.
 
 \subsection{Graphical user interface for azimuthal integration}
 
@@ -530,13 +530,14 @@ A minimalistic GUI called \textit{pyFAI-integrate}, is
 shown in figure \ref{pyFAI-integrate}.
 It exposes most of the feature available in pyFAI:
 the top frame contains the geometric description of the experiment.
-The second frame targets the pixel-wise corrections to be applied: dark current
+The second frame targets the per-pixel corrections to be applied: dark current
 subtraction, flat-field correction, polarization and solid-angle effects, static and dynamic
 masking. The check boxes next to each field are used to toggle the given correction.
 The third frame displays information about the output format, the
 number of bins in radial and azimuthal directions together with the
 selection of the integration output space (those are mandatory).
-The last frame allows selecting an OpenCL device (CPU/GPU).
+The last frame allows an OpenCL device (CPU/GPU) to be selected for use in
+the computation.
 
 \begin{figure}
 \label{pyFAI-integrate}
@@ -609,7 +610,7 @@ reconstructed image will have all rings with the same intensity (once integrated
 By regenerating a 2D diffraction image from the integrated powder pattern one
 can assess the quality of the calibration used for the integration.
 The calibration tool, \textit{pyFAI-calib}, includes  a ``validate'' command
-which measures the spacial offset between the 2D diffraction image and the
+which measures the spatial offset between the 2D diffraction image and the
 regenerated image from the integrated pattern, using a classical phase
 correlation algorithm.
 This gives an assessing the precision of the localization of the PONI, which
@@ -623,7 +624,7 @@ The pyFAI azimuthal integrator features a \textit{separate} method for
 separating automatically the background with an azimuthal symmetry (amorphous
 scattering or powder ring), from the Bragg peaks.
 
-Based on what was described in \cite{PyFAI_PDJ}, a bi-dimensional azimuthal
+Based on what was described in \cite{PyFAI_PDJ}, a 2-dimensional azimuthal
 integration is performed on the input image.
 The output 2D image is filtered along the azimuthal $\chi$ axis using a
 percentile (often median) filter to reconstruct the powder diffraction curve
@@ -712,6 +713,9 @@ The version number of this release, i.e. v0.10, clearly indicates that a great
 wealth of work has been done but also yields a warning about possible changes
 in the programming interface in future versions for encompassing numerous new
 features.
+The open source nature of the project means that such changes will be 
+fully visible and is intended to encourage contributions from the community.
+
 
 \bibliographystyle{iucr}
 \bibliography{biblio}
@@ -959,6 +963,6 @@ calibration image (fig. \ref{calib}) and David Flot from beamline ID23 at
 synchrotron ESRF for the protein diffraction image with ice-rings (fig.
 \ref{separate}).
 Finally we would like to thank our reviewers, especially Brian R. Pauw, for
-their very contrustive comments which helped us to improve this article. 
+their very constructive comments which helped us to improve this article. 
 
 \end{document}
