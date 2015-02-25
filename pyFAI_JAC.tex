@@ -378,9 +378,9 @@ The data correspond to a lanthanum hexaboride (LaB$_6$) calibrant on the Cristal
 beamline at synchrotron Soleil taken at 18.57 keV on a Xpad S540 flat pixel
 detector tilted vertically by about 15$^o$.
 This detector presents large (vertical) gaps between modules, explaining the
-incomplete arc of rings \textit{a, b} and \textit{d}.
+incomplete arcs of rings \textit{a, b} and \textit{d}.
 Extracted control points are marked with dots, one color per group (assigned to
-a letter) and the fitted iso-$2\theta$ is overlaid in dashed lines
+a letter) and the fitted iso-$2\theta$ contour are overlaid as dashed lines
 (red, orange and yellow colored).
 The iso-$2\theta$ contour plot is not smooth due to gaps in the
 detector, explaining the incompleteness of some rings.}
@@ -388,7 +388,7 @@ detector, explaining the incompleteness of some rings.}
 \end{figure}
 
 From this initial rough calibration on, pyFAI enables  the user to perform
-many operations from the Command Line Interface (CLI) mode, like setting,
+many operations in the Command Line Interface (CLI) mode, like setting,
 constraining, fixing and  refining parameters, extracting a new set of
 key-points or performing the integration.
 The complete set of options is described in appendix \ref{annex_calib}.
@@ -396,18 +396,18 @@ The complete set of options is described in appendix \ref{annex_calib}.
 \section{Azimuthal Integration}
 
 The core task of pyFAI, as the name suggests, is to perform 1D or 2D azimuthal
-integration as fast as possible. To achieve good performances in a Python environment
-several binary extensions are used to enable multi-threading or even many-core
-acceleration (i.e. Graphics Processors Units (GPU) and Intel Xeon Phi
+(and radial) integration as fast as possible. To achieve good performances in a
+Python environment, several binary extensions are used to enable multi-threading
+or even many-core acceleration (i.e. Graphics Processors Units (GPU) and Intel Xeon Phi
 accelerators).
 % And all this while offering a simple common interface at the Python level.
 More details on the techniques used to speed up the code, especially on the GPU porting
-are described in \cite{kieffer_ashiotis-proc-euroscipy-2014} and briefely
-summarized in appendix \ref{annex_opencl}.
+are described in \cite{kieffer_ashiotis-proc-euroscipy-2014} and briefly
+summarised in appendix \ref{annex_opencl}.
 
 \subsection{Programming interface for azimuthal integration}
 
-The initial idea behind pyFAI was to provide a easy way to perform
+The initial idea behind pyFAI was to provide an easy way to perform
 azimuthal/radial integration for scientists, ideally in a single command.
 In the following snippet code we show how this is done:
 
@@ -432,13 +432,13 @@ The two last lines are meant to display the result.
 In this snippet, the most crucial part is the fourth line, in which the image
 \textit{img} is azimuthally integrated over 1000 bins with conversion  into
 the output space which is the cone aperture ($2\theta$) given in degrees.
-Other output units like the scattering vector $q$ or the radius $r$ are
-available. By the \textit{method} keyword one can select the
+Other output units like the scattering vector $q$ or the radius $r$ (in the
+detector plane) are available. By the \textit{method} keyword one can select the
 algorithm to be used.
 
 \subsection{Pixel splitting schemes and implementation}
 
-PyFAI implements a dozen azimuthal integration procedures which can be
+PyFAI implements a dozen of azimuthal integration procedures which can be
 classified according to the way the integration is performed and which pixel
 splitting scheme is used (see table \ref{table_methods}).
 
@@ -466,7 +466,7 @@ like shape), the one at the middle of the pixel (like in the histogram).
 oriented parallel to the radial and azimuthal directions
 \item
 Tight/full pixel splitting: the only assumption made is that pixel
-edges deemed to be straight lines. This is also known as polygon-based
+edges deemed to be straight lines. This is also known as polygon based
 interpolation \cite{stefanvdw}.
 \end{itemize}
 Figure \ref{split} Displays the way a single pixel is split into a
@@ -493,9 +493,10 @@ pixel image into 1000 bins.
 
 \begin{table}
 \label{table_methods}
-\caption{Various ``methods`` available within pyFAI for azimuthal integration
-featuring their speed and memory footprint. Measurements on a 3 GHz quad-core
-computer with a 2048x2048 pixel image.}
+\caption{Methods available within pyFAI for azimuthal integration
+along with their speed and memory footprint. 
+Measurements were performed on a 3 GHz quad-core
+computer using a 2048x2048 pixel image.}
 \begin{tabular}[pos]{c|c|c|c}
 %\begin{tabular}[pos]{|c|l|l|l|}
 %\hline
@@ -514,34 +515,34 @@ Tight splitting & splitpixel (516ms, 480MB) &CSR full (51ms, 502MB)\\
 
 
 \subsubsection{About error propagation:}
-during the regrouping process, pyFAI can propagate errors, assuming the
-initial pixel-wise variance is known, for example extracted from a
-multi-frame experiment. Beside this, two single-frame variance estimator are
-available: a Poisson model assumes the variance within a pixel equals to the
-raw signal and propagates it. The second estimator assumes isotropic
-distribution of the signal and measures the variance within all pixels
-contributing to a single output bin. 
+during the regrouping process, pyFAI can propagate errors, assuming that the
+initial pixel-wise variance is known, for example as extracted from a
+multi-frame experiment. Beside this, two single-frame variance estimators are
+available: the Poisson model assumes that the variance within a pixel equals to
+the raw signal and propagates it. The second estimator postulates the
+isotropic distribution of the signal and calculates the variance within all
+pixels contributing to a single output bin. 
 
 While pixel splitting provides smoother
 results, any pixel splitting scheme introduces some serial correlation between
-neighboring bins, resulting in an overestimation of the propagated error,
+neighbouring bins, resulting in an overestimation of the propagated error,
 as described in \cite{billinge2014}. 
-Nevertheless this effect is often neglible due to the point-spread function
+Nevertheless, this effect is often negligible due to the point-spread function
 of typical area detectors.
 
 \subsection{Graphical user interface for azimuthal integration}
 
 A minimalistic GUI called \textit{pyFAI-integrate}, is
 shown in figure \ref{pyFAI-integrate}.
-It exposes most of the feature available in pyFAI:
-the top frame contains the geometric description of the experiment.
-The second frame targets the per-pixel corrections to be applied: dark current
-subtraction, flat-field correction, polarization and solid-angle effects, static and dynamic
-masking. The check boxes next to each field are used to toggle the given correction.
+It illustrates most of the feature available in pyFAI:
+the top frame displays the geometric description of the experiment.
+The middle frame targets the per-pixel corrections to be applied: dark current
+subtraction, flat-field correction, polarisation and solid angle effects, static
+and dynamic masking. The check boxes next to each field are used to toggle the given correction.
 The third frame displays information about the output format, the
 number of bins in radial and azimuthal directions together with the
-selection of the integration output space (those are mandatory).
-The last frame allows an OpenCL device (CPU/GPU) to be selected for use in
+selection of the integration output space (these are mandatory).
+The bottom frame allows an OpenCL device (CPU/GPU) to be selected for use in
 the computation.
 
 \begin{figure}
@@ -556,7 +557,7 @@ images.}
 \section{Application Examples}
 
 Azimuthal regrouping and its inverse transformation (assuming
-uniform distribution throughout the azimuthal angles) can be performed
+uniform intensity distribution throughout the azimuthal angles) can be performed
 using pyFAI, which offers many opportunities for applications.
 
 \subsection{Diffraction image generation}
