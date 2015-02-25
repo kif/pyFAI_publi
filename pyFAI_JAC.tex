@@ -63,18 +63,18 @@ detectors for recording powder diffraction and scattering patterns, which
 ensure larger solid angle coverage and hence a better harvest of X­-ray photons.
 This data reduction step is often one of the most time ­consuming tasks in the
 processing pipeline and limits sometimes the productivity of modern synchrotron
-beamlines, where diffraction is used to probe samples with a point-focussed
+beamlines, where diffraction is used to probe samples with a point-focused
 beam in 2D raster scans or diffraction tomography experiments using
 detectors capable of high framerates.
 
-We describe the Python library pyFAI in its version 0.10
+We describe the version 0.10 of the Python library pyFAI 
 (released in October 2014) which is designed for such data reduction processing,
-including preprocessing, image re-binning (geometry distortion, 1D and 2D
-averaging) and the surrounding tools. 
-Among those tools, we will focus on the one used to
-calibrate the experimental setup of a powder diffraction experiment 
-or SAXS experiment that comprises
-an area detector by exploiting the Debye-Scherrer rings collected from a
+including pre-processing, image re-binning (geometry distortion, 1D and 2D
+averaging) and the auxiliary tools. 
+Among these tools, we will focus on the one used to
+calibrate the experimental setup of a powder diffraction  
+or SAXS experiment (that comprises
+an area detector) by exploiting the Debye-Scherrer rings collected from a
 reference compound.
 After describing how the experimental geometry is internally represented in
 pyFAI, the various image analysis algorithms used to extract Debye-Scherrer
@@ -83,34 +83,35 @@ The peak positions are combined with the prior knowledge of a calibrant
 (d-spacing) and the wavelength of the X-rays  to refine of the detector's position in space.
 
 Once this geometry is known, azimuthal regrouping can be performed after
-typical preprocessings correction are done: dark-current subtraction, flatfield,
+typical corrections are done: dark-current subtraction, flat-field,
 solid-angle and polarization correction are included in the standard processing
 pipeline.
-As pyFAI implements various integration algorithms, including
-multiple pixel splitting schemes, they will be described and compared
+PyFAI implements various integration algorithms, including
+multiple pixel splitting schemes, which will be described and mutually compared
 based on speed, accuracy and memory consumption.
 An example will be given on how pyFAI can be used to decompose
 diffraction images into amorphous and crystalline components and how this can be
 applied to serial crystallography.
 
 As pyFAI is a library, other projects related to pyFAI have been created and
-will be shortly described, most of them providing integrated
+will be briefly described, most of them providing integrated
 graphical user interfaces (GUI).
 Appendices contain information about the pyFAI project structure, an
 overview on how to calibrate the experimental setup parameters as well as
-description of how the many-core azimuthal integration is implemented using
+a description of how the many-core azimuthal integration is implemented using
 OpenCL \cite{opencl}.
 
 \section{Experimental geometry}
 
-In pyFAI, the basic configuration is defined by a description of an
-area-detector whose position in space is defined through the sample position and the incident X-ray
-beam.
+In pyFAI, the basic configuration is defined by the description of an
+area-detector whose position in space is determined through the sample
+position and the incident X-ray beam.
 
 \subsection{Detector}
 Like most other diffraction image processing packages, pyFAI allows the definition of
-2D detectors with a constant pixel size (in meter), but this approach reaches its limits
-with several detector types, such as multi-module and fiber optic taper coupled detectors.
+2D detectors with a constant pixel size (in metre), but this approach reaches
+its limits with several detector types, such as multi-module and fibre optic
+taper coupled detectors.
 Large area pixel detectors are often composed of smaller modules (i.e. Pilatus
 from Dectris, Maxipix from ESRF,
 \ldots).
@@ -119,14 +120,13 @@ pixels of various sizes within a single module, hence they require specific
 data masks.
 Optically coupled detectors need also to be corrected
 for small spatial displacements, often called geometric distortion.
-This is why detectors need more complex definitions than just that of a pixel
-size.
+This is why detectors need more complex descriptions than just the pixel size.
 To avoid complicated and error-prone sets of parameters, detector classes have
 been introduced.
 
 \subsubsection{Detectors classes} are used to define families of detectors.
 In order to take the specificities of each detector into account, pyFAI
-contains about 40 detector class definitions. These contain a mask
+contains about 40 detector classes. These contain a mask
 (invalid pixels, gaps, \ldots) and a method to calculate the pixel positions in Cartesian
 coordinates.
 For optically coupled CCD detectors, the geometrical distortion is often
@@ -138,7 +138,7 @@ Any detector object in pyFAI can be saved into a HDF5 file following the NeXus
 convention \cite{nexus}\footnote{slightly extended as pyFAI's detector
 definition is richer than the one provided by the NIAC}.
 Detector objects can subsequently be restored from the disk, making
-complex detector definitions less error-prone.
+complex detector definitions that are meant to be error-prone.
 Pixels of an area detector are saved as a 4D dataset: i.e. a 2D
 array of vertices pointing to every corner of each pixel, generating
 an array of shape: ($Ny$, $Nx$, $Nc$, 3) where $Nx$ and $Ny$ are the dimensions of the
@@ -149,31 +149,33 @@ can address some of the most complex detector layouts:
 \begin{itemize}
   \item hexagonal pixels (i.e. Pixirad detectors)
   \item curved/bent imaging plates (i.e. Rigaku)
-  \item pixel detectors with tiled modular  (i.e. Xpad detectors from ImXpad)
+  \item pixel detectors with tiled modules  (i.e. some Xpad detectors from
+  ImXpad)
   \item semi-cylindrical pixel detectors (i.e. Pilatus12M from Dectris).
 \end{itemize}
 
 \subsection{Geometry}
-In pyFAI, the experiment geometry is defined by the position of the detector in
-space, the origin being located at the sample position, more precisely where the
-X-ray beam crosses the diffractometer main axis (figure \ref{PONI}).
-With the detector being a rigid body, its position in space is described by
-six parameters: 3 coordinates and 3 rotations.
-In pyFAI, the beam center is not directly used as it is ill-defined with
+In pyFAI, the experiment geometry is determined by the position of the
+detector in space, the origin being located at the sample position, more precisely where the
+X-ray beam crosses the diffractometer main axis.
+The detector being a rigid body, its position in space is described by
+six parameters: 3 coordinates and 3 rotations (figure \ref{PONI}).
+In pyFAI, the beam centre is not directly used as it is ill-defined with
 highly tilted detectors.
-Like SPD \cite{spd}, we use the orthogonal projection of origin on
+Like SPD \cite{spd}, we use the orthogonal projection of the origin on
 the detector surface called PONI (for Point Of Normal Incidence).
-For non planar detectors, the PONI is defined in the plane d3=0 in detector's
-coordinate system.
-The sample-to-detector distance is defined as the origin-PONI distance
-(abreviated \textit{dist}) and the PONI coordinates (abreviated
+For non planar detectors, the PONI is defined in the plane $d3=0$ in
+the detector's coordinate system.
+The sample-to-detector distance is defined as the origin$-$PONI distance
+(abbreviated \textit{dist}) and the PONI coordinates (abbreviated
 \textit{poni1} and \textit{poni2}) are measured in the detector's reference
-system (origin at the lower left corner of the image).
+system (origin at the lower left corner of the image, looking from the
+viewpoint of the sample).
 As the pixel size may not be constant, all 3 distances (\textit{dist},
-\textit{poni1} and \textit{poni2}) are given in meter.
+\textit{poni1} and \textit{poni2}) are given in metre.
 The 3 rotations (named \textit{rot1}, \textit{rot2} and \textit{rot3} in
 radians)
-correspond to the rotations along the 3 orthogonal axes around the origin
+correspond to the rotations along the three orthogonal axes around the origin
 (sample position) in this order:
 vertical axis, horizontal axis and finally along the beam axis.
 
@@ -196,7 +198,7 @@ Geometries used in other codes can be promptly included in pyFAI to ease
 comparison of results and cross-validation of approaches.
 
 \subsubsection{Binning}
-One of the strength of the above geometry is the capability of performing
+One of the strengths of the above geometry is the capability of performing
 binning operations on the detector without having to re-calibrate or
 re-calculate the position in space.
 All pyFAI detector classes have a binning option available that can increase the
@@ -210,14 +212,15 @@ PONI being independent of the pixel coordinates.
 The calibration of the detector position is performed using the Debye-Scherrer
 rings collected from a reference powder called \textit{calibrant}.
 The rings are extracted (see \ref{massif}) and control points are placed at the
-local maxima of those regions.
+local maxima on the rings.
 The geometry of the experiment is obtained from a least squares fitting of
 the $2\theta$ angles.
-In this article we will call them ``rings'' even if, for planar detector,
-they are actually the conic intersections of the diffraction cones
+In this work we will call them ``rings'' even if, for planar detector,
+they are actually the conic intersections of the X-ray beam cones
 with the detector plane.
-PyFAI does not assume that rings are circles, ellipses or parabolas and is able
-to optimize the geometric parameters of a wide range of experiments.
+PyFAI does not assume that rings are conic sections (the detector could
+be non planar) and is able to optimize the
+geometric parameters of a wide range of experiments.
 The support for the geometry refinement of non-planar detectors is still under
 development.
 
@@ -235,10 +238,10 @@ provided the wavelength or energy is known.
 \subsection{Peak-picking}
 With the advent of micro- and nano-focused beams at modern synchrotron
 facilities \cite{id13}, fewer crystals get hit by the beam going through the
-sample making the Debye-Scherrer rings spotty.
+sample causing the Debye-Scherrer rings to be spotty.
 As grinding reference powder is not advised (it would broaden the peaks
 and may even introduce strain), we decided to
-address this issue by further analyzing and reconstructing the Debye-Scherrer rings.
+address this issue by further analysing and reconstructing the Debye-Scherrer rings.
 An alternative approach would be the use of single crystal indexation techniques, using
 for example the Fable software \cite{fable} as demonstrated for diffraction
 tomography experiments \cite{bonnin}.
@@ -246,27 +249,27 @@ tomography experiments \cite{bonnin}.
 \subsubsection{``Massif'' extraction}
 \label{massif}
 allows a clear separation between regions containing high
-photon counts (rings) and the background.
+photon counts (rings) and background.
 This is done by calculating the difference between the image and a blurred version
-of the same image, using a Gaussian blur filter of a given width $\sigma$.
-The borders of high intensity regions (called \textit{massif}) features
+of the same image, using a Gaussian blur filter (of a width $\sigma$).
+The borders of high intensity regions (called \textit{massif}) feature
 negative intensities in the difference image, so positive regions are labelled
 as (fractions of) a ring.
-Peaks, that are local maxima,
+Peaks, i.e. local maxima,
 are sampled within the same region and belong to the same ring.
-The width of the Gaussian $\sigma$, in pixel units, has to be larger than the
+The width of the Gaussian, $\sigma$, in pixel units, has to be larger than the
 typical distance between two peaks within a ring and smaller than the distance between two
 rings.
-PyFAI takes an heuristics approach to guess an acceptable parameter value in
+PyFAI takes heuristic approach to guess an acceptable parameter value in
 most cases, while providing also a manual override through the command line
-argument ``\textit{--gaussian}''.
+argument ``\textit{-\,-gaussian=$sigma$}''.
 
 \subsubsection{Sub-pixel accuracy}
 \label{subpixel}
 is often needed when measuring strains in materials, as highlighted in
 \cite{to5079}.
 The accuracy on the peak position is obtained using a second order Taylor
-approximation of the intensity in the neighborhood of the peak
+polynomial of the intensity in the neighborhood of the peak
 position $\overrightarrow{x_0}$:
 \begin{equation}
 \label{eq1}
@@ -291,8 +294,8 @@ $\nabla I(\overrightarrow{x})=\overrightarrow{0}$, in (\ref{eq2}) hence:
 \overrightarrow{x} = \overrightarrow{x_0} - (\mathcal{H}
 I(\overrightarrow{x_0}))^{-1}\cdot\nabla I(\overrightarrow{x_0})
  \end{equation}
-Those derivatives, $\nabla I$ and $\mathcal{H} I$, are numerically assessed
-on a 3x3 neighborhood (smallest size possible to calculate the Hessian matrix).
+These derivatives, $\nabla I$ and $\mathcal{H} I$, are numerically evaluated
+on a 3x3 neighborhood (smallest possible size to calculate the Hessian matrix).
 With noisy data, it could happen that
 $\overrightarrow{x}$ is far away from $\overrightarrow{x_0}$ (more than one
 pixel) which is obviously wrong.
@@ -306,18 +309,18 @@ is a computer vision method which allows performing peak-picking without
 This feature is essential, as diffraction images exhibit a very large
 dynamic range.
 
-The diffraction image is sequentially blurred using Gaussian filters of
-width $\sigma$ follows the geometric series: $\frac{1}{2}$,
+The diffraction image is sequentially blurred using Gaussian filters the 
+width of which, $\sigma$, follows the geometric series: $\frac{1}{2}$,
 $\frac{\sqrt{2}}{2}$, 1, $\sqrt{2}$, 2, $2\sqrt{2}$, \ldots
 From each image blurred over a scale $\sigma$, the subsequent
 blurred image (over $\sigma'=\sigma\cdot\sqrt(2)$
 is subtracted to create a difference of Gaussians
 image (called $DoG$) which highlights the features of the image with a typical
-size of $\sigma$.
-A 3D scale space ($x,y,\sigma$) representation is created from the DoG
+size $\sigma$.
+A 3D scale space ($x,y,\sigma$) representation is created from the $DoG$
 images.
 
-This method  not only provides the peaks location (as local maxima in
+This method  not only provides the peaks' location (as local maxima in
 scale space) but also the typical size of the peaks.
 Peak position, scale and intensity are refined as described in
 \ref{subpixel}, extended to the 3D scale space.
@@ -333,7 +336,7 @@ $\sigma=2$.
 The drawback of this algorithm, beside the computation time, is its very high
 sensitivity to noise in flat regions.
 This is why blob detection is only used in the re-calibration procedure to
-extract all peaks in a region of interest, determined from an
+extract all peaks in a region of interest, as determined from an
 approximate geometry.
 Moreover this algorithm cannot detect peaks the width of which is smaller than
 $\sigma=0.7$ (which corresponds to 3 pixels).
@@ -345,26 +348,28 @@ Only a minimalistic GUI (called
 \textit{pyFAI-calib}, see figure \ref{calib}) is provided
 for peak-picking, with visual assignment of the ring number.
 A rough estimate of the geometry is usually obtained via a mouse click on
-two of the innermost rings with an ``usual'' transmission setup. 
+two of the innermost rings with a ``usual'' transmission setup. 
 For more challenging setups (small sensitive area, tilted detectors, spotty
-rings, \ldots) like the one presented here, more rings may be needed.
-The 4 groups of colored dots correspond to the control points (peaks) extracted
+rings, \ldots) like the one presented in figure \ref{calib}, more rings may
+be needed.
+The 4 groups of coloured dots correspond to the control points (peaks) extracted
 using the algorithm described in \ref{massif} (obtained from five mouse
-clicks). Each group of point is assigned to diffraction ring.
-The refinement is performed, minimizing the error in $2\theta$ (squared) by
-using the Sequential Least SQuares Programming  from
-SciPy (function \textit{scipy.optimize.min\_slsqp}).
+clicks). Each group of points is assigned to a diffraction ring (using the
+spin-box in the menu-bar).
+The refinement is performed to minimise the error in $2\theta$ (squared) by
+using the \textit{Sequential Least SQuares Programming} function from
+SciPy (\textit{scipy.optimize.min\_slsqp}).
 After the refinement of the geometry, the iso-contour of the refined $2\theta$ array is
 superimposed on the diffraction image.
 These are the four dashed lines
-drawn on the image to mark where Debye-Scherrer rings are expected, allowing a visual
-validation of the calibration.
+drawn on the figure \ref{calib} to mark where Debye-Scherrer rings are
+expected, allowing a visual validation of the calibration.
 
 \begin{figure}
 \label{calib}
 \begin{center}
 \includegraphics[width=9cm]{calib_xpad.eps}
-\caption{The calibration window: manual peak-picking and
+\caption{The pyFAI calibration window: manual peak-picking and
 ring assignment can be performed though it.
 % The data correspond to a silver
 % behenate sample, used as a calibrant on the BioSAXS beamline BM29 at the synchrotron ESRF
@@ -372,8 +377,8 @@ ring assignment can be performed though it.
 The data correspond to a lanthanum hexaboride (LaB$_6$) calibrant on the Cristal
 beamline at synchrotron Soleil taken at 18.57 keV on a Xpad S540 flat pixel
 detector tilted vertically by about 15$^o$.
-This detector presents large gaps between modules explaining the incomplete arc
-of rings \textit{a, b} and \textit{d}.
+This detector presents large (vertical) gaps between modules explaining the
+incomplete arc of rings \textit{a, b} and \textit{d}.
 Extracted control points are marked with dots, one color per group (assigned to
 a letter) and the fitted iso-$2\theta$ is overlaid in dashed lines
 (red, orange and yellow colored).
