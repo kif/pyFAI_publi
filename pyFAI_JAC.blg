@@ -5,24 +5,24 @@ The style file: iucr.bst
 Database file #1: biblio.bib
 You've used 24 entries,
             2962 wiz_defined-function locations,
-            795 strings with 10028 characters,
-and the built_in function-call counts, 15840 in all, are:
-= -- 1495
+            796 strings with 10034 characters,
+and the built_in function-call counts, 15882 in all, are:
+= -- 1499
 > -- 1183
 < -- 17
 + -- 351
 - -- 323
-* -- 1509
-:= -- 2482
+* -- 1514
+:= -- 2487
 add.period$ -- 68
 call.type$ -- 24
 change.case$ -- 209
 chr.to.int$ -- 24
 cite$ -- 24
 duplicate$ -- 573
-empty$ -- 856
+empty$ -- 861
 format.name$ -- 422
-if$ -- 3179
+if$ -- 3187
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 21
@@ -34,7 +34,7 @@ purify$ -- 203
 quote$ -- 0
 skip$ -- 608
 stack$ -- 0
-substring$ -- 729
+substring$ -- 744
 swap$ -- 130
 text.length$ -- 1
 text.prefix$ -- 0
