@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2014.7.7)  18 FEB 2015 15:32
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2014.7.7)  26 FEB 2015 14:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -681,15 +681,15 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
 File: PONI.eps Graphic file (type eps)
  <PONI.eps>
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 183--185
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 185--187
  [] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 186.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 188.
 
 Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page 2 might be wrong on input line 245.
+(multicol)                Footnotes on page 2 might be wrong on input line 248.
 
 
 
@@ -704,7 +704,7 @@ Overfull \hbox (1.90002pt too wide) has occurred while \output is active
  []
 
 [2]
-Overfull \hbox (7.00227pt too wide) detected at line 277
+Overfull \hbox (7.00227pt too wide) detected at line 280
 []\OML/ptmcm/m/it/10 I\OT1/ptmcm/m/n/10 ([]) = \OML/ptmcm/m/it/10 I\OT1/ptmcm/m
 /n/10 ([]) + \OMS/cmsy/m/n/10 r\OML/ptmcm/m/it/10 I\OT1/ptmcm/m/n/10 ([]) \OMS/
 cmsy/m/n/10 ^^A \OT1/ptmcm/m/n/10 ([] \OMS/cmsy/m/n/10 ^^@ []\OT1/ptmcm/m/n/10 
@@ -715,7 +715,7 @@ ML/ptmcm/m/it/10 I\OT1/ptmcm/m/n/10 ([]) \OMS/cmsy/m/n/10 ^^A \OT1/ptmcm/m/n/10
 
 File: calib_xpad.eps Graphic file (type eps)
 <calib_xpad.eps>
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 366--382
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 371--387
  [] 
  []
 
@@ -731,7 +731,7 @@ Overfull \hbox (1.90002pt too wide) has occurred while \output is active
  []
 
 [3]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 410.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 415.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -748,18 +748,8 @@ Overfull \hbox (1.90002pt too wide) has occurred while \output is active
 [4]
 File: splitpixel.eps Graphic file (type eps)
  <splitpixel.eps>
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 476--480
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 481--485
  [] 
- []
-
-
-Overfull \hbox (252.0pt too wide) detected at line 498
-[]
- []
-
-
-Overfull \hbox (252.0pt too wide) detected at line 501
-[]
  []
 
 
@@ -768,13 +758,23 @@ Overfull \hbox (252.0pt too wide) detected at line 504
  []
 
 
-Overfull \hbox (10.65422pt too wide) in paragraph at lines 494--508
+Overfull \hbox (252.0pt too wide) detected at line 507
+[]
+ []
+
+
+Overfull \hbox (252.0pt too wide) detected at line 510
+[]
+ []
+
+
+Overfull \hbox (10.65422pt too wide) in paragraph at lines 500--514
 [][] 
  []
 
 File: integrate.eps Graphic file (type eps)
 <integrate.eps>
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 544--547
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 551--554
  [] 
  []
 
@@ -790,13 +790,18 @@ Overfull \hbox (1.90002pt too wide) has occurred while \output is active
  []
 
 [5]
-Overfull \hbox (1.63481pt too wide) in paragraph at lines 575--575
+Overfull \hbox (1.63481pt too wide) in paragraph at lines 582--582
 []                             \T1/pcr/m/n/8 poni2=0.1, detector=det)[] 
+ []
+
+
+Underfull \hbox (badness 5091) in paragraph at lines 629--632
+\T1/ptm/m/n/10 for sep-a-rat-ing auto-mat-i-cally a back-ground fea-tur-ing an
  []
 
 File: separate_id23.eps Graphic file (type eps)
 <separate_id23.eps>
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 649--653
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 656--660
  [] 
  []
 
@@ -812,8 +817,8 @@ Overfull \hbox (1.90002pt too wide) has occurred while \output is active
  []
 
 [6]
-Underfull \hbox (badness 7433) in paragraph at lines 678--681
-[]\T1/ptm/m/n/10 in on ded-i-cated data-analysis server like EDNA
+Underfull \hbox (badness 5105) in paragraph at lines 686--689
+[]\T1/ptm/m/n/10 in one ded-i-cated data-analysis server like EDNA
  []
 
 (./pyFAI_JAC.bbl
@@ -825,19 +830,19 @@ Overfull \hbox (30.40482pt too wide) in paragraph at lines 45--50
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.85 ...s.cambridge.org/article_S0885715613000924}
+l.93 ...s.cambridge.org/article_S0885715613000924}
                                                   
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 85.
+(Font)              <9> on input line 93.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 93.
 ! Extra }, or forgotten $.
 <recently read> \egroup 
                         
-l.85 ...s.cambridge.org/article_S0885715613000924}
+l.93 ...s.cambridge.org/article_S0885715613000924}
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -848,7 +853,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.86 
+l.94 
      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -856,7 +861,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.86 
+l.94 
      
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -866,17 +871,7 @@ my insertion and my current dilemma will both disappear.
 
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 719.
-
-! Undefined control sequence.
-l.734 available on \testit
-                          {pyfai@esrf.fr} (send ``subscribe pyfai'' by e-mai...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 730.
 
 Overfull \vbox (18.0pt too high) has occurred while \output is active []
 
@@ -902,7 +897,7 @@ Overfull \hbox (1.90002pt too wide) has occurred while \output is active
 [8]
 File: benchmark.eps Graphic file (type eps)
  <benchmark.eps>
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 911--914
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 932--935
  [] 
  []
 
@@ -934,12 +929,12 @@ Overfull \hbox (1.90002pt too wide) has occurred while \output is active
 
 [10] (./pyFAI_JAC.aux) ) 
 Here is how much of TeX's memory you used:
- 2559 strings out of 495060
- 29439 string characters out of 3182054
- 120389 words of memory out of 3000000
- 5689 multiletter control sequences out of 15000+200000
+ 2563 strings out of 495060
+ 29487 string characters out of 3182054
+ 120453 words of memory out of 3000000
+ 5693 multiletter control sequences out of 15000+200000
  55464 words of font info for 95 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  30i,12n,24p,838b,454s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on pyFAI_JAC.dvi (10 pages, 67300 bytes).
+Output written on pyFAI_JAC.dvi (10 pages, 68492 bytes).

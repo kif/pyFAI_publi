@@ -1,4 +1,4 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{25}
 \baselineskip=9pt\parskip=0pt
 
 \harvarditem[Behnel \emph{et~al.}]{Behnel, Bradshaw, Citro, Dalcin, Seljebotn
@@ -78,6 +78,14 @@ Kieffer, J. \harvardand\ Ashiotis, G.  \harvardyearleft
   2014\harvardyearright{}.
 \newblock In \emph{Proceedings of the 7th European Conference on Python in
   Science (EuroSciPy 2014)}, edited by P.~de~Buyl \harvardand\ N.~Varoquaux.
+\newline\harvardurl{http://arxiv.org/abs/1412.6367}
+
+\harvarditem{Kieffer \harvardand\ Karkoulis}{2013}{pyfai}
+Kieffer, J. \harvardand\ Karkoulis, D.  \harvardyearleft
+  2013\harvardyearright{}.
+\newblock \emph{Journal of Physics: Conference Series}, \volbf{425}(20),
+  202012.
+\newline\harvardurl{http://stacks.iop.org/1742-6596/425/i=20/a=202012}
 
 \harvarditem{Kieffer \harvardand\ Wright}{2013}{PyFAI_PDJ}
 Kieffer, J. \harvardand\ Wright, J.  \harvardyearleft 2013\harvardyearright{}.
