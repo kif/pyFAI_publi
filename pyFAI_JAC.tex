@@ -46,9 +46,9 @@ performance azimuthal integration.
 \end{synopsis}
 
 \begin{abstract}
-PyFAI is an open source software package designed to perform azimuthal and
-radial integration and, correspondingly, 2D regrouping on area detector frames for small and wide
-angle X-ray scattering experiments.
+PyFAI is an open source software package designed to perform azimuthal
+integration and, correspondingly, 2D regrouping on area detector frames for small 
+and wide angle X-ray scattering experiments.
 It is written in Python (with binary sub-modules for performances), a
 language widely accepted and used by the scientific community today, which enables
 the users to easily incorporate the pyFAI library into their processing pipeline.
@@ -70,7 +70,7 @@ detectors capable of high framerates.
 We describe the version 0.10 of the Python library pyFAI 
 (released in October 2014) which is designed for such data reduction processing,
 including pre-processing, image re-binning (geometry distortion, 1D and 2D
-averaging) and the auxiliary tools\cite{pyfai}. 
+averaging) and the auxiliary tools \cite{pyfai}. 
 Among these tools, we will focus on the one used to
 calibrate the experimental setup of a powder diffraction  
 or SAXS experiment (that comprises
@@ -80,7 +80,8 @@ After describing how the experimental geometry is internally represented in
 pyFAI, the various image analysis algorithms used to extract Debye-Scherrer
 rings are presented.
 The peak positions are combined with the prior knowledge of a calibrant
-(d-spacing) and the wavelength of the X-rays  to refine of the detector's position in space.
+($d$-spacing) and the wavelength of the X-rays  to refine of the
+detector's position in space.
 
 Once this geometry is known, azimuthal regrouping can be performed after
 typical corrections are done: dark-current subtraction, flat-field,
@@ -98,8 +99,8 @@ will be briefly described, most of them providing integrated
 graphical user interfaces (GUI).
 Appendices contain information about the pyFAI project structure, an
 overview on how to calibrate the experimental setup parameters as well as
-a description of how the many-core azimuthal integration is implemented using
-OpenCL \cite{opencl}.
+a description the library and how the azimuthal integration is implemented on
+many-core systems using OpenCL \cite{opencl}.
 
 \section{Experimental geometry}
 
@@ -136,9 +137,9 @@ the detector instance and used to calculate the actual pixel position in space.
 \subsubsection{Nexus Detectors:}
 Any detector object in pyFAI can be saved into a HDF5 file following the NeXus
 convention \cite{nexus}\footnote{slightly extended as pyFAI's detector
-definition is richer than the one provided by the NIAC}.
+definition is richer than the one provided by the NIAC.}.
 Detector objects can subsequently be restored from the disk, making
-complex detector definitions that are meant to be error-prone.
+complex detector definitions that are less error-prone.
 Pixels of an area detector are saved as a 4D dataset: i.e. a 2D
 array of vertices pointing to every corner of each pixel, generating
 an array of shape: ($Ny$, $Nx$, $Nc$, 3) where $Nx$ and $Ny$ are the dimensions of the
@@ -147,7 +148,7 @@ entry contains the coordinates of the vertex itself.
 This kind of definition, while relying on large description files,
 can address some of the most complex detector layouts:
 \begin{itemize}
-  \item hexagonal pixels (i.e. Pixirad detectors)
+  \item hexagonal pixels ($Nc=6$ i.e. Pixirad detectors)
   \item curved/bent imaging plates (i.e. Rigaku)
   \item pixel detectors with tiled modules  (i.e. some Xpad detectors from
   ImXpad)
@@ -197,7 +198,7 @@ packages.
 Geometries used in other codes can be promptly included in pyFAI to ease
 comparison of results and cross-validation of approaches.
 
-\subsubsection{Binning}
+\subsection{Binning}
 One of the strengths of the above geometry is the capability of performing
 binning operations on the detector without having to re-calibrate or
 re-calculate the position in space.
@@ -329,7 +330,7 @@ To keep the computation time reasonable, the implementation of the blob
 detection relies on Gaussian convolution in real space (i.e. without Fourier
 transform), separated in horizontal and vertical directions, with small
 convolution kernels of width $8 \sigma +1$.
-To prevent an exessive growth of the window width, a pyramid
+To prevent an excessive growth of the window width, a pyramid
 of Gaussians is built by binning blurred images by a factor 2 when reaching
 $\sigma=2$.
 
@@ -609,7 +610,7 @@ diffraction rings which can be saved or displayed on the screen.
 The \textit{fake\_calibration\_image} method takes more parameters to help set
 the U, V and W parameters from Caglioti's formula \cite{caglioti} to include the
 broadening of peaks according to the simple resolution function.
-In pyFAI, only the \textit{d-spacing} values of the calibrants are stored, thus
+In pyFAI, only the $d$-spacing values of the calibrants are stored, thus
 the reconstructed image will have all rings with the same intensity (once integrated).
 
 \subsection{Image offset and validation of the calibration}
@@ -619,7 +620,7 @@ The calibration tool, \textit{pyFAI-calib}, includes  a ``validate'' command
 which evaluates the spatial offset between the 2D diffraction image and the
 image regenerated from the integrated pattern, using a classical phase
 correlation algorithm.
-This detemines the precision of the PONI localization, which
+This determines the precision of the PONI localization, which
 can be better than a tenth of a pixel, when calibrating images with continuous
 rings (i.e. not spotty) and with a mask large enough to remove the beam stop and
 all parasitic scattering.
@@ -823,7 +824,8 @@ If the predicted rings become too large or too small compared
 to the actual ones, the wavelength can be refined.
 For this purpose, it is advisable to  extract as many rings as
 deemed reasonable using \textit{``recalib n''} then run \textit{``free wavelength''} and
-\textit{``refine"}.% to check if there's an improvement.
+\textit{``refine"}.
+% to check if there's an improvement.
 Since distance and wavelength are
 heavily correlated, it is important to take into account as many rings as
 possible at high angle.
@@ -857,7 +859,7 @@ entry-points depending on the type of application and the user skills.
 A couple of top level applications: \textit{pyFAI-calib} and
 \textit{pyFAI-integrate} provide a graphical user interface to inexperienced
 users. 
-These interfaces are the least flexible ones and, bacause they are
+These interfaces are the least flexible ones and, because they are
 GUIs, are not tested against regression.
 
 \subsection{Top level application}
@@ -883,7 +885,7 @@ These module are
 implemented in Python using NumPy but often, a second
 implementation exists in Cython for performance purposes.
 The equivalence of these implementation is a core target of the pyFAI test
-suite
+suite.
 
 \subsection{Regridding/histogramming engines}
 These number-crunching engines are typically written in Cython or OpenCL with a

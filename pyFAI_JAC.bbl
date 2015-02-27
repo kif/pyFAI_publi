@@ -156,8 +156,9 @@ van~der Walt, S.~J.  \harvardyearleft 2010\harvardyearright{}.
 \newblock Ph.D. thesis, Stellenbosch University, South Africa.
 \newline\harvardurl{http://hdl.handle.net/10019.1/5189}
 
-\harvarditem{Yang X.and~Juhas \harvardand\ Billinge}{2014}{billinge2014}
-Yang X.and~Juhas, P. \harvardand\ Billinge, S. J.~L.  \harvardyearleft
+\harvarditem[Yang \emph{et~al.}]{Yang, Juhas \harvardand\
+  Billinge}{2014}{billinge2014}
+Yang, X., Juhas, P. \harvardand\ Billinge, S. J.~L.  \harvardyearleft
   2014\harvardyearright{}.
 \newblock \emph{J. Appl. Cryst.} \volbf{47}, 1273--1283.
 
