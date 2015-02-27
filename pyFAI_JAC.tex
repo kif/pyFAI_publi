@@ -498,9 +498,9 @@ pixel image into 1000 bins.
 along with their speed and memory footprint. 
 Measurements were performed on a 3 GHz quad-core
 computer using a 2048x2048 pixel image.}
-\begin{tabular}[pos]{c|c|c|c}
+\begin{tabular}[pos]{|c|c|c|}
 %\begin{tabular}[pos]{|c|l|l|l|}
-%\hline
+\hline
 Pixel splitting			& Direct histogram 		& Look-up table (reverse) \\
 \hline
 No splitting          & numpy (889ms 336MB)  &CSR nosplit (48ms 330 MB)\\ 
@@ -510,7 +510,7 @@ Bounding box          & splitbbox (129ms 343MB) & splitBBoxLUT (59ms 327MB)\\
 					&						&	CSR bbox (52ms 330MB) \\
 \hline
 Tight splitting & splitpixel (516ms, 480MB) &CSR full (51ms, 502MB)\\
-%\hline
+\hline
 \end{tabular}
 \end{table}
 
